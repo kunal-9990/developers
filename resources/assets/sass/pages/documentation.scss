@@ -31,6 +31,21 @@
     color: rgba(119, 119, 119, 0.89);
 }
 
+.iframe-wrapper {
+    position: relative;
+    margin: 24px 0;
+    padding-bottom: 56.25%; /* 16:9 */
+    padding-top: 25px;
+    height: 0;
+
+    iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+}
 
 .reqanalyticsinline {
     background-repeat: no-repeat;
