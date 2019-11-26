@@ -1,5 +1,5 @@
 module.exports = () => {
-    const ORIGINAL_VID_CONTAINER = $('#vid') || $('#vidcenter');
+    const ORIGINAL_VID_CONTAINER = $('#vid, #vidcenter');
     ORIGINAL_VID_CONTAINER.wrap("<div class='iframe-wrapper'></div>");
 }
 
