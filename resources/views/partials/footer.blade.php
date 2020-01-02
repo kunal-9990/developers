@@ -15,7 +15,7 @@
     <div class="container">
         <div class="footer__flex-container">
         <a href="https://www.caseware.com"><img class="footer__cw-logo" src="/img/CaseWare_logo_RGB_horz_White.png" class="footerlogo" alt="CaseWare logo"></a>
-        <p class="">Copyright © 2019 CaseWare International</p>
+        <p class="">Copyright © 2020 CaseWare International</p>
         <div class="footer__social-media">
             <a href="https://www.linkedin.com/groups/1935174/profile"><i class="fab fa-linkedin"></i></a>
             <a href="http://www.facebook.com/pages/CaseWare-International-Inc/54418196590?ref=ts"><i class="fab fa-facebook-square"></i></a>
