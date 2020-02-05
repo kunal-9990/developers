@@ -1,4 +1,10 @@
-module.exports = () => {    
+module.exports = () => {
+    function UrlExists(url) {
+        var http = new XMLHttpRequest();
+        http.open('HEAD', url, false);
+        http.send();
+        return http.status != 404;
+    }
     // const filter = require('../filter');
 
     $(".toc__container").html("");
@@ -30,17 +36,25 @@ module.exports = () => {
         var linkPrefix = "/" + year + "/" + product + "/" + version + "/" + lang;
         //hardcoding which toc to return based on language. currently, NL is the only language to have a properly translated TOC
         //this should be changed so that if a properly translated toc doesn't exist, it defaults to english
-        if(lang == "nl"){
-            var TOCxml = "/documentation_files/" + year + "/" + product + "/" + version + "/Content/" + lang + "/OnlineOutput.xml";
-        }
-        else if(window.location.href.indexOf("SE-Authoring") > -1){
-            console.log("se authoring");
-            var TOCxml = "/documentation_files/" + year + "/" + product + "/" + version + "/Content/" + "en" + "/SE-Authoring-TOC.xml";
+        // if(lang == "nl"){
+        //     var TOCxml = "/documentation_files/" + year + "/" + product + "/" + version + "/Content/" + lang + "/OnlineOutput.xml";
+        // }
+        var properlyTranslated = ["en", "nl"];
+        if(window.location.href.indexOf("SE-Authoring") > -1){
+            if (properlyTranslated.includes(lang)){
+                var TOCxml = "/documentation_files/" + year + "/" + product + "/" + version + "/Content/" + lang + "/SE-Authoring-TOC.xml";
+            }
+            else {
+                var TOCxml = "/documentation_files/" + year + "/" + product + "/" + version + "/Content/en/SE-Authoring-TOC.xml";
+            }
         }
         else{
-            var TOCxml = "/documentation_files/" + year + "/" + product + "/" + version + "/Content/" + "en" + "/OnlineOutput.xml";
-            console.log("regular toc");
-
+            if (properlyTranslated.includes(lang)) {
+                var TOCxml = "/documentation_files/" + year + "/" + product + "/" + version + "/Content/" + lang + "/OnlineOutput.xml";
+            }
+            else {
+                var TOCxml = "/documentation_files/" + year + "/" + product + "/" + version + "/Content/en/OnlineOutput.xml";
+            }
         }
     }
     
