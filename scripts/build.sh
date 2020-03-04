@@ -19,7 +19,7 @@
 # npm run build 2018 webapps 30 en
 #
 # wait until the script says "done." 
-dos2unix scripts/build.sh
+#dos2unix scripts/build.sh
 
 sudo chmod -R 777 .
 
@@ -29,7 +29,7 @@ sudo mv public/documentation_files/$1/$2/$3/Content/$4 tmp/Content_backups/en_$(
 
 echo 'Copying new content into place...'
 mkdir -p public/documentation_files/$1/$2/$3/Content/$4
-cp -R tmp/$3/* public/documentation_files/$1/$2/$3/Content/$4
+cp -R tmp/$4/$3/* public/documentation_files/$1/$2/$3/Content/$4
 cd public/documentation_files/$1/$2/$3/Content/$4
 
 sudo chmod -R 777 .
@@ -86,7 +86,7 @@ echo 'Copying Data folders into place...'
 
 #end-user search results
 mkdir -p public/search/$1/$2/$3/$4
-cp -R tmp/$3/Data public/search/$1/$2/$3/$4
+cp -R tmp/$4/$3/Data public/search/$1/$2/$3/$4
 cd public/search/$1/$2/$3
 
 cp -R en fr
@@ -99,7 +99,7 @@ cd ../../../../..
 
 #se-search results
 mkdir -p public/se-search/$1/$2/$3/$4
-cp -R tmp/$3/Data-SE public/se-search/$1/$2/$3/$4
+cp -R tmp/$4/$3/Data-SE public/se-search/$1/$2/$3/$4
 cd public/se-search/$1/$2/$3/$4
 rm -R Data
 mv Data-SE Data
