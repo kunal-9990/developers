@@ -3,10 +3,14 @@ module.exports = () => {
     const DOWNLOAD_LINKS = document.querySelectorAll('.downloadLink');
     const MODAL_OVERLAY = document.querySelector('.pdf-modal');
     const MODAL_CLOSE = document.querySelector('.pdf-modal__close span');
-    const SUBSCRIBE = document.querySelector('.pdf-modal__subscribe-btn');
-    const DOWNLOAD_FILE = document.querySelector('.pdf-modal__file-download-btn');
+    // const SUBSCRIBE = document.querySelector('.pdf-modal__subscribe-btn');
+    // const DOWNLOAD_FILE = document.querySelector('.pdf-modal__file-download-btn');
     const EMAIL_INPUT_VALUE = document.querySelector('.email-sub-for-pdf');
     let fileName = null;
+
+    $(document).ready(function () {
+        $("#modal-download-btn").attr("href", "/download/" + $(".downloadLink").attr("filename"));
+    });
 
     function togglePDFModalOverLay() {
         BODY.classList.contains('pdf-modal--shown')
@@ -21,51 +25,6 @@ module.exports = () => {
                 togglePDFModalOverLay();
             }
         }
-    }
-
-    function validateEmail(email) {
-        const EMAIL_VALIDATION = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/; // eslint-disable-line no-useless-escape
-
-        return EMAIL_VALIDATION.test(email);
-    }
-
-    function subscribe() {
-        const USERS_EMAIL = EMAIL_INPUT_VALUE.value;
-
-        if (validateEmail(USERS_EMAIL)) {
-            $('#error').hide();
-            $.post(
-                window.location.origin + '/logemail',
-                {
-                    '_token': $('meta[name=csrf-token]').attr('content'),
-                    page: window.location.href,
-                    title: document.title,
-                    email: USERS_EMAIL,
-                    file: fileName,
-                },
-            );
-            downloadPDF();
-        } else {
-            $('#error').show();
-        }
-    }
-
-    function noEmail() {
-        $.post(
-            window.location.origin + '/logemail',
-            {
-                '_token': $('meta[name=csrf-token]').attr('content'),
-                page: window.location.href,
-                title: document.title,
-                file: fileName,
-            },
-        );
-        downloadPDF();
-    }
-    
-    function downloadPDF() {
-        togglePDFModalOverLay();
-        window.open("/downloads/" + fileName, "_blank");
     }
 
     DOWNLOAD_LINKS.forEach((link) => {
@@ -83,7 +42,5 @@ module.exports = () => {
         });
     });
 
-    SUBSCRIBE.addEventListener('click', () => subscribe());
-    DOWNLOAD_FILE.addEventListener('click', () => noEmail());
     window.addEventListener('click', event => closeModal(event));
 };

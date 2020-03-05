@@ -58,9 +58,12 @@ Route::get('/2019/webapps/30/en/Explore/Whats-New/Release-history-Analytics.htm'
 
 // cloud index
 Route::get('/', function () {
-    return redirect('/2019/webapps/30/en/webapps');
+    return redirect('/2019/webapps/30/en/webapps'); 
 });
 
+Route::get('/download/{filename}', function($filename){
+    return response()->download(public_path('/downloads/'.$filename));
+});
 
 // search
 Route::get('/search/{year}/{product}/{version}/{lang}/search', 'PageController@search')->name('search');
@@ -102,9 +105,6 @@ Route::get('/se-search/{year}/{product}/{version}/{lang}/{category}/{subcategory
 });
 
 
-
-
-
 // topics
 Route::get('/{year}/{product}/{version}/{lang}/{category}/{subcategory}/{topic}', 'PageController@showTopic')->name('topic');
 
@@ -119,7 +119,12 @@ Route::get('/{year}/{product}/{version}/{lang}/{category}', 'PageController@show
 
 Route::post('logemail', 'Controller@logEmail');
 
+Route::get('login/{provider}', 'Auth\LoginController@redirectToProvider');
+Route::get('login/{provider}/callback', 'Auth\LoginController@handleProviderCallback');
 
 
 
 
+Auth::routes();
+
+// Route::get('/home', 'HomeController@index')->name('home');

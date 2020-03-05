@@ -1,38 +1,45 @@
-{{-- <div class="modal in" id="myModal" role="dialog" style="display: block; padding-right: 17px;">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-body">
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">X</span>
-                </button>
-                <h3 class="modalheading">Gain Access to More Content</h3>
-                <p class="modalmaintext">Subscribe to receive updates on the latest articles and news for CaseWare products.</p>
-                <p class="modalsubtext">Your download will start immediately after you subscribe.</p>
-                <p class="emailmodalinputlabel">Email:</p>
-                <input type="text" id="email">
-                <button id="submit" type="button" class="btn btn-primary" onclick="downloadFile();">Subscribe</button><a class="modalnoemail" onclick="downloadFilenoemail()">No thanks. I just want to download the file.</a>
-                <div id="emailerrormsg">
-                </div>
-            </div>
-            <div class="modal-footer"><a href="https://casewarecloud.com">Don't have Cloud yet? Click here to learn more.</a>
-            </div>
-        </div>
-    </div>
-</div> --}}
 
 <div class="pdf-modal">
     <div class="pdf-modal__wrap">
         <div class="pdf-modal__body">
-            <h2 class="">Stay Connected</h2>
-            <p class="">Subscribe to receive updates on the latest articles and news for CaseWare products.</p>
-            <p class="">Your download will start immediately after you subscribe.</p>
-            <div class="pdf-modal__button-wrap">
-                <div class="pdf-modal__input-wrap">
-                    <input type="text" class="email-sub-for-pdf" placeholder="Enter your email">
+            @if (Auth::user())
+                <h2 class="">Thank you</h2>
+                <p class="">For subscribing to receive updates on the latest articles and news for CaseWare products.</p>
+                <div class="pdf-modal__button-wrap">
+                    {{-- <div class="pdf-modal__input-wrap">
+                        <input type="text" class="email-sub-for-pdf" placeholder="Enter your email">
+                    </div> --}}
+                    <div id="error">Please register</div>
+                    <button type="button" class="pdf-modal__subscribe-btn" style="display:none;">Subscribe</button>
+                    {{-- <a href="login/github" class="btn btn-primary">
+                        Login with Github
+                    </a> --}}
+                    <a id="modal-download-btn" href="" class="btn btn-primary btn-block"><b>Download</b></a>
+                </div>            
+            @else
+                <h2 class="">Stay Connected</h2>
+                <p class="">Subscribe to receive updates on the latest articles and news for CaseWare products.</p>
+                <p class="">Your download will start immediately after you subscribe.</p>
+                <div class="pdf-modal__button-wrap">
+                    {{-- <div class="pdf-modal__input-wrap">
+                        <input type="text" class="email-sub-for-pdf" placeholder="Enter your email">
+                    </div> --}}
+                    <div id="error">Please register</div>
+                    <button type="button" class="pdf-modal__subscribe-btn" style="display:none;">Subscribe</button>
+                    {{-- <a href="login/github" class="btn btn-primary">
+                        Login with Github
+                    </a> --}}
+                    <div class="text-center social-btn">
+                        <a href="/login/github"  class="btn btn-success btn-block"><i class="fab fa-github"></i>   Subscribe with <b>GitHub</b></a>
+                        {{-- <a href="/login/facebook" class="btn btn-facebook btn-block"><i class="fab fa-facebook-f"></i> Subscribe with <b>Facebook</b></a> --}}
+                        <a href="/login/twitter" class="btn btn-twitter btn-block"><i class="fab fa-twitter"></i> Subscribe with <b>Twitter</b></a>
+                        <a href="/login/google" class="btn btn-google btn-block"><i class="fab fa-google"></i> Subscribe with <b>Google</b></a>
+                        <a href="/login/linkedin" class="btn btn-linkedin btn-block"><i class="fab fa-linkedin-in"></i> Subscribe with <b>LinkedIn</b></a>
+                    </div>
                 </div>
-                <div id="error">Please enter a valid email.</div>
-                <button type="button" class="pdf-modal__subscribe-btn">Subscribe</button>
-            </div>
-            <a class="pdf-modal__file-download-btn">No thanks, I just want the file.</a>
+            @endif
+
+            {{-- <a class="pdf-modal__file-download-btn">No thanks, I just want the file.</a> --}}
         </div>
         <div class="pdf-modal__footer">
             <p>Don't have a cloud yet? <a href="https://casewarecloud.com/" target="_blank">Click to learn more</a></p>

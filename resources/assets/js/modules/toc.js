@@ -17,9 +17,9 @@ module.exports = () => {
 
     // they are the same for now but might change in the future to
     // to have different TOCxml routes
-    if (0) { 
+    if (0) {
         // used for staging
-        
+
         var year = routeComponents[1];
         console.log(year);
         var product = routeComponents[2].toLowerCase();
@@ -57,7 +57,7 @@ module.exports = () => {
             }
         }
     }
-    
+
     $.ajax({
         type: "GET",
         url: TOCxml,
@@ -75,14 +75,14 @@ module.exports = () => {
                                     producttags = $(this).attr("conditions").replace("Product.", "toc__filters--").toLowerCase() + "-js";
                                 }
                                 else {
-                                    producttags= " ";
+                                    producttags = " ";
                                 };
 
-                                if($(this).attr("Link") && loc.includes($(this).attr("Link").replace(".htm",""))){
+                                if ($(this).attr("Link") && loc.includes($(this).attr("Link").replace(".htm", ""))) {
                                     topicList.append('<li class="current-page ' + producttags + '"><a href="' + linkPrefix + $(this).attr("Link") + '">' + $(this).attr("Title") + '</a></li>');
                                 }
-                                else{
-                                    topicList.append('<li class="' + producttags + '"><a href="' + linkPrefix + $(this).attr("Link") + '">' + $(this).attr("Title") + '</a></li>');                                    
+                                else {
+                                    topicList.append('<li class="' + producttags + '"><a href="' + linkPrefix + $(this).attr("Link") + '">' + $(this).attr("Title") + '</a></li>');
                                 }
 
                             });
@@ -96,12 +96,12 @@ module.exports = () => {
 
                             subCatList.append(li.append(topicList));
                         } else {
-                            if($(this).attr("Link") && loc.includes($(this).attr("Link"))){
+                            if ($(this).attr("Link") && loc.includes($(this).attr("Link"))) {
                                 subCatList.append('<li class="current-page toc__sub-category"><a class="chevron" href="' + linkPrefix + $(this).attr("Link") + '">' + $(this).attr("Title") + '</a>');
                             }
-                            else{
+                            else {
                                 subCatList.append('<li class="toc__sub-category"><a class="chevron" href="' + linkPrefix + $(this).attr("Link") + '">' + $(this).attr("Title") + '</a>');
-                            }                        
+                            }
                         }
                     });
                     var li = $('<li class="toc__category"><a class="chevron" href="#">' + $(this).attr("Title") + '</a>');
@@ -110,12 +110,12 @@ module.exports = () => {
             });
 
             $(".toc__container").append(ul_main);
-            
+
             //expand section of current page
             $(".current-page").parent().addClass("toc__topic-wrap--is-expanded");
             $(".current-page").parent().parent().parent().addClass("toc__sub-category-wrap--is-expanded");
 
-  
+
             $(".current-page").parent().addClass("toc__sub-category-wrap--is-expanded");
             $(".current-page").parent().parent().parent().addClass("toc__sub-category-wrap--is-expanded");
 
@@ -140,7 +140,7 @@ module.exports = () => {
             el.closest('.toc__sub-category').classList.add('toc__category--is-open');
             el.closest('.toc__category').classList.add('toc__category--is-open');
         })
-        
+
     }
 
 
@@ -163,7 +163,7 @@ module.exports = () => {
             link.addEventListener('click', (event) => {
                 const nextElementSibling = event.target.nextElementSibling;
                 const thisElParentNode = event.target.parentNode;
-                
+
                 if (link.classList.contains('chevron')) {
                     event.preventDefault();
 
@@ -200,5 +200,5 @@ module.exports = () => {
             el.classList.add('toc__category--is-open')
     }
 
-    
+
 };

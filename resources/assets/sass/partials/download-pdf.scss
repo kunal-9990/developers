@@ -112,4 +112,25 @@
         color: red;
         display: none;
     }
+
+    .pdf-modal__file-download-btn {
+        cursor: pointer;
+    }
+
+    .btn-twitter {
+        background-color: #1da1f2;
+        color:white;
+    }
+    .btn-google {
+        background-color: #ea4335;
+        color:white;
+    }
+    .btn-facebook {
+        background-color: #1877f2;
+        color:white;
+    }
+    .btn-linkedin {
+        background-color: #007bb5;
+        color:white;
+    }
 }
