@@ -27,6 +27,19 @@
             ></div>
         </div>
 
+        <div class="dev-landing">
+            @foreach($pageContent->acf->dev_landing_builder as $section) 
+                @if($section->acf_fc_layout == "second_level_navigation")
+                    <div
+                        data-component="second-level-nav" 
+                        data-prop-heading="{{$section->heading}}"
+                        data-prop-blocks="{{htmlspecialchars(json_encode($section->navigation_blocks))}}"
+                    ></div>
+                @endif
+            @endforeach
+        </div>
+
+
         {{-- breacrumbs --}}
             @if(Request::route()->getName() == 'product')
                 <div class="container container--mk4 breadcrumb-container">
