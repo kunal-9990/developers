@@ -1,4 +1,13 @@
+.dev-banner {
+    section.banner {
+        background-position: bottom;
+        &:after {
+          display: none;
+        }
+    }
+}
 .dev-landing {
+
     h2 {
         font-weight: 700;
         font-size: 2.8rem;
@@ -11,7 +20,7 @@
     }
 
     .second-nav {
-        background-color: $royal-blue;
+        background-color: #00245b;
         color: $white;
 
         &__wrapper {

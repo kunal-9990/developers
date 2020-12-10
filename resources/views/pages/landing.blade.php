@@ -20,7 +20,7 @@
             @include('partials.header-ghost')
         @endif  
 
-        <div class="landing__banner">
+        <div class="landing__banner dev-banner">
             <div
                 data-component="banner" 
                 data-prop-banner="{{htmlspecialchars(json_encode($pageContent->acf->banner))}}"
