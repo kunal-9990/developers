@@ -36,6 +36,19 @@
                         data-prop-blocks="{{htmlspecialchars(json_encode($section->navigation_blocks))}}"
                     ></div>
                 @endif
+                @if($section->acf_fc_layout == "tabs")
+                    <div class="container container--mk4">
+                        <div class="row">
+                            <div class="col-sm-12">  
+                                <div 
+                                    data-component="tabs" 
+                                    data-prop-heading="{{$section->heading}}"
+                                    data-prop-tabs="{{htmlspecialchars(json_encode($section->tab))}}"
+                                ></div>
+                            </div>
+                        </div>
+                    </div>                                
+                @endif
             @endforeach
         </div>
 

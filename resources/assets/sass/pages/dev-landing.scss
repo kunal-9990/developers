@@ -2,15 +2,21 @@
     section.banner {
         background-position: bottom;
         &:after {
-          display: none;
+            display: none;
         }
     }
 }
+
 .dev-landing {
+
+    &__container {
+        padding: 6rem 0 4.8rem;
+    }
 
     h2 {
         font-weight: 700;
         font-size: 2.8rem;
+        margin: 0;
     }
 
     h3 {
@@ -22,14 +28,6 @@
     .second-nav {
         background-color: #00245b;
         color: $white;
-
-        &__wrapper {
-            padding: 6rem 0;
-        }
-
-        h2 {
-            margin: 0;
-        }
 
         &__grid {
             display: flex;
@@ -112,10 +110,10 @@
 @include mq(xs) {
 
     .dev-landing {
+        &__container {
+            padding: 7.2rem 0 4.8rem;
+        }
         .second-nav {
-            &__wrapper {
-                padding: 7.2rem 0;
-            }
             &__grid {
                 flex-direction: row;
             }
@@ -144,5 +142,4 @@
             }
         }
     }
-
 }
