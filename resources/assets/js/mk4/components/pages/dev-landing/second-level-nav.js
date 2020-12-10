@@ -25,7 +25,7 @@ const SecondLevelNav = ({ heading, blocks }) => {
       <div className="container container--mk4">
         <div className="row">
           <div className="col-sm-12">
-            <div className="second-nav__wrapper">
+            <div className="dev-landing__container">
               <h2>{heading}</h2>
               <div className="second-nav__grid">
                 {navigation}

@@ -23,6 +23,7 @@ import PlaylistGrid from './components/pages/secondary/PlaylistGrid'
 import RegionLightbox from './components/RegionLightbox'
 import VideoControl from './components/VideoControl'
 import SecondLevelNav from './components/pages/dev-landing/second-level-nav'
+import Tabs from './components/pages/dev-landing/dev-tabs'
 
 import 'react-app-polyfill/ie9'
 import 'react-app-polyfill/ie11'
@@ -117,6 +118,10 @@ const containers = [
   {
     id: 'second-level-nav',
     component: SecondLevelNav
+  },
+  {
+    id: 'tabs',
+    component: Tabs
   }
 ];
 
