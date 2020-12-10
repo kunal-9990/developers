@@ -19,13 +19,13 @@
         }
 
         h2 {
-            margin-top: 0;
+            margin: 0;
         }
 
         &__grid {
             display: flex;
             flex-direction: column;
-            padding-top: 4.8rem;
+            padding-top: 4.2rem;
         }
 
         &__block {
@@ -57,7 +57,7 @@
                 left: 0;
                 right: 0;
                 background-color: $caseware-blue;
-                transition: all 0.5s ease;
+                transition: all 0.3s ease;
 
             }
 
@@ -66,12 +66,20 @@
                     left: -1.6rem;
                     width: calc(100% + 3.2rem);
                     height: 100%;
-                    transition: all 0.5s ease;
+                    transition: all 0.3s ease;
                 }
 
                 a {
                     font-weight: bold;
-                    transition: all 0.5s ease;
+                    transition: all 0.3s ease;
+
+                    &:after {
+                        content: '\0203A';
+                        padding-left: 1.8rem;
+                        font-size: 2rem;
+                        line-height: 0;
+                        opacity: 1;
+                    }
                 }
             }
 
@@ -81,6 +89,12 @@
                 padding: 1.2rem 0;
                 color: $white;
                 text-decoration: none;
+
+                &:after {
+                    content: '';
+                    opacity: 0;
+                    transition: all 0.5s ease;
+                }
             }
         }
     }
