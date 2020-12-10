@@ -6,7 +6,7 @@ const imageminMozjpeg = require('imagemin-mozjpeg');
 
 require('@babel/polyfill');
 
-const BROWSERSYNC_URL = 'http://dev.docsmk4';
+const BROWSERSYNC_URL = 'http://dev.developers';
 
 /*
  |--------------------------------------------------------------------------
