@@ -3,12 +3,7 @@ import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 
-
-
-
 const DevTabs = ({ heading, description, tabs }) => {
-  console.log(heading)
-  console.log(tabs)
 
   const settings = {
     arrows: true,
@@ -32,8 +27,15 @@ const DevTabs = ({ heading, description, tabs }) => {
 
   let tabSlider = tabs.map((tab, i) => {
     return (
-      <div className="" key={i}>
-        <p dangerouslySetInnerHTML={{ __html:tab.content}} />
+      <div className="tab-slide" key={i}>
+        <div class="tab-slide__two-col">
+          <p dangerouslySetInnerHTML={{ __html:tab.content}} />
+          <div>
+            <div className="tab-slide__cta">
+              <a href={tab.link.url}>{tab.link.title || 'Learn more'}</a>
+            </div>
+          </div>
+        </div>
         {/* <p>{block.description}</p>
         <div>
           <div className="second-nav__cta">
