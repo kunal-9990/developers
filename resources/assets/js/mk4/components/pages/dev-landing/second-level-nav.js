@@ -1,8 +1,6 @@
 import React from 'react';
 
 const SecondLevelNav = ({ heading, blocks }) => {
-  console.log(heading)
-  console.log(blocks)
 
   let navigation = blocks.map((block, i) => {
     return (

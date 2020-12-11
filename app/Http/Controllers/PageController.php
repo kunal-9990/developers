@@ -25,11 +25,11 @@ class PageController extends Controller
             return response()->view('errors.languageunavailable');
         }
         else{        
-            $page = $this->getPlaylists($page);
-            $page = $this->getDownloads($page);
-            $page = $this->getProductNavigation($page);
+            // $page = $this->getPlaylists($page);
+            // $page = $this->getDownloads($page);
+            // $page = $this->getProductNavigation($page);
             $pageContent = $page['results'][0];
-            return view('pages.landing', compact('pageContent', 'recent', 'exclusiveTo','title', 'playlists' ));
+            return view('pages.dev-level-1', compact('pageContent', 'recent', 'exclusiveTo','title' ));
         }
     }
 
@@ -43,10 +43,9 @@ class PageController extends Controller
             return response()->view('errors.languageunavailable');
         }
         else {        
-            $page = $this->getPlaylists($page);
             $page = $this->getDownloads($page);
             $pageContent = $page['results'][0];
-            return view('pages.landing', compact('pageContent', 'recent', 'exclusiveTo','title', 'playlists'));
+            return view('pages.dev-level-1', compact('pageContent', 'recent', 'exclusiveTo','title'));
         }
     }
 
