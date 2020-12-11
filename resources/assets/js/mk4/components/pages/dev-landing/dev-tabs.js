@@ -1,32 +1,59 @@
-import React from 'react';
+import React from 'react'
+import Slider from 'react-slick'
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
 
-const DevTabs = ({ heading, tabs }) => {
+
+
+
+const DevTabs = ({ heading, description, tabs }) => {
   console.log(heading)
   console.log(tabs)
 
-  // let navigation = blocks.map((block, i) => {
-  //   return (
-  //     <div className="second-nav__block" key={i}>
-  //       <div className="second-nav__title">
-  //         <h3 dangerouslySetInnerHTML={{ __html: block.title }}/>
-  //       </div>
-  //       <p>{block.description}</p>
-  //       <div>
-  //         <div className="second-nav__cta">
-  //           <a href={block.link.url}>{block.link.title || 'Learn more'}</a>
-  //         </div>
-  //       </div>
-  //     </div>
-  //   )
-  // })
+  const settings = {
+    arrows: true,
+    // prevArrow: <ArrowPrev />,
+    // nextArrow: <ArrowNext />,
+    customPaging: function(i) {
+      return(<h3>{tabs[i]['title']}</h3>)
+    },
+    dots: true,
+    dotsClass: "tabs",
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    // responsive: [{
+    //   breakpoint: 768,
+    //   settings: "unslick",
+    //   slidesToShow: 1
+    // }]
+  }
+
+  let tabSlider = tabs.map((tab, i) => {
+    return (
+      <div className="" key={i}>
+        <p dangerouslySetInnerHTML={{ __html:tab.content}} />
+        {/* <p>{block.description}</p>
+        <div>
+          <div className="second-nav__cta">
+            <a href={block.link.url}>{block.link.title || 'Learn more'}</a>
+          </div>
+        </div> */}
+      </div>
+    )
+  })
 
   return (
     <div className="dev-tabs">
       <div className="dev-landing__container">
-              <h2>{heading}</h2>
-              {/* <div className="second-nav__grid">
-                {navigation}
-              </div> */}
+        <h2>{heading}</h2>
+        {description && <p>{description}</p>}
+        <div className="dev">
+          <Slider {...settings}>
+            {tabSlider}
+          </Slider>
+        </div>
       </div>
     </div>
   )

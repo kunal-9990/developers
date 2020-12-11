@@ -1,13 +1,15 @@
-.dev-banner {
+.dev-landing {
+
     section.banner {
         background-position: bottom;
         &:after {
             display: none;
         }
     }
-}
 
-.dev-landing {
+    #main {
+        margin: 0;
+    }
 
     &__container {
         padding: 6rem 0 4.8rem;
@@ -25,6 +27,8 @@
         line-height: 1.2;
     }
 
+    // SECOND LEVEL NAV
+
     .second-nav {
         background-color: #00245b;
         color: $white;
@@ -36,7 +40,7 @@
         }
 
         &__block {
-            padding-bottom: 2.4rem;
+            padding-bottom: 4rem;
             padding-right: 0;
 
             &:last-child {
@@ -105,6 +109,50 @@
             }
         }
     }
+
+    // DEV TABS
+
+    .dev-tabs {
+        .dev-landing__container > p {
+            margin: 2.4rem 0;
+        }
+        
+        .tabs {
+            position: absolute;
+            display: flex !important;
+            padding: 0;
+            margin: 0;
+            top: 0;
+            width: 100%;
+            list-style: none;
+            text-align: left;
+
+            & > li {
+                position: relative;
+                padding-right: 2.4rem;
+                width: auto;
+                height: auto;
+                cursor: pointer;
+            }
+
+            .slick-active {
+                &:after {
+                    content: '';
+                    position: absolute;
+                    width: calc(100% - 2.4rem);
+                    height: 4px;
+                    left: 0;
+                    right: 0;
+                    background-color: $caseware-blue;
+                    transition: all 0.3s ease;
+                }
+            }
+        }
+
+        .slick-list {
+            top: 8rem;
+        }
+    }
 }
 
 @include mq(xs) {
@@ -116,13 +164,13 @@
         .second-nav {
             &__grid {
                 flex-direction: row;
+                flex-wrap: wrap;
             }
             &__block {
                 display: flex;
                 flex-direction: column;
-                flex: 1;
+                width: 50%;
                 padding-right: 2.4rem;
-                padding-bottom: 0;
 
                 &:last-child {
                     padding-right: 0;
@@ -143,3 +191,29 @@
         }
     }
 }
+
+@include mq(sm) {
+
+    .dev-landing {
+        &__container {
+            padding: 7.2rem 0 4.8rem;
+        }
+        .second-nav {
+            &__grid {
+                flex-wrap: nowrap;
+            }
+            &__block {
+                flex: 1;
+                padding-bottom: 0;
+
+                &:last-child {
+                    padding-right: 0;
+                }
+                p {
+                    flex: 1;
+                }
+            }
+        }
+    }
+}
+
