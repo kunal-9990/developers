@@ -217,6 +217,10 @@
         }
         .dev-tabs { 
             min-height: 120rem;
+
+            .tabs-container {
+                padding-top: 2.8rem;
+            }
           
             .tabs {
                 display: flex !important;

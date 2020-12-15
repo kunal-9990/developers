@@ -33,19 +33,16 @@ class PageController extends Controller
         }
     }
 
-    function product($region, $lang, $productSlug){
-        // App::setLocale($lang);
 
-        $page = $this->cms->get_custom_post_by_name($lang, 'product', "{$region}-{$productSlug}");
-        
-        
+    function level2($slug){
+
+        $page = $this->cms->get_custom_post_by_name('en', 'level2', "{$slug}");
         if(empty($page['results'])){
             return response()->view('errors.languageunavailable');
         }
-        else {        
-            $page = $this->getDownloads($page);
+        else{        
             $pageContent = $page['results'][0];
-            return view('pages.dev-level-1', compact('pageContent', 'recent', 'exclusiveTo','title'));
+            return view('pages.dev-level-2', compact('pageContent', 'recent', 'exclusiveTo','title'));
         }
     }
 
