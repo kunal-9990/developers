@@ -41,11 +41,11 @@ Route::group(['middleware' => 'setregion'], function () {
         Route::get('/{region}/{lang}/{slug}/frequently-asked-questions', 'PageController@faq')->name('faq');
         Route::get('/{region}/{lang}/{slug}', 'PageController@product')->name('product');
         Route::get('/{region}/{lang}/', 'PageController@home')->name('home');
+        Route::get('/{slug}', 'PageController@level2')->name('level2');
 
         Route::get('/', function() {
                 return redirect('/ca/en');
         });
-
 });
 
 // search

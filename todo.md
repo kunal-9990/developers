@@ -1,4 +1,13 @@
 
+
+# TO UPDATE:
+- Docs Home = Dev 1st Landing
+- Docs Product = Dev 2nd Landing
+
+
+
+
+
 # General
 - get rid of NodeName errors (from lightbox library)
 - Search Bar

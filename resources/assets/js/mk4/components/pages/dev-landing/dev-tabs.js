@@ -51,7 +51,7 @@ const DevTabs = ({ heading, description, tabs }) => {
       <div className="dev-landing__container">
         <h2>{heading}</h2>
         {description && <p>{description}</p>}
-        <div className="dev">
+        <div className="tabs-container">
           <Slider {...settings}>
             {tabSlider}
           </Slider>
