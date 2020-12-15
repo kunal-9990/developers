@@ -5,7 +5,7 @@ const Links = ({ links }) => {
   if (links) {
     linklist = links.map((link, i) => (
       <li className="toc__sub-category">
-        <a className="" href={link.link.url} key={i}>
+        <a className="" href={link.link.url} target={link.link.target} key={i}>
           {link.link.title}
         </a>
       </li>

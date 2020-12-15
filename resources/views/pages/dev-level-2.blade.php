@@ -17,7 +17,7 @@
 @stop
 
 @section('content')
-    <div class="container documentation">
+    <div class="container documentation dev-landing dev-landing--level2">
         <div class="row">
             <div class="col-sm-3 table-of-contents">
                 @if(isset($pageContent->acf->toc)) 
@@ -28,19 +28,32 @@
                 @endif
             </div>
             <div class="col-sm-9">
-                <div class="docs__video-iframe-wrap">
-                    @include('partials.video-iframe')
-                </div>
                 <div class="docs__container">
                     <div class="docs__content"> 
-                    <h1>Dev 2</h1>
-
-                    </div>
-                    <div class="docs__sub-toc">
-                        <div class="docs__video-iframe-thumbnail-container">
-                            <img class="docs__video-iframe-thumbnail" src="" alt="">
-                            <img class="docs__video-iframe-thumbnail__yt-icon" src="/img/yt_icon_rgb.png" alt="">
+                      <section class="toc-content">
+                        <div>
+                          <h1><?php echo $pageContent->acf->page_title ?></h1>
+                          @if(isset($pageContent->acf->modular_template_builder)) 
+                            <div class="dev-level-2">
+                              @foreach($pageContent->acf->modular_template_builder as $section) 
+                                @if($section->acf_fc_layout == "text_area")
+                                  {!! $section->text_area !!}
+                                @endif
+                                @if($section->acf_fc_layout == "links")
+                                  <div class="dev-level-2__links">
+                                    <strong>{{ $section->link_group_title }}</strong>
+                                    @foreach($section->links as $link)
+                                    <a href="{{ $link->link->url }}" target="{{ $link->link->target }}">
+                                      {{ $link->link->title }}
+                                    </a>
+                                    @endforeach
+                                  </div>
+                                @endif
+                              @endforeach
+                            </div>
+                          @endif
                         </div>
+                      </section>
                     </div>
                 </div>
                 @include('partials.filter-msg', [
