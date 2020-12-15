@@ -24,6 +24,7 @@ import RegionLightbox from './components/RegionLightbox'
 import VideoControl from './components/VideoControl'
 import SecondLevelNav from './components/pages/dev-landing/second-level-nav'
 import Tabs from './components/pages/dev-landing/dev-tabs'
+import TOC from './components/pages/dev-landing/toc'
 
 import 'react-app-polyfill/ie9'
 import 'react-app-polyfill/ie11'
@@ -122,6 +123,10 @@ const containers = [
   {
     id: 'tabs',
     component: Tabs
+  },
+  {
+    id: 'toc',
+    component: TOC
   }
 ];
 

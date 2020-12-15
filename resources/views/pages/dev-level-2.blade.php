@@ -1,35 +1,61 @@
+@extends('default')
 
-<!DOCTYPE html>
+@section('html')
+    @include('partials.html', [
+        'exclusiveTo' =>  isset($exclusiveTo) ? $exclusiveTo : false,
+    ])
+@stop
 
-@yield('html')
-<head>
-    
-    @include('partials.meta')
-    {!! $pageContent->yoast_head !!}
-    <link href="{{ mix('/css/app.css') }}" rel="stylesheet" type="text/css">
-</head>
-<body>
-    <div class="page-wrap dev-landing dev-landing--level2">
-       
+@section('meta')
+    @include('partials.meta', [
+        'canonical' => URL::current(),
+        'url' => URL::current(),
+        'title' =>  isset($title) ? $title : false,
+        'og_description' => isset($title) ? $title : false,
+        'doNotTranslate' => isset($doNotTranslate) ? $doNotTranslate : false,
+    ])
+@stop
 
+@section('content')
+    <div class="container documentation">
+        <div class="row">
+            <div class="col-sm-3 table-of-contents">
+                @if(isset($pageContent->acf->toc)) 
+                  <div
+                      data-component="toc" 
+                      data-prop-toc="{{htmlspecialchars(json_encode($pageContent->acf->toc))}}"
+                  ></div>
+                @endif
+            </div>
+            <div class="col-sm-9">
+                <div class="docs__video-iframe-wrap">
+                    @include('partials.video-iframe')
+                </div>
+                <div class="docs__container">
+                    <div class="docs__content"> 
+                    <h1>Dev 2</h1>
 
-        <main id="main">
-<h1>Dev level 2</h1>
-
-
-        </main>
+                    </div>
+                    <div class="docs__sub-toc">
+                        <div class="docs__video-iframe-thumbnail-container">
+                            <img class="docs__video-iframe-thumbnail" src="" alt="">
+                            <img class="docs__video-iframe-thumbnail__yt-icon" src="/img/yt_icon_rgb.png" alt="">
+                        </div>
+                    </div>
+                </div>
+                @include('partials.filter-msg', [
+                    'exclusiveTo' =>  isset($exclusiveTo) ? $exclusiveTo : false,
+                ])
+            <!-- </div> -->
+        </div>
     </div>
 
-    @if(!Cookie::get('modalDismissed'))
-    <div data-component="region-lightbox"
-            data-prop-open={{json_encode(session('openRegionLightbox'))}}
-            data-prop-redirect={{str_replace('/'.app('request')->route()->parameters['region'].'/', '/'.session('requestRegion').'/', Request::url())}}
-    ></div>
-    @endif
+    {{-- back to top button --}}
+    @include('partials.back-to-top')
 
-        @include('partials.cookie-consent')
-        @include('partials.footer')
-        @include('partials.footer-includes')
-        
-</body>
-</html>
+    {{-- modal overlay for images in content --}}
+    @include('partials.image-modal')
+
+    {{-- modal overlay for email subscription and pdf download --}}
+    @include('partials.download-pdf')
+@stop
