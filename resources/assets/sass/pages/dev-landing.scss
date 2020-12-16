@@ -1,3 +1,24 @@
+.dev-header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    & > * {
+        padding: 0 1.2rem;
+        &:last-child {
+            padding-right: 0;
+        }
+    }
+
+    & > a {
+        color: $white;
+    }
+
+    .cta {
+        margin: 0;
+    }
+}
+
 .dev-landing {
 
     section.banner {
