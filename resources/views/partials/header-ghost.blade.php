@@ -12,9 +12,9 @@ isset(Route::current()->parameters()["lang"]) ? $lang = Route::current()->parame
                 <a href="/{{$region}}/{{$lang}}">
                     <img class="header__logo" src="/img/CaseWare_logo_RGB_horz_White.png" alt="CaseWare logo">
                 </a>
-                @if(strpos(Request::url(), '/SE-Authoring/') == false)
+                <!-- @if(strpos(Request::url(), '/SE-Authoring/') == false)
                     @include('partials.nav')
-                @endif
+                @endif -->
             </div>
         </div>
     </div>
