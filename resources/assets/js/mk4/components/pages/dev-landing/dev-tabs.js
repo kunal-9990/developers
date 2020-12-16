@@ -31,7 +31,7 @@ const DevTabs = ({ heading, description, tabs }) => {
         <div class="tab-slide__two-col">
           <p dangerouslySetInnerHTML={{ __html:tab.content}} />
           <div>
-            <div className="tab-slide__cta">
+            <div className="cta">
               <a href={tab.link.url}>{tab.link.title || 'Learn more'}</a>
             </div>
           </div>
