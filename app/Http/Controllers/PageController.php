@@ -141,7 +141,7 @@ class PageController extends Controller
             return response()->view('errors.404');
         }
 
-        $maincontentarea = $dom->find('div[id=mc-main-content]', 0);
+        $maincontentarea = $dom->find('body', 0);
         if($maincontentarea == ""){
             $maincontentarea = $dom->find('div[class=content]', 0);
         }        
