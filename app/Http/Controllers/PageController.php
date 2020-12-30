@@ -132,84 +132,28 @@ class PageController extends Controller
         return view('pages.search', compact('recent'));
     }
     
+     
     // topic
-    function showTopic($year, $product, $version, $lang, $category, $subcategory, $topic){
+    function showTopic($product, $version, $category, $subcategory, $topic){
 
-        App::setLocale($lang);
-        
-        //first check if the topic is a what's new page. 
-        //if so - get the content from the cms and return What's New template
-        //assume the cms permalink for all WN pages is: "whats-new-product-version"
-        if($subcategory == "Whats-New"){
-            $page = $this->cms->get_custom_post_by_name($lang, 'whats-new', str_replace(".htm", "", $topic));
-            //if the slug is not present in the cms, try displaying the flare-based WN page:
-            if(empty($page["totalPages"])){
-                if(!endsWith($topic,".htm")){
-                    $topic .= ".htm";
-                } 
-
-                // otherwise, get topic content from flare build.
-                $noHeader = true;
-                $product =  strtolower($product);
-
-                try {
-                    $dom = HtmlDomParser::str_get_html(file_get_contents( env('PATH_TO_PUBLIC').'documentation_files/'.$year."/".$product."/".$version."/"."Content/".$lang."/".$category."/".$subcategory."/".$topic ));
-                    $doNotTranslate = true;
-                } catch (Exception $e) {
-                    try {
-                        $dom = HtmlDomParser::str_get_html(file_get_contents( env('PATH_TO_PUBLIC').'documentation_files/'.$year."/".$product."/".$version."/"."Content/en/".$category."/".$subcategory."/".$topic ));
-                        } catch (Exception $e) {
-                            return response()->view('errors.404');
-                        }
-                }
-
-                $maincontentarea = $dom->find('body', 0);
-                $htmlElement = $dom->find('html', 0);
-                (isset($htmlElement->attr['data-mc-conditions'])) ? $exclusiveTo = $htmlElement->attr['data-mc-conditions'] : $exclusiveTo = '' ;
-                $recent = getRecentlyViewed();
-                $title = strip_tags($dom->find('h1', 0));
-                
-                // TODO - undo comment below
-                // return view('pages.whats-new', compact('maincontentarea', 'recent', 'exclusiveTo','title'));
-                return view('pages.documentation', compact('maincontentarea', 'recent', 'exclusiveTo','title'));
-            }
-
-            $pageContent = $page['results'][0];
-            $voteData = getVoteData($pageContent->acf->product, $pageContent->acf->version);
-            $userVotes = session('user.Votes');
-
-            $topicVersion = substr($topic, strrpos($topic, '-') + 1);
-
-            return view('pages.whats-new', compact('pageContent', 'recent', 'exclusiveTo','title', 'voteData', 'userVotes', 'product', 'version'));
-        }
-
-        if(!endsWith($topic,".htm")){
-            $topic .= ".htm";
-        } 
-
-        // otherwise, get topic content from flare build.
-        $noHeader = true;
         $product =  strtolower($product);
 
         try {
-            $dom = HtmlDomParser::str_get_html(file_get_contents( env('PATH_TO_PUBLIC').'documentation_files/'.$year."/".$product."/".$version."/"."Content/".$lang."/".$category."/".$subcategory."/".$topic ));
+            $dom = HtmlDomParser::str_get_html(file_get_contents( env('PATH_TO_PUBLIC').'documentation_files/'.$product."/".$version."/"."Content/".$category."/".$subcategory."/".$topic ));
             $doNotTranslate = true;
         } catch (Exception $e) {
-            try {
-                $dom = HtmlDomParser::str_get_html(file_get_contents( env('PATH_TO_PUBLIC').'documentation_files/'.$year."/".$product."/".$version."/"."Content/en/".$category."/".$subcategory."/".$topic ));
-                } catch (Exception $e) {
-                    return response()->view('errors.404');
-                }
+            return response()->view('errors.404');
         }
 
-        $maincontentarea = $dom->find('body', 0);
+        $maincontentarea = $dom->find('div[id=mc-main-content]', 0);
+        if($maincontentarea == ""){
+            $maincontentarea = $dom->find('div[class=content]', 0);
+        }        
         $htmlElement = $dom->find('html', 0);
         (isset($htmlElement->attr['data-mc-conditions'])) ? $exclusiveTo = $htmlElement->attr['data-mc-conditions'] : $exclusiveTo = '' ;
         $recent = getRecentlyViewed();
         $title = strip_tags($dom->find('h1', 0));
-        
-        // TODO - undo comment below
-        // return view('pages.whats-new', compact('maincontentarea', 'recent', 'exclusiveTo','title'));
+
         return view('pages.documentation', compact('maincontentarea', 'recent', 'exclusiveTo','title'));
     }
 
@@ -218,31 +162,32 @@ class PageController extends Controller
 
         App::setLocale($lang);
                 
-        if(!endsWith($topic,".htm")){
-            $topic .= ".htm";
-        }
+        // if(!endsWith($topic,".html")){
+        //     $topic .= ".html";
+        // }
 
         $product =  strtolower($product);
 
         if($subcategory == "TranslatedDocs"){
             $doNotTranslate = true;
         }
-        if($subsubcategory == "en" || $subsubcategory == "fr" || $subsubcategory == "es"){
-            $subsubcategory = strtoupper($subsubcategory);
-        }
 
         try {
-            $dom = HtmlDomParser::str_get_html(file_get_contents( env('PATH_TO_PUBLIC').'documentation_files/'.$year."/".$product."/".$version."/"."Content/".$lang."/".$category."/".$subcategory."/".$subsubcategory."/".$topic ));
+            $dom = HtmlDomParser::str_get_html(file_get_contents( env('PATH_TO_PUBLIC').'documentation_files/'.$year."/".$product."/".$version."/"."Content/".$lang."/Content/".$category."/".$subcategory."/".$subsubcategory."/".$topic.".htm" ));
             $doNotTranslate = true;        
         } catch (Exception $e) {
             try {
-            $dom = HtmlDomParser::str_get_html(file_get_contents( env('PATH_TO_PUBLIC').'documentation_files/'.$year."/".$product."/".$version."/"."Content/en/".$category."/".$subcategory."/".$subsubcategory."/".$topic ));
+            $dom = HtmlDomParser::str_get_html(file_get_contents( env('PATH_TO_PUBLIC').'documentation_files/'.$year."/".$product."/".$version."/"."Content/en/".$category."/".$subcategory."/".$subsubcategory."/".$topic.".htm;" ));
                 } catch (Exception $e) {
-                    return response()->view('errors.404');
+                    // return response()->view('errors.404');
+                    return env('PATH_TO_PUBLIC').'documentation_files/'.$year."/".$product."/".$version."/"."Content/".$lang."/Content/".$category."/".$subcategory."/".$subsubcategory."/".$topic;
                 }
         }        
 
-        $maincontentarea = $dom->find('body', 0);
+        $maincontentarea = $dom->find('section[class=main-section]', 0);
+        if($maincontentarea == ""){
+            $maincontentarea = $dom->find('div[class=content]', 0);
+        }        
         (isset($htmlElement->attr['data-mc-conditions'])) ? $exclusiveTo = $htmlElement->attr['data-mc-conditions'] : $exclusiveTo = '' ;
         $recent = getRecentlyViewed();
         $title = strip_tags($dom->find('h1', 0));
@@ -255,57 +200,66 @@ class PageController extends Controller
 
         App::setLocale($lang);
                 
-
-        if(!endsWith($subcategory,".htm")){
-            $subcategory .= ".htm";
-        }
+        
+        // if(!endsWith($subcategory,".html")){
+        //     $subcategory .= ".html";
+        // }
 
         $product =  strtolower($product);
 
         try {
-            $dom = HtmlDomParser::str_get_html(file_get_contents( env('PATH_TO_PUBLIC').'documentation_files/'.$year."/".$product."/".$version."/"."Content/".$lang."/".$category."/".$subcategory ));
+            $dom = HtmlDomParser::str_get_html(file_get_contents( env('PATH_TO_PUBLIC').'documentation_files/'.$year."/".$product."/".$version."/"."Content/".$lang."/Content/".$category."/".$subcategory.".htm" ));
             $doNotTranslate = true;        
         } catch (Exception $e) {
             try {
-            $dom = HtmlDomParser::str_get_html(file_get_contents( env('PATH_TO_PUBLIC').'documentation_files/'.$year."/".$product."/".$version."/"."Content/en/".$category."/".$subcategory ));
+            $dom = HtmlDomParser::str_get_html(file_get_contents( env('PATH_TO_PUBLIC').'documentation_files/'.$year."/".$product."/".$version."/"."Content/en/".$category."/".$subcategory.".html" ));
                 } catch (Exception $e) {
                     return response()->view('errors.404');
+                    // return env('PATH_TO_PUBLIC').'documentation_files/'.$year."/".$product."/".$version."/"."Content/".$lang."/Content/".$category."/".$subcategory;
                 }
         }          
 
-        $maincontentarea = $dom->find('body', 0);
-        $title = strip_tags($maincontentarea->find('h1', 0));
+        $maincontentarea = $dom->find('div[id=mc-main-content]', 0);
+        if($maincontentarea == ""){
+            $maincontentarea = $dom->find('div[class=content]', 0);
+        }        
         $recent = getRecentlyViewed();
-        return view('pages.documentation', compact('maincontentarea', 'recent', 'title'));
+        return view('pages.documentation', compact('maincontentarea', 'recent'));
     }
     
     // category
-    function showCategory($year, $product, $version, $lang, $category){
-
+    function showCategory($product, $version, $category){ 
         App::setLocale($lang);
+        // dd(env('PATH_TO_PUBLIC').'documentation_files/'.$year."/".$product."/".$version."/"."Content/".$lang."/Content/".$category);
         
-        if(!endsWith($category,".htm")){
-            $category .= ".htm";
-        }
+        // if(!endsWith($category,".htm")){ 
+        //     $category .= ".htm";
+        // }
 
         $product =  strtolower($product);
 
         try {
-            $dom = HtmlDomParser::str_get_html(file_get_contents(env('PATH_TO_PUBLIC').'documentation_files/'.$year."/".$product."/".$version."/"."/Content/".$lang."/".$category ));
-            $doNotTranslate = true;        
+            $dom = HtmlDomParser::str_get_html(file_get_contents( env('PATH_TO_PUBLIC').'documentation_files/'.$product."/".$version."/Content/".$category.".htm" ));
+            $doNotTranslate = true;
         } catch (Exception $e) {
             try {
-            $dom = HtmlDomParser::str_get_html(file_get_contents(env('PATH_TO_PUBLIC').'documentation_files/'.$year."/".$product."/".$version."/"."/Content/en/".$category ));
+                $dom = HtmlDomParser::str_get_html(file_get_contents( env('PATH_TO_PUBLIC').'documentation_files/'.$year."/".$product."/".$version."/"."Content/en/".$category.".html"));
                 } catch (Exception $e) {
                     return response()->view('errors.404');
                 }
-        }          
+        }  
 
-        $maincontentarea = $dom->find('body', 0);
+        $maincontentarea = $dom->find('div[id=content-section]', 0);
+        if($maincontentarea == ""){
+            $maincontentarea = $dom->find('div[class=content]', 0);
+        }
+        $htmlElement = $dom->find('html', 0);
+        (isset($htmlElement->attr['data-mc-conditions'])) ? $exclusiveTo = $htmlElement->attr['data-mc-conditions'] : $exclusiveTo = '' ;
         $recent = getRecentlyViewed();
-        return view('pages.one-column', compact('maincontentarea', 'recent'));
-    }
+        $title = strip_tags($dom->find('h1', 0));
 
+        return view('pages.documentation-home', compact('maincontentarea', 'recent', 'exclusiveTo','title'));
+    }
           
     function getPlaylists($page)
     {   

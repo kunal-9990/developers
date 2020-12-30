@@ -3,11 +3,8 @@ const StyleLintPlugin = require('stylelint-webpack-plugin');
 const ImageminPlugin = require('imagemin-webpack-plugin').default;
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const imageminMozjpeg = require('imagemin-mozjpeg');
-
 require('@babel/polyfill');
-
-const BROWSERSYNC_URL = 'http://dev.docsmk4';
-
+const BROWSERSYNC_URL = 'http://dev.developers';
 /*
  |--------------------------------------------------------------------------
  | Mix Asset Management
@@ -18,7 +15,6 @@ const BROWSERSYNC_URL = 'http://dev.docsmk4';
  | file for the application as well as bundling up all the JS files.
  |
  */
-
 mix.webpackConfig({
     module: {
         rules: [
@@ -48,12 +44,10 @@ mix.webpackConfig({
         }),
     ],
 });
-
 mix
     .js('resources/assets/js/mk2/app.js', 'public/js/mk2')
     .react('resources/assets/js/mk4/app.js', 'public/js/mk4')
     .sass('resources/assets/sass/app.scss', 'public/css')
     .sass('resources/assets/sass/app_search.scss', 'public/css')
     .browserSync(BROWSERSYNC_URL);
-
 mix.version();

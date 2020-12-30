@@ -2,7 +2,7 @@
 #
 # Place a folder named as the new version into the tmp directory as shown below.
 # ----------------------------
-# /docsm42/
+# /docsmk2/
 # │
 # └───/tmp/
 # │   │  
@@ -21,25 +21,24 @@
 # wait until the script says "done." 
 #dos2unix scripts/build.sh
 
-# sudo chmod -R 777 /usr/share/nginx/docs
+sudo chmod -R 777 .
 
-# echo "Backing up current content..."
-# sudo mv public/documentation_files/$1/$2/$3/Content/$4 tmp/Content_backups/en_$(date -d "today" +"%Y%m%d%H%M")
+echo "Backing up current content..."
 
 
 echo 'Copying new content into place...'
-mkdir -p public/documentation_files/$1/$2/Content/
-cp -R tmp/$1/$2/* public/documentation_files/$1/$2/Content/
-cd public/documentation_files/$1/$2/Content/
+mkdir -p public/documentation_files/$1/$2/$3/Content/$4
+cp -R tmp/$3/* public/documentation_files/$1/$2/$3/Content/$4
+cd public/documentation_files/$1/$2/$3/Content/$4
 
-# sudo chmod -R 777 .
+sudo chmod -R 777 .
 
 echo 'Renaming some files...'
 
-find -name "*.fltoc" -print0 | xargs -0 sed -i 's/\/Content\//\//g'
+find -name "*.fltoc" -print0 | xargs -0 sed -i 's/\/Content//g'
 
 #mv Online\ Output.fltoc OnlineOutput.xml
-#mv Online\ Output\ \(SE\ Authoring\).fltoc SE-Authoring-TOC.xml 
+#mv Online\ Output\ \(SE\ Authoring\).fltoc SE-Authoring-TOC.xml
 
 echo "Copying over TOC and redirect xml files..."
 
@@ -66,7 +65,7 @@ else
 fi 
 
 
-prefix="\/documentation_files\/$1\/$2\/Content/Resources\/"
+prefix="\/documentation_files\/$1\/$2\/$3\/Content\/$4\/Content\/Resources\/"
 prefix="$prefix"
 
 # echo $prefix
@@ -79,22 +78,55 @@ find . -type f -print0 | xargs -0 sed -i 's/src="..\/Resources/src="'"$prefix"'/
 find . -type f -print0 | xargs -0 sed -i 's/src="..\/..\/Resources/src="'"$prefix"'/g'
 find . -type f -print0 | xargs -0 sed -i 's/src="..\/..\/..\/Resources/src="'"$prefix"'/g'
 find . -type f -print0 | xargs -0 sed -i 's/src="\/Resources/src="'"$prefix"'/g'
+find . -type f -print0 | xargs -0 sed -i 's/href="..\/Resources/href="'"$prefix"'/g'
 
 cd ../../../../../../..
 #pwd
 echo 'Copying Data folders into place...'
 
 #end-user search results
-# php artisan index
+mkdir -p public/search/$1/$2/$3/$4
+cp -R tmp/$3/Data public/search/$1/$2/$3/$4
+cd public/search/$1/$2/$3
+
+cp -R en fr
+cp -R en es
+cp -R en cn
+cp -R en de
+# cp -R en nl
+
+cd ../../../../..
+
+#se-search results
+mkdir -p public/se-search/$1/$2/$3/$4
+cp -R tmp/$3/Data-SE public/se-search/$1/$2/$3/$4
+cd public/se-search/$1/$2/$3/$4
+rm -R Data
+mv Data-SE Data
+cd ..
+
+if [ $4 = "en" ]; then
+    cp -R en fr
+    cp -R en es
+    cp -R en cn
+    cp -R en de
+else
+  cp -R en nl
+fi
+
+# cp -R en fr
+# cp -R en es
+# cp -R en cn
+# cp -R en de
+# cp -R en nl
+
+cd ../../../..
 
 
 echo 'Setting File permissions...'
 
 # find . ! -name '*.sh' -type f -exec chmod 644 {} \;    
 # find . ! -name 'scripts' -type d -exec chmod 755 {} \;
-# sudo find /usr/share/nginx/docs -type f -exec chmod 664 {} \;    
-# sudo find /usr/share/nginx/docs -type d -exec chmod 775 {} \;
-# pwd
-# sudo chmod -R 777 storage
-# sudo chmod -R 777 scripts
+sudo chmod -R 777 . 
+
 echo 'Done.'
