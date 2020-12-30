@@ -33,9 +33,9 @@ $indexURL = route('category', [$year, $product, $version, $lang, 'webapps']);
                         src="/img/CW-wp-2020.svg"
                     @endif
                         alt="CaseWare logo"></a>
-                @if(strpos(Request::url(), '/SE-Authoring/') == false)
+                <!-- @if(strpos(Request::url(), '/SE-Authoring/') == false)
                 @include('partials.nav')
-                @endif
+                @endif -->
             </div>
             <div class="header__input-search-wrapper">
                 <form method="GET" action="{{$searchURL}}">

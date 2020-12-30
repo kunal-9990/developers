@@ -19,7 +19,7 @@ const ProductNavigation = props => {
       <div className="product-nav__wrapper">
         <div className="product-nav__title">
           <div>
-          { navItem.branding === 'text' ? 
+          { navItem.branding === 'text' || navItem.heading_type == "text" ? 
             navItem.text && <h2>{ navItem.text }</h2> :
             navItem.icon && <img src={navItem.icon.url} alt={navItem.icon.alt} /> 
           }

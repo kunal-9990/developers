@@ -41,63 +41,63 @@ Route::group(['middleware' => 'setregion'], function () {
         Route::get('/{region}/{lang}/{slug}/frequently-asked-questions', 'PageController@faq')->name('faq');
         Route::get('/{region}/{lang}/{slug}', 'PageController@product')->name('product');
         Route::get('/{region}/{lang}/', 'PageController@home')->name('home');
+        Route::get('/{slug}', 'PageController@level2')->name('level2');
 
         Route::get('/', function() {
                 return redirect('/ca/en');
         });
-
 });
 
-// search
-Route::get('/search/{year}/{product}/{version}/{lang}/search', 'PageController@search')->name('search');
+// // search
+// Route::get('/search/{year}/{product}/{version}/{lang}/search', 'PageController@search')->name('search');
 
-// se-search
-Route::get('/se-search/{year}/{product}/{version}/{lang}/search', 'PageController@search')->name('se-search');
+// // se-search
+// Route::get('/se-search/{year}/{product}/{version}/{lang}/search', 'PageController@search')->name('se-search');
 
-// search redirect
-Route::get('/search/{year}/{product}/{version}/{lang}/{category}/{subcategory}/{topic}', function($year, $product, $version, $lang, $category, $subcategory, $topic){
-        return redirect('/'.$year.'/'.$product.'/'.$version.'/'.$lang.'/'.$category.'/'.$subcategory.'/'.$topic);
-});
-// search redirect
-Route::get('/search/{year}/{product}/{version}/{lang}/{category}/{subcategory}/{subsubcategory}/{topic}', function($year, $product, $version, $lang, $category, $subcategory, $subsubcategory, $topic){
-        return redirect('/'.$year.'/'.$product.'/'.$version.'/'.$lang.'/'.$category.'/'.$subcategory.'/'.$subsubcategory.'/'.$topic);
-});
-// search redirect
-Route::get('/search/{year}/{product}/{version}/{lang}/{category}', function($year, $product, $version, $lang, $category){
-        return redirect('/'.$year.'/'.$product.'/'.$version.'/'.$lang.'/'.$category);
-});
-// search redirect
-Route::get('/search/{year}/{product}/{version}/{lang}/{category}/{subcategory}', function($year, $product, $version, $lang, $category, $subcategory){
-        return redirect('/'.$year.'/'.$product.'/'.$version.'/'.$lang.'/'.$category.'/'.$subcategory);
-});
-// search redirect
-Route::get('/se-search/{year}/{product}/{version}/{lang}/{category}/{subcategory}/{topic}', function($year, $product, $version, $lang, $category, $subcategory, $topic){
-        return redirect('/'.$year.'/'.$product.'/'.$version.'/'.$lang.'/'.$category.'/'.$subcategory.'/'.$topic);
-});
-// search redirect
-Route::get('/se-search/{year}/{product}/{version}/{lang}/{category}/{subcategory}/{subsubcategory}/{topic}', function($year, $product, $version, $lang, $category, $subcategory, $subsubcategory, $topic){
-        return redirect('/'.$year.'/'.$product.'/'.$version.'/'.$lang.'/'.$category.'/'.$subcategory.'/'.$subsubcategory.'/'.$topic);
-});
-// search redirect
-Route::get('/se-search/{year}/{product}/{version}/{lang}/{category}', function($year, $product, $version, $lang, $category){
-        return redirect('/'.$year.'/'.$product.'/'.$version.'/'.$lang.'/'.$category);
-});
-// search redirect
-Route::get('/se-search/{year}/{product}/{version}/{lang}/{category}/{subcategory}', function($year, $product, $version, $lang, $category, $subcategory){
-        return redirect('/'.$year.'/'.$product.'/'.$version.'/'.$lang.'/'.$category.'/'.$subcategory);
-});
+// // search redirect
+// Route::get('/search/{year}/{product}/{version}/{lang}/{category}/{subcategory}/{topic}', function($year, $product, $version, $lang, $category, $subcategory, $topic){
+//         return redirect('/'.$year.'/'.$product.'/'.$version.'/'.$lang.'/'.$category.'/'.$subcategory.'/'.$topic);
+// });
+// // search redirect
+// Route::get('/search/{year}/{product}/{version}/{lang}/{category}/{subcategory}/{subsubcategory}/{topic}', function($year, $product, $version, $lang, $category, $subcategory, $subsubcategory, $topic){
+//         return redirect('/'.$year.'/'.$product.'/'.$version.'/'.$lang.'/'.$category.'/'.$subcategory.'/'.$subsubcategory.'/'.$topic);
+// });
+// // search redirect
+// Route::get('/search/{year}/{product}/{version}/{lang}/{category}', function($year, $product, $version, $lang, $category){
+//         return redirect('/'.$year.'/'.$product.'/'.$version.'/'.$lang.'/'.$category);
+// });
+// // search redirect
+// Route::get('/search/{year}/{product}/{version}/{lang}/{category}/{subcategory}', function($year, $product, $version, $lang, $category, $subcategory){
+//         return redirect('/'.$year.'/'.$product.'/'.$version.'/'.$lang.'/'.$category.'/'.$subcategory);
+// });
+// // search redirect
+// Route::get('/se-search/{year}/{product}/{version}/{lang}/{category}/{subcategory}/{topic}', function($year, $product, $version, $lang, $category, $subcategory, $topic){
+//         return redirect('/'.$year.'/'.$product.'/'.$version.'/'.$lang.'/'.$category.'/'.$subcategory.'/'.$topic);
+// });
+// // search redirect
+// Route::get('/se-search/{year}/{product}/{version}/{lang}/{category}/{subcategory}/{subsubcategory}/{topic}', function($year, $product, $version, $lang, $category, $subcategory, $subsubcategory, $topic){
+//         return redirect('/'.$year.'/'.$product.'/'.$version.'/'.$lang.'/'.$category.'/'.$subcategory.'/'.$subsubcategory.'/'.$topic);
+// });
+// // search redirect
+// Route::get('/se-search/{year}/{product}/{version}/{lang}/{category}', function($year, $product, $version, $lang, $category){
+//         return redirect('/'.$year.'/'.$product.'/'.$version.'/'.$lang.'/'.$category);
+// });
+// // search redirect
+// Route::get('/se-search/{year}/{product}/{version}/{lang}/{category}/{subcategory}', function($year, $product, $version, $lang, $category, $subcategory){
+//         return redirect('/'.$year.'/'.$product.'/'.$version.'/'.$lang.'/'.$category.'/'.$subcategory);
+// });
 
 //Flare Content routes
 // topics
-Route::get('/{product}/{version}/{category}/{subcategory}/{topic}', 'PageController@showTopic')->name('topic');
+Route::get('/{product}/{version}/{category}/{topic}', 'PageController@showTopic')->name('topic');
 
-// topics
-Route::get('/{product}/{version}/{category}/{subcategory}/{subsubcategory}/{topic}', 'PageController@showTopic2');
+// // topics
+// Route::get('/{product}/{version}/{category}/{subcategory}/{subsubcategory}/{topic}', 'PageController@showTopic2');
 
-// sub category
-Route::get('/{product}/{version}/{category}/{subcategory}', 'PageController@showSubCategory');
+// // sub category
+// Route::get('/{product}/{version}/{category}/{subcategory}', 'PageController@showSubCategory');
 
-// category
-Route::get('/{product}/{version}/{category}', 'PageController@showCategory')->name('category');
+// // category
+// Route::get('/{product}/{version}/{category}', 'PageController@showCategory')->name('category');
 
 Route::post('logemail', 'Controller@logEmail');

@@ -25,28 +25,24 @@ class PageController extends Controller
             return response()->view('errors.languageunavailable');
         }
         else{        
-            $page = $this->getPlaylists($page);
-            $page = $this->getDownloads($page);
-            $page = $this->getProductNavigation($page);
+            // $page = $this->getPlaylists($page);
+            // $page = $this->getDownloads($page);
+            // $page = $this->getProductNavigation($page);
             $pageContent = $page['results'][0];
-            return view('pages.landing', compact('pageContent', 'recent', 'exclusiveTo','title', 'playlists' ));
+            return view('pages.dev-level-1', compact('pageContent', 'recent', 'exclusiveTo','title' ));
         }
     }
 
-    function product($region, $lang, $productSlug){
-        // App::setLocale($lang);
 
-        $page = $this->cms->get_custom_post_by_name($lang, 'product', "{$region}-{$productSlug}");
-        
-        
+    function level2($slug){
+
+        $page = $this->cms->get_custom_post_by_name('en', 'level2', "{$slug}");
         if(empty($page['results'])){
             return response()->view('errors.languageunavailable');
         }
-        else {        
-            $page = $this->getPlaylists($page);
-            $page = $this->getDownloads($page);
+        else{        
             $pageContent = $page['results'][0];
-            return view('pages.landing', compact('pageContent', 'recent', 'exclusiveTo','title', 'playlists'));
+            return view('pages.dev-level-2', compact('pageContent', 'recent', 'exclusiveTo','title'));
         }
     }
 
@@ -134,12 +130,12 @@ class PageController extends Controller
     
      
     // topic
-    function showTopic($product, $version, $category, $subcategory, $topic){
+    function showTopic($product, $version, $category, $topic){
 
         $product =  strtolower($product);
 
         try {
-            $dom = HtmlDomParser::str_get_html(file_get_contents( env('PATH_TO_PUBLIC').'documentation_files/'.$product."/".$version."/"."Content/".$category."/".$subcategory."/".$topic ));
+            $dom = HtmlDomParser::str_get_html(file_get_contents( env('PATH_TO_PUBLIC').'documentation_files/'.$product."/".$version."/"."Content/".$category."/".$topic ));
             $doNotTranslate = true;
         } catch (Exception $e) {
             return response()->view('errors.404');

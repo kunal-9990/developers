@@ -28,9 +28,9 @@
 
 
 echo 'Copying new content into place...'
-mkdir -p public/documentation_files/$1/$2/Content/
-cp -R tmp/$1/$2/* public/documentation_files/$1/$2/Content/
-cd public/documentation_files/$1/$2/Content/
+mkdir -p public/documentation_files/$1/$2/
+cp -R tmp/$1/$2/* public/documentation_files/$1/$2/
+cd public/documentation_files/$1/$2/
 
 # sudo chmod -R 777 .
 
