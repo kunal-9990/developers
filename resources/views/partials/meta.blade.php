@@ -38,15 +38,7 @@
 
 
 {{-- Tell Google about localized versions of our pages --}}
-@php
-isset(Route::current()->parameters()["lang"]) ? $lang = Route::current()->parameters()["lang"] : $lang = '';
-@endphp
-<link rel="alternate" hreflang="en" href="{{str_replace('/'.$lang.'/', '/en/', Request::url())}}" />
-<link rel="alternate" hreflang="fr" href="{{str_replace('/'.$lang.'/', '/fr/', Request::url())}}" />
-<link rel="alternate" hreflang="es" href="{{str_replace('/'.$lang.'/', '/es/', Request::url())}}" />
-<link rel="alternate" hreflang="nl" href="{{str_replace('/'.$lang.'/', '/nl/', Request::url())}}" />
-<link rel="alternate" hreflang="de" href="{{str_replace('/'.$lang.'/', '/de/', Request::url())}}" />
-<link rel="alternate" hreflang="cn" href="{{str_replace('/'.$lang.'/', '/cn/', Request::url())}}" /> 
+
 @if(env('APP_ENV') == "production")
 	{{-- google analytics --}}
 	@php
