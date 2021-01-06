@@ -8,6 +8,7 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Log;
 use App\Services\DocsCmsApi;
+use App\Services\DocsSearchApi;
 use Illuminate\Support\Facades\View;
 use Illuminate\Http\Request;
 use Illuminate\Http\Redirect;
@@ -20,13 +21,14 @@ class Controller extends BaseController
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
     public $cms;
+    public $search;
 
-    public function __construct(DocsCmsApi $cms, Request $request) {
+    public function __construct(DocsCmsApi $cms, DocsSearchApi $search, Request $request) {
 
-        $this->cms = $cms;
+        $this->search = $search;        $this->cms = $cms;
         //Grab the menus
         View::share('header', $cms->menu('header')->get('results')->items);
-        $footerRegion =  isset($request->route()->parameters['region']) ? $request->route()->parameters['region'] : 'int';
+        $footerRegion = 'int';
         View::share('footer', $cms->menu('footer-'.$footerRegion)->get('results')->items);
  
 

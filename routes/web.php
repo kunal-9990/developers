@@ -15,6 +15,9 @@
 $current_version = env("CURRENT_VERSION");
 
 
+Route::get('/new-search', 'SearchController@searchform');
+Route::get('/new-search/all', 'SearchController@all'); 
+Route::get('/new-search/{query}', 'SearchController@search');
 
 //allow unauthenticated users to cast a max of 10 votes per minute
 Route::middleware('throttle:30|180,1')->group(function () {        
@@ -86,6 +89,8 @@ Route::group(['middleware' => 'setregion'], function () {
 // Route::get('/se-search/{year}/{product}/{version}/{lang}/{category}/{subcategory}', function($year, $product, $version, $lang, $category, $subcategory){
 //         return redirect('/'.$year.'/'.$product.'/'.$version.'/'.$lang.'/'.$category.'/'.$subcategory);
 // });
+
+
 
 //Flare Content routes
 // topics
