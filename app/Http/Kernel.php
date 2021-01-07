@@ -36,8 +36,7 @@ class Kernel extends HttpKernel
             // UNCOMMENT BEFORE LIVE
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
-            // \ElicDev\SiteProtection\Http\Middleware\SiteProtection::class,
-            // \App\Http\Middleware\SiteProtection::class,
+
             
         ],
 
