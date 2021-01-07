@@ -37,7 +37,7 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
             // \ElicDev\SiteProtection\Http\Middleware\SiteProtection::class,
-            \App\Http\Middleware\SiteProtection::class,
+            // \App\Http\Middleware\SiteProtection::class,
             
         ],
 
