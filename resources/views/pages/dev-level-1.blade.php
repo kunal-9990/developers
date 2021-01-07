@@ -21,7 +21,7 @@
         <div class="landing__banner">
             <div
                 data-component="banner" 
-                data-prop-banner="{{htmlspecialchars(json_encode($pageContent->acf->banner))}}"
+                data-prop-banner="{{json_encode($pageContent->acf->banner)}}"
             ></div>
         </div>
 
@@ -31,7 +31,7 @@
                     <div
                         data-component="second-level-nav" 
                         data-prop-heading="{{$section->heading}}"
-                        data-prop-blocks="{{htmlspecialchars(json_encode($section->navigation_blocks))}}"
+                        data-prop-blocks="{{json_encode($section->navigation_blocks)}}"
                     ></div>
                 @endif
                 @if($section->acf_fc_layout == "tabs")
@@ -42,7 +42,7 @@
                                     data-component="tabs" 
                                     data-prop-heading="{{$section->heading}}"
                                     data-prop-description="{{$section->description}}"
-                                    data-prop-tabs="{{htmlspecialchars(json_encode($section->tab))}}"
+                                    data-prop-tabs="{{json_encode($section->tab)}}"
                                 ></div>
                             </div>
                         </div>

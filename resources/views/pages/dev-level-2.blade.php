@@ -23,7 +23,7 @@
                 @if(isset($pageContent->acf->toc)) 
                   <div
                       data-component="toc" 
-                      data-prop-toc="{{htmlspecialchars(json_encode($pageContent->acf->toc))}}"
+                      data-prop-toc="{{json_encode($pageContent->acf->toc)}}"
                   ></div>
                 @endif
             </div>
