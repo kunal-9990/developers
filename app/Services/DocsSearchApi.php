@@ -74,8 +74,11 @@ class DocsSearchApi
                         if($dom){
                             $title = strip_tags($dom->find('h1', 0));
                             $body = strip_tags($dom->find('body', 0)->plaintext);
+                            // $url =  str_replace('\\', '/', "/".str_replace("\\Content\\", "/", substr($filename, strpos($filename, "\\documentation_files\\") + 21)));
                             $url =  str_replace('\\', '/', "/".str_replace("\\Content\\", "/", substr($filename, strpos($filename, "\\documentation_files\\") + 21)));
                             $params = explode("/", $url);
+                            echo $url;
+                            echo "\n";
 
                             if(!empty($body) && !empty($title)){
 
