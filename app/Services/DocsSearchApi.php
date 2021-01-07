@@ -76,6 +76,7 @@ class DocsSearchApi
                             $body = strip_tags($dom->find('body', 0)->plaintext);
                             $url =  str_replace('\\', '/', "/".str_replace(env('PATH_TO_PUBLIC'), "", substr($filename, strpos($filename, "\\documentation_files\\") + 21)));
                             $params = explode("/", $url);
+                            echo "Indexing: \n";
                             echo $url;
                             echo "\n";
 
