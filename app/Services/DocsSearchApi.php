@@ -56,12 +56,14 @@ class DocsSearchApi
      public function clearObjects(){
          $this->index->clearObjects();
      }
-
+     
+    //  This function is written to perform the indexing on the linux based ec2 instance that is hosting the site, and not in my local windows dev environment
      public function index(){
         $records = array();
         $docspath = env("PATH_TO_PUBLIC")."documentation_files/";
         $path = realpath($docspath);
         
+        echo "Indexing: \n";
         foreach (new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($path)) as $filename)
         {
                 if(endsWith($filename,".htm")){
@@ -74,9 +76,9 @@ class DocsSearchApi
                         if($dom){
                             $title = strip_tags($dom->find('h1', 0));
                             $body = strip_tags($dom->find('body', 0)->plaintext);
-                            $url =  str_replace('\\', '/', "/".str_replace(env('PATH_TO_PUBLIC'), "", substr($filename, strpos($filename, "\\documentation_files\\") + 21)));
+                            // $url =  str_replace('\\', '/', "/".str_replace(env('PATH_TO_PUBLIC'), "", substr($filename, strpos($filename, "\\documentation_files\\") + 21)));
+                            $url =  str_replace("/Content/", "/" , str_replace(env('PATH_TO_PUBLIC')."documentation_files", "", $filename));
                             $params = explode("/", $url);
-                            echo "Indexing: \n";
                             echo $url;
                             echo "\n";
 
