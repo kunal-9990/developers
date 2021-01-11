@@ -57,7 +57,7 @@ class UpdateTOC extends Command
             return $path;
         }
 
-        $rii = new RecursiveIteratorIterator(new RecursiveDirectoryIterator(env("PATH_TO_PUBLIC").'\documentation_files'));
+        $rii = new RecursiveIteratorIterator(new RecursiveDirectoryIterator(env("PATH_TO_PUBLIC").'/documentation_files'));
 
         $files = array(); 
 
