@@ -26,7 +26,7 @@
 # echo "Backing up current content..."
 # sudo mv public/documentation_files/$1/$2/$3/Content/$4 tmp/Content_backups/en_$(date -d "today" +"%Y%m%d%H%M")
 
-
+dos2unix /usr/share/nginx/developers/scripts/build.sh
 echo 'Copying new content into place...'
 mkdir -p public/documentation_files/$1/$2/
 cp -R tmp/$1/$2/* public/documentation_files/$1/$2/
@@ -74,11 +74,7 @@ prefix="$prefix"
 echo 'Updating img src paths...'
 #cd public/documentation_files/$1/$2/$3/Content/$4
 
-find . -type f -print0 | xargs -0 sed -i 's/src="\/...\/...\/Resources/src="'"$prefix"'/g'
-find . -type f -print0 | xargs -0 sed -i 's/src="..\/Resources/src="'"$prefix"'/g'
-find . -type f -print0 | xargs -0 sed -i 's/src="..\/..\/Resources/src="'"$prefix"'/g'
-find . -type f -print0 | xargs -0 sed -i 's/src="..\/..\/..\/Resources/src="'"$prefix"'/g'
-find . -type f -print0 | xargs -0 sed -i 's/src="\/Resources/src="'"$prefix"'/g'
+find . -type f -print0 | xargs -0 sed -i 's/src="..\/Resources/src="\/Resources/g'
 
 cd ../../../../../../..
 #pwd
