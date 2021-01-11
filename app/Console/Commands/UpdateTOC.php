@@ -57,7 +57,7 @@ class UpdateTOC extends Command
             return $path;
         }
 
-        $rii = new RecursiveIteratorIterator(new RecursiveDirectoryIterator(env("PATH_TO_PUBLIC").'/documentation_files'));
+        $rii = new RecursiveIteratorIterator(new RecursiveDirectoryIterator(env("PATH_TO_PUBLIC").'documentation_files'));
 
         $files = array(); 
 
@@ -80,6 +80,8 @@ class UpdateTOC extends Command
         $opening = '<?xml version="1.0" encoding="utf-8"?><CatapultToc Version="1">'."\n";
         fwrite($toc, $opening);
         $category = "";
+        echo "Indexing:";
+        echo "\n";
         foreach($topics as $topic) {
             $fullPath = explode("/", str_replace('\\', '/', $topic));
             $currentCat = array_slice($fullPath, -2, 1);
@@ -96,12 +98,14 @@ class UpdateTOC extends Command
                 $category = $currentCat[0];
             }
             $link = pathToLink($topic);
+            echo $link;
+            echo "\n";
             $title = cleanTitle($fullPath);
             $components = explode("Content", $topic);
             $tocPath = str_replace(".html", "",end($components));
 
 
-            $entry = '<TocEntry Title="'.$title.'" Link="/'.$link.'" />'."\n";
+            $entry = '<TocEntry Title="'.$title.'" Link="'.$link.'" />'."\n";
             fwrite($toc, $entry);
         }
 
