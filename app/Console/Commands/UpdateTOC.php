@@ -101,7 +101,7 @@ class UpdateTOC extends Command
             $tocPath = str_replace(".html", "",end($components));
 
 
-            $entry = '<TocEntry Title="'.$title.'" Link="'.$link.'" />'."\n";
+            $entry = '<TocEntry Title="'.$title.'" Link="/'.$link.'" />'."\n";
             fwrite($toc, $entry);
         }
 
