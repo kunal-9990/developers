@@ -36,7 +36,7 @@ cd public/documentation_files/$1/$2/
 
 echo 'Renaming some files...'
 
-cp Content/Resources/Images/* ../../Resources/Images/
+cp Content/Resources/Images/* ../../../Resources/Images/
 
 prefix="\/documentation_files\/$1\/$2\/Content/Resources\/"
 prefix="$prefix"
