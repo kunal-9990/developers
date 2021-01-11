@@ -29,3 +29,7 @@
 [0105/130117.993:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
 [0106/130117.778:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
 [0106/165448.847:ERROR:file_io.cc(90)] ReadExactly: expected 36, observed 0
+[0107/130117.558:ERROR:directory_reader_win.cc(43)] FindFirstFile: The system cannot find the path specified. (0x3)
+[0107/130117.560:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\matthew.chiang\AppData\Local\Google\Chrome\User Data\Crashpad\attachments\e9a7d26c-21da-498c-add8-d5cc04149318: The system cannot find the path specified. (0x3)
+[0107/130117.561:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\matthew.chiang\AppData\Local\Google\Chrome\User Data\Crashpad\attachments\5ecc5b57-5c3b-48d1-9952-f933bf4aea9e: The system cannot find the path specified. (0x3)
+[0107/130117.561:ERROR:filesystem_win.cc(129)] GetFileAttributes C:\Users\matthew.chiang\AppData\Local\Google\Chrome\User Data\Crashpad\attachments\5d90ce3e-1ecf-47e9-9128-2239fe839833: The system cannot find the path specified. (0x3)

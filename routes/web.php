@@ -14,6 +14,60 @@
 */
 $current_version = env("CURRENT_VERSION");
 
+Route::get('/toc', function(){
+ $rii = new RecursiveIteratorIterator(new RecursiveDirectoryIterator('C:\code\casewareDocs\developers\public\documentation_files'));
+
+$files = array(); 
+
+foreach ($rii as $file) {
+
+    if ($file->isDir()){ 
+        continue;
+    }
+    if ($file->getExtension() == 'htm') {
+        $files[] = $file->getPathname(); 
+    }
+
+}
+
+    if(file_exists("/OnlineOutput.xml")){
+        unlink("/OnlineOutput.xml");
+    }    
+    $topics = $files;
+    $toc = fopen(env('PATH_TO_PUBLIC')."/OnlineOutput.xml", "w");
+    $opening = '<?xml version="1.0" encoding="utf-8"?><CatapultToc Version="1">'."\n";
+    fwrite($toc, $opening);
+    $category = "";
+    foreach($topics as $topic) {
+        $fullPath = explode("/", str_replace('\\', '/', $topic));
+        $currentCat = array_slice($fullPath, -2, 1);
+        $currentCat = $currentCat[0];
+        if($category != $currentCat[0]){
+            if($category == ""){
+                $newCat = '<TocEntry Title="'.ucwords($currentCat).'">'."\n";
+            }
+            else{
+                $newCat = '</TocEntry>'."\n".'<TocEntry Title="'.ucwords($currentCat).'">';
+            }
+            fwrite($toc, $newCat);
+            $category = $currentCat[0];
+        }
+        
+        $title = str_replace(".html", "", end($fullPath));
+        $title = ucwords(str_replace("-", " ", $title));
+        $components = explode("Content", $topic);
+        $tocPath = str_replace(".html", "",end($components));
+
+
+        $entry = '<TocEntry Title="'.$title.'" Link="'.$tocPath.'" />'."\n";
+        fwrite($toc, $entry);
+    }
+
+    $closing = '</TocEntry></CatapultToc>';
+    fwrite($toc, $closing);
+    fclose($toc);    
+//     dd($topics);
+});
 
 Route::get('/new-search', 'SearchController@searchform');
 Route::get('/new-search/all', 'SearchController@all'); 
@@ -50,6 +104,7 @@ Route::group(['middleware' => 'setregion'], function () {
                 return redirect('/ca/en');
         });
 });
+
 
 // // search
 // Route::get('/search/{year}/{product}/{version}/{lang}/search', 'PageController@search')->name('search');
