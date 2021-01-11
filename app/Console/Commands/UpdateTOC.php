@@ -87,26 +87,30 @@ class UpdateTOC extends Command
             $currentCat = array_slice($fullPath, -2, 1);
             $currentCat = cleanTitle($currentCat);
 
+            if($currentCat !== "Content"){
+
+        
             if($category != $currentCat[0]){
-                if($category == ""){
-                    $newCat = '<TocEntry Title="'.ucwords($currentCat).'">'."\n";
+                    if($category == ""){
+                        $newCat = '<TocEntry Title="'.ucwords($currentCat).'">'."\n";
+                    }
+                    else{
+                        $newCat = '</TocEntry>'."\n".'<TocEntry Title="'.ucwords($currentCat).'">';
+                    }
+                    fwrite($toc, $newCat);
+                    $category = $currentCat[0];
                 }
-                else{
-                    $newCat = '</TocEntry>'."\n".'<TocEntry Title="'.ucwords($currentCat).'">';
-                }
-                fwrite($toc, $newCat);
-                $category = $currentCat[0];
+                $link = pathToLink($topic);
+                echo $link;
+                echo "\n";
+                $title = cleanTitle($fullPath);
+                $components = explode("Content", $topic);
+                $tocPath = str_replace(".html", "",end($components));
+
+
+                $entry = '<TocEntry Title="'.$title.'" Link="'.$link.'" />'."\n";
+                fwrite($toc, $entry);
             }
-            $link = pathToLink($topic);
-            echo $link;
-            echo "\n";
-            $title = cleanTitle($fullPath);
-            $components = explode("Content", $topic);
-            $tocPath = str_replace(".html", "",end($components));
-
-
-            $entry = '<TocEntry Title="'.$title.'" Link="'.$link.'" />'."\n";
-            fwrite($toc, $entry);
         }
 
         $closing = '</TocEntry></CatapultToc>';
