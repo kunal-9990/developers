@@ -1,20 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?><CatapultToc Version="1">
-<TocEntry Title="CaseWare Cloud API Get Started Guide">
-<TocEntry Title="Get Started CaseWare Cloud API.htm" Link="\CaseWare Cloud API get started guide\Get-Started-CaseWare-Cloud-API.htm" />
-<TocEntry Title="Step1—Get_credentials_for_your_firm.htm" Link="\CaseWare Cloud API get started guide\Step1—Get_credentials_for_your_firm.htm" />
-<TocEntry Title="Step2—Get_clientID_client_secret.htm" Link="\CaseWare Cloud API get started guide\Step2—Get_clientID_client_secret.htm" />
-<TocEntry Title="Step3—Get_an_access_token.htm" Link="\CaseWare Cloud API get started guide\Step3—Get_an_access_token.htm" />
-<TocEntry Title="Step4—Use_access_token_to_make_other_API_requests.htm" Link="\CaseWare Cloud API get started guide\Step4—Use_access_token_to_make_other_API_requests.htm" />
+<TocEntry Title="CaseWare-CloudAPI-get-started-guide">
 <TocEntry Title="Get Started CaseWare Cloud API.htm" Link="\CaseWare-CloudAPI-get-started-guide\Get-Started-CaseWare-Cloud-API.htm" />
 <TocEntry Title="Step1—Get_credentials_for_your_firm.htm" Link="\CaseWare-CloudAPI-get-started-guide\Step1—Get_credentials_for_your_firm.htm" />
 <TocEntry Title="Step2—Get_clientID_client_secret.htm" Link="\CaseWare-CloudAPI-get-started-guide\Step2—Get_clientID_client_secret.htm" />
 <TocEntry Title="Step3—Get_an_access_token.htm" Link="\CaseWare-CloudAPI-get-started-guide\Step3—Get_an_access_token.htm" />
 <TocEntry Title="Step4—Use_access_token_to_make_other_API_requests.htm" Link="\CaseWare-CloudAPI-get-started-guide\Step4—Use_access_token_to_make_other_API_requests.htm" />
-<TocEntry Title="Get Started CaseWare Developer Onboarding.htm" Link="\Cloud developer onboarding\Get-Started-CaseWare-developer-onboarding.htm" />
 <TocEntry Title="CaseWare Developer Onboarding.htm" Link="\Cloud-developer-onboarding\CaseWare-developer-onboarding.htm" />
 </TocEntry>
-<TocEntry Title="Get Started With Analytics AI Notebooks SDK"><TocEntry Title="Get Started NotebooksSDK.htm" Link="\Get started with Analytics AI Notebooks SDK\Get-Started-NotebooksSDK.htm" />
-<TocEntry Title="Get Started NotebooksSDK.htm" Link="\Get-started-with-Analytics-AI-Notebooks-SDK\Get-Started-NotebooksSDK.htm" />
+<TocEntry Title="Get-started-with-Analytics-AI-Notebooks-SDK"><TocEntry Title="Get Started NotebooksSDK.htm" Link="\Get-started-with-Analytics-AI-Notebooks-SDK\Get-Started-NotebooksSDK.htm" />
 <TocEntry Title="Add A Calculation Assigning A Data Source To Table Columns.htm" Link="\Get-started-with-SE-Builder\Add-a-calculation-assigning-a-data-source-to-table-columns.htm" />
 <TocEntry Title="Create A Form Set Dynamically Populated Table.htm" Link="\Get-started-with-SE-Builder\Create-a-form-set-dynamically-populated-table.htm" />
 <TocEntry Title="Create A Form Set.htm" Link="\Get-started-with-SE-Builder\Create-a-form-set.htm" />

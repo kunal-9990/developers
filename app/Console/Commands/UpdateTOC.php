@@ -39,6 +39,24 @@ class UpdateTOC extends Command
      */
     public function handle()
     {
+
+        function cleanTitle($string){
+            $string = str_replace(".html", "", end($string));
+            $string = ucwords(str_replace("-", " ", $string));
+            $string = ucwords(str_replace("_", " ", $string));
+            $string = ucwords(str_replace(".htm", "", $string));
+            return $string;
+        }
+
+        function pathToLink($path) {
+            
+            $path = str_replace('\\', '/', $path);
+            $path = str_replace(env("PATH_TO_PUBLIC"), "", $path);
+            $path = str_replace("documentation_files", "", $path);
+            $path = str_replace("/Content", "", $path);
+            return $path;
+        }
+
         $rii = new RecursiveIteratorIterator(new RecursiveDirectoryIterator('C:\code\casewareDocs\developers\public\documentation_files'));
 
         $files = array(); 
@@ -65,7 +83,8 @@ class UpdateTOC extends Command
         foreach($topics as $topic) {
             $fullPath = explode("/", str_replace('\\', '/', $topic));
             $currentCat = array_slice($fullPath, -2, 1);
-            $currentCat = $currentCat[0];
+            $currentCat = cleanTitle($currentCat);
+
             if($category != $currentCat[0]){
                 if($category == ""){
                     $newCat = '<TocEntry Title="'.ucwords($currentCat).'">'."\n";
@@ -76,19 +95,20 @@ class UpdateTOC extends Command
                 fwrite($toc, $newCat);
                 $category = $currentCat[0];
             }
-            
-            $title = str_replace(".html", "", end($fullPath));
-            $title = ucwords(str_replace("-", " ", $title));
+            $link = pathToLink($topic);
+            $title = cleanTitle($fullPath);
             $components = explode("Content", $topic);
             $tocPath = str_replace(".html", "",end($components));
 
 
-            $entry = '<TocEntry Title="'.$title.'" Link="'.$tocPath.'" />'."\n";
+            $entry = '<TocEntry Title="'.$title.'" Link="'.$link.'" />'."\n";
             fwrite($toc, $entry);
         }
 
         $closing = '</TocEntry></CatapultToc>';
         fwrite($toc, $closing);
         fclose($toc); 
-        }
+    }
+
+
 }
