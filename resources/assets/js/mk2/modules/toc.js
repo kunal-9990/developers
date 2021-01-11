@@ -14,52 +14,53 @@ module.exports = () => {
     var pathname = window.location.pathname;
     pathname = pathname.replace(/\/\/+/g, '/');
     var routeComponents = pathname.split("/");
+    var TOCxml = "/documentation_files/OnlineOutput.xml";
 
     // they are the same for now but might change in the future to
     // to have different TOCxml routes
-    if (0) {
-        // used for staging
+    // if (0) {
+    //     // used for staging
 
-        var year = routeComponents[1];
-        console.log(year);
-        var product = routeComponents[2].toLowerCase();
-        var version = routeComponents[3];
-        var lang = routeComponents[4];
-        var linkPrefix = "/" + year + "/" + product + "/" + version + "/" + lang;
-        var TOCxml = "/documentation_files/" + year + "/" + product + "/" + version + "/Content/" + lang + "/OnlineOutput.xml";
-    } else {
-        // used for live
-        var year = routeComponents[1];
-        var product = routeComponents[2].toLowerCase();
-        var version = routeComponents[3];
-        var lang = routeComponents[4];
-        var linkPrefix = "/" + year + "/" + product + "/" + version + "/" + lang;
-        //hardcoding which toc to return based on language. currently, NL is the only language to have a properly translated TOC
-        //this should be changed so that if a properly translated toc doesn't exist, it defaults to english
-        // if(lang == "nl"){
-        //     var TOCxml = "/documentation_files/" + year + "/" + product + "/" + version + "/Content/" + lang + "/OnlineOutput.xml";
-        // }
-        var properlyTranslated = ["en", "nl"];
-        if (window.location.href.indexOf("SE-Authoring") > -1) {
-            console.log("se authoring");
-            if (properlyTranslated.includes(lang)) {
-                var TOCxml = "/documentation_files/" + year + "/" + product + "/" + version + "/Content/" + lang + "/SE-Authoring-TOC.xml";
-            } else {
-                var TOCxml = "/documentation_files/" + year + "/" + product + "/" + version + "/Content/en/SE-Authoring-TOC.xml";
-            }
-        } else {
-            if (properlyTranslated.includes(lang)) {
-                var TOCxml = "/documentation_files/" + year + "/" + product + "/" + version + "/Content/" + lang + "/OnlineOutput.xml";
-            } else {
-                var TOCxml = "/documentation_files/" + year + "/" + product + "/" + version + "/Content/en/OnlineOutput.xml";
-            }
-        }
-    }
+    //     var year = routeComponents[1];
+    //     console.log(year);
+    //     var product = routeComponents[2].toLowerCase();
+    //     var version = routeComponents[3];
+    //     var lang = routeComponents[4];
+    //     var linkPrefix = "/" + year + "/" + product + "/" + version + "/" + lang;
+    // } else {
+    //     // used for live
+    //     var year = routeComponents[1];
+    //     var product = routeComponents[2].toLowerCase();
+    //     var version = routeComponents[3];
+    //     var lang = routeComponents[4];
+    //     var linkPrefix = "/" + year + "/" + product + "/" + version + "/" + lang;
+    //     //hardcoding which toc to return based on language. currently, NL is the only language to have a properly translated TOC
+    //     //this should be changed so that if a properly translated toc doesn't exist, it defaults to english
+    //     // if(lang == "nl"){
+    //     //     var TOCxml = "/documentation_files/" + year + "/" + product + "/" + version + "/Content/" + lang + "/OnlineOutput.xml";
+    //     // }
+    //     var properlyTranslated = ["en", "nl"];
+    //     if (window.location.href.indexOf("SE-Authoring") > -1) {
+    //         console.log("se authoring");
+    //         if (properlyTranslated.includes(lang)) {
+    //             var TOCxml = "/documentation_files/" + year + "/" + product + "/" + version + "/Content/" + lang + "/SE-Authoring-TOC.xml";
+    //         } else {
+    //             var TOCxml = "/documentation_files/" + year + "/" + product + "/" + version + "/Content/en/SE-Authoring-TOC.xml";
+    //         }
+    //     } else {
+    //         if (properlyTranslated.includes(lang)) {
+    //             var TOCxml = "/documentation_files/" + year + "/" + product + "/" + version + "/Content/" + lang + "/OnlineOutput.xml";
+    //         } else {
+    //             var TOCxml = "/documentation_files/" + year + "/" + product + "/" + version + "/Content/en/OnlineOutput.xml";
+    //         }
+    //     }
+    // }
 
     $.ajax({
         type: "GET",
         url: TOCxml,
         success: function (xml) {
+            console.log("found toc");
             var ul_main = $('<ul class="toc notranslate">');
             $(xml).find("TocEntry").each(function () {
                 if ($(this).children().length && $(this).parent().is("CatapultToc")) {
@@ -76,26 +77,26 @@ module.exports = () => {
                                 };
 
                                 if ($(this).attr("Link") && loc.includes($(this).attr("Link").replace(".htm", ""))) {
-                                    topicList.append('<li class="current-page ' + producttags + '"><a href="' + linkPrefix + $(this).attr("Link") + '">' + $(this).attr("Title") + '</a></li>');
+                                    topicList.append('<li class="current-page ' + producttags + '"><a href="' + $(this).attr("Link") + '">' + $(this).attr("Title") + '</a></li>');
                                 } else {
-                                    topicList.append('<li class="' + producttags + '"><a href="' + linkPrefix + $(this).attr("Link") + '">' + $(this).attr("Title") + '</a></li>');
+                                    topicList.append('<li class="' + producttags + '"><a href="' + $(this).attr("Link") + '">' + $(this).attr("Title") + '</a></li>');
                                 }
 
                             });
                             var link;
                             if ($(this).attr("Link")) {
-                                link = '<a href="' + linkPrefix + $(this).attr("Link") + '">';
+                                link = '<a href="' + $(this).attr("Link") + '">';
                             } else {
                                 link = '';
                             }
-                            var li = $('<li class="toc__sub-category"><a class="chevron" href="' + linkPrefix + $(this).attr("Link") + '">' + $(this).attr("Title") + '</a>');
+                            var li = $('<li class="toc__sub-category"><a class="chevron" href="' + $(this).attr("Link") + '">' + $(this).attr("Title") + '</a>');
 
                             subCatList.append(li.append(topicList));
                         } else {
                             if ($(this).attr("Link") && loc.includes($(this).attr("Link"))) {
-                                subCatList.append('<li class="current-page toc__sub-category"><a class="chevron" href="' + linkPrefix + $(this).attr("Link") + '">' + $(this).attr("Title") + '</a>');
+                                subCatList.append('<li class="current-page toc__sub-category"><a class="chevron" href="' + $(this).attr("Link") + '">' + $(this).attr("Title") + '</a>');
                             } else {
-                                subCatList.append('<li class="toc__sub-category"><a class="chevron" href="' + linkPrefix + $(this).attr("Link") + '">' + $(this).attr("Title") + '</a>');
+                                subCatList.append('<li class="toc__sub-category"><a class="chevron" href="' + $(this).attr("Link") + '">' + $(this).attr("Title") + '</a>');
                             }
                         }
                     });
