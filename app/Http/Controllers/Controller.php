@@ -25,7 +25,8 @@ class Controller extends BaseController
 
     public function __construct(DocsCmsApi $cms, DocsSearchApi $search, Request $request) {
 
-        $this->search = $search;        $this->cms = $cms;
+        $this->search = $search;
+        $this->cms = $cms;
         //Grab the menus
         View::share('header', $cms->menu('header')->get('results')->items);
         $footerRegion = 'int';
