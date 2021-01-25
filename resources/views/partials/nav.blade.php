@@ -10,6 +10,7 @@
             <a href="/{{ str_replace($region.'/' , 'int/', Request::path()) }}">International</a>
             <a href="/{{ str_replace($region.'/' , 'ca/', Request::path()) }}">Canada</a>
             <a href="/{{ str_replace($region.'/' , 'us/', Request::path()) }}">US</a>
+            <a href="/{{ str_replace($region.'/' , 'nl/', Request::path()) }}">NL</a>
         </div>
     </div>
 @endif

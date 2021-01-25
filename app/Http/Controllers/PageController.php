@@ -129,7 +129,7 @@ class PageController extends Controller
     }
     
      
-    // topic
+    // topic within category
     function showTopic($product, $version, $category, $topic){
 
         $product =  strtolower($product);
@@ -152,44 +152,31 @@ class PageController extends Controller
 
         return view('pages.documentation', compact('maincontentarea', 'recent', 'exclusiveTo','title'));
     }
-
-    // topics with subsubcategory
-    function showTopic2($year, $product, $version, $lang, $category, $subcategory, $subsubcategory, $topic){
-
-        App::setLocale($lang);
-                
-        // if(!endsWith($topic,".html")){
-        //     $topic .= ".html";
-        // }
+    // topic within subcategory
+    function showsubTopic($product, $version, $category, $subcategory, $topic){
 
         $product =  strtolower($product);
 
-        if($subcategory == "TranslatedDocs"){
+        try {
+            $dom = HtmlDomParser::str_get_html(file_get_contents( env('PATH_TO_PUBLIC').'documentation_files/'.$product."/".$version."/"."Content/".$category."/".$subcategory."/".$topic ));
             $doNotTranslate = true;
+        } catch (Exception $e) {
+            return response()->view('errors.404');
         }
 
-        try {
-            $dom = HtmlDomParser::str_get_html(file_get_contents( env('PATH_TO_PUBLIC').'documentation_files/'.$year."/".$product."/".$version."/"."Content/".$lang."/Content/".$category."/".$subcategory."/".$subsubcategory."/".$topic.".htm" ));
-            $doNotTranslate = true;        
-        } catch (Exception $e) {
-            try {
-            $dom = HtmlDomParser::str_get_html(file_get_contents( env('PATH_TO_PUBLIC').'documentation_files/'.$year."/".$product."/".$version."/"."Content/en/".$category."/".$subcategory."/".$subsubcategory."/".$topic.".htm;" ));
-                } catch (Exception $e) {
-                    // return response()->view('errors.404');
-                    return env('PATH_TO_PUBLIC').'documentation_files/'.$year."/".$product."/".$version."/"."Content/".$lang."/Content/".$category."/".$subcategory."/".$subsubcategory."/".$topic;
-                }
-        }        
-
-        $maincontentarea = $dom->find('section[class=main-section]', 0);
+        $maincontentarea = $dom->find('body', 0);
         if($maincontentarea == ""){
             $maincontentarea = $dom->find('div[class=content]', 0);
         }        
+        $htmlElement = $dom->find('html', 0);
         (isset($htmlElement->attr['data-mc-conditions'])) ? $exclusiveTo = $htmlElement->attr['data-mc-conditions'] : $exclusiveTo = '' ;
         $recent = getRecentlyViewed();
         $title = strip_tags($dom->find('h1', 0));
 
-        return view('pages.documentation', compact('maincontentarea', 'recent', 'exclusiveTo','title', 'doNotTranslate'));
+        return view('pages.documentation', compact('maincontentarea', 'recent', 'exclusiveTo','title'));
     }
+
+
 
     // subcategory
     function showSubCategory($year, $product, $version, $lang, $category, $subcategory){

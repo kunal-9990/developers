@@ -41,10 +41,10 @@ class UpdateTOC extends Command
     {
 
         function cleanTitle($string){
-            $string = str_replace(".html", "", end($string));
-            $string = ucwords(str_replace("-", " ", $string));
-            $string = ucwords(str_replace("_", " ", $string));
-            $string = ucwords(str_replace(".htm", "", $string));
+            $string = str_replace(".html", "", $string);
+            $string = str_replace("-", " ", $string);
+            $string = str_replace("_", " ", $string);
+            $string = str_replace(".htm", "", $string);
             return $string;
         }
 
@@ -79,38 +79,99 @@ class UpdateTOC extends Command
         $toc = fopen(env('PATH_TO_PUBLIC')."/documentation_files/OnlineOutput.xml", "w");
         $opening = '<?xml version="1.0" encoding="utf-8"?><CatapultToc Version="1">'."\n";
         fwrite($toc, $opening);
-        $category = "";
+        $previouscat = "";
+        $previoussubcat = "";
         echo "Indexing:";
         echo "\n";
+
+
         foreach($topics as $topic) {
-            $fullPath = explode("/", str_replace('\\', '/', $topic));
-            $currentCat = array_slice($fullPath, -2, 1);
-            $currentCat = cleanTitle($currentCat);
 
-            if($currentCat !== "Content"){
+            $fullpath = explode("/", str_replace('\\', '/', $topic));
+            $basedirdepth = array_search("Content", $fullpath);
+            $topicDepth = count($fullpath) - $basedirdepth;
 
-        
-            if($category != $currentCat[0]){
-                    if($category == ""){
-                        $newCat = '<TocEntry Title="'.ucwords($currentCat).'">'."\n";
-                    }
-                    else{
-                        $newCat = '</TocEntry>'."\n".'<TocEntry Title="'.ucwords($currentCat).'">';
-                    }
-                    fwrite($toc, $newCat);
-                    $category = $currentCat[0];
+            // find topic depth and determine the category and subcategory accordingly
+
+            //topic is within a category
+            if($topicDepth == 3){
+                $currentcat = array_slice($fullpath, -2, 1)[0];
+                $currentcat = cleanTitle($currentcat);
+                $currentsubcat = "";
+            }
+            //topic is within a subcategory
+            elseif($topicDepth == 4){
+                $currentcat = array_slice($fullpath, -3, 1)[0];
+                $currentcat = cleanTitle($currentcat);
+                $currentsubcat = array_slice($fullpath, -2, 1)[0];
+                $currentsubcat = cleanTitle($currentsubcat);
+            }
+            
+            if($currentcat !== "Print"){
+                
+    
+                echo "\n";
+                echo "Category: ". $currentcat;
+                echo "\n";
+                echo "Subcategory: ". $currentsubcat;
+                echo "\n";
+
+
+                if($previouscat !== $currentcat){
+                        if($previouscat == ""){
+                            $newcat = '<TocEntry Title="'.ucwords($currentcat).'">'."\n";
+                        }
+                        else{
+                            $newcat = '</TocEntry>'."\n".'<TocEntry Title="'.ucwords($currentcat).'">'."\n";
+                        }
+                        fwrite($toc, $newcat);
                 }
+
+                if($previoussubcat !== $currentsubcat){
+
+                    
+                    if($previoussubcat !== "" ){
+                        if($currentsubcat == ""){
+
+                            $newcat = "\t".'</TocEntry>'."\n";
+                            echo "In Block 1";
+                            echo "\n";
+                        }
+                        else{
+
+                            $newcat = "\t".'</TocEntry>'."\n"."\t".'<TocEntry Title="'.ucwords($currentsubcat).'">'."\n";
+                            echo "In Block 1";
+                            echo "\n";
+                        }
+                    }
+                    elseif($previoussubcat == ""){
+                        $newcat = "\n\t".'<TocEntry Title="'.ucwords($currentsubcat).'">'."\n";
+                        echo "In Block 2";
+                        echo "\n";
+
+                    }
+                    fwrite($toc, $newcat);
+                }
+
+                $previouscat = $currentcat;
+                $previoussubcat = $currentsubcat;
+
                 $link = pathToLink($topic);
                 echo $link;
                 echo "\n";
-                $title = cleanTitle($fullPath);
+                $title = cleanTitle(end($fullpath));
                 $components = explode("Content", $topic);
                 $tocPath = str_replace(".html", "",end($components));
+                
+                if($currentsubcat){
+                    $entry = "\t\t".'<TocEntry Title="'.$title.'" Link="'.$link.'" />'."\n";
+                }
+                else{
 
-
-                $entry = '<TocEntry Title="'.$title.'" Link="'.$link.'" />'."\n";
+                    $entry = "\t".'<TocEntry Title="'.$title.'" Link="'.$link.'" />'."\n";
+                }
                 fwrite($toc, $entry);
-            }
+                }
         }
 
         $closing = '</TocEntry></CatapultToc>';

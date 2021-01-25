@@ -83,10 +83,8 @@ class DocsSearchApi
                             echo "\n";
 
                             if(!empty($body) && !empty($title)){
-                                if (strpos($url, 'DEPRECATED') == false) {
-                                    array_push($records, ["title"=>$title, "body"=>$body, "url"=>$url, "product"=>$params[1], "version"=>$params[2]]);
-                                }                                
 
+                                array_push($records, ["title"=>$title, "body"=>$body, "url"=>$url, "product"=>$params[1], "version"=>$params[2]]);
                             }
 
                         }

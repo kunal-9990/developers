@@ -99,7 +99,7 @@ Route::group(['middleware' => 'setregion'], function () {
 Route::get('/{product}/{version}/{category}/{topic}', 'PageController@showTopic')->name('topic');
 
 // // topics
-// Route::get('/{product}/{version}/{category}/{subcategory}/{subsubcategory}/{topic}', 'PageController@showTopic2');
+Route::get('/{product}/{version}/{category}/{subcategory}/{topic}', 'PageController@showsubTopic');
 
 // // sub category
 // Route::get('/{product}/{version}/{category}/{subcategory}', 'PageController@showSubCategory');
