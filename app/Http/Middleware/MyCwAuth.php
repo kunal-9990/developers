@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Middleware;
-
+use \Firebase\JWT\JWT;
 use Closure;
 use session;
 use Illuminate\Support\Facades\Cookie;
@@ -17,7 +17,10 @@ class MyCwAuth
      */
     public function handle($request, Closure $next)
     {
-        $authenticated = (is_null($request->session()->get('authenticated'))) ? false : true;
+        $authToken = $request->session()->get('authenticated');
+        $decoded = (isset($authToken)) ? JWT::decode($authToken, env('AUTH_SECRET'), array('HS256')) : null;
+
+        $authenticated = (is_null($decoded)) ? false : true;
 
         if(!$authenticated) {
             Cookie::queue('targetUrl', url()->current(), 360);

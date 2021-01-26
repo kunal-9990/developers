@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use \Firebase\JWT\JWT;
 use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
 use Symfony\Component\HttpFoundation\Session\Session;
+
 
 class LoginController extends Controller
 {   
@@ -54,7 +56,9 @@ class LoginController extends Controller
                 $sdkresBody = json_decode($contents, true);
                 $productSdkList =  $myArray = explode(';', $sdkresBody["Products"]);
                 if($sdkresBody["Success"] && in_array("SDK", $productSdkList)){
-                    $request->session()->put('authenticated', 'true');
+
+                    $authToken = JWT::encode(true, env('AUTH_SECRET'));
+                    $request->session()->put('authenticated', $authToken);
                     $targetUrl = Cookie::get('targetUrl');
                     if(gettype($targetUrl) == "string"){
                         return redirect($targetUrl);
