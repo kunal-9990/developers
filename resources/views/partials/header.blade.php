@@ -7,7 +7,7 @@
                         alt="CaseWare logo"></a>
             </div>
             <div class="header__input-search-wrapper">
-                <form method="GET" action="/new-search">
+                <form method="GET" action="/search">
                     <input type="text" name="search" placeholder="{{ __('strings.search') }}" autocomplete="off">
                 </form>
             </div>

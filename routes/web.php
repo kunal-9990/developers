@@ -14,17 +14,21 @@
 */
 $current_version = env("CURRENT_VERSION");
 
-Auth::routes();
-// auth routes
-Route::post('/mycwauth', 'LoginController@login');
-Route::get('/logout', 'LoginController@logout');
+Route::middleware('throttle:60|180,1')->group(function () { 
 
-Route::get('login/azure', 'Auth\LoginController@redirectToProvider');
-Route::get('login/azure/callback', 'Auth\LoginController@handleProviderCallback');
+        // auth routes
+        Auth::routes();
+        Route::post('/mycwauth', 'LoginController@login');
+        Route::get('/logout', 'LoginController@logout');
+        Route::get('login/azure', 'Auth\LoginController@redirectToProvider');
+        Route::get('login/azure/callback', 'Auth\LoginController@handleProviderCallback');
+        
+});
 
-Route::get('/new-search', 'SearchController@searchform');
-Route::get('/new-search/all', 'SearchController@all'); 
-Route::get('/new-search/{query}', 'SearchController@search');
+
+Route::get('/search', 'SearchController@searchform');
+Route::get('/search/all', 'SearchController@all'); 
+Route::get('/search/{query}', 'SearchController@search');
 
 // home page - to come
 
@@ -42,7 +46,7 @@ Route::group(['middleware' => 'setregion'], function () {
         Route::get('/{region}/{lang}/{slug}/context-specific-help', 'PageController@csh')->name('csh');
         Route::get('/{region}/{lang}/{slug}/frequently-asked-questions', 'PageController@faq')->name('faq');
         Route::get('/{region}/{lang}/{slug}', 'PageController@product')->name('product');
-        Route::get('/{region}/{lang}/', 'PageController@level1')->name('home');
+        // Route::get('/{{region}/{lang}/}', 'PageController@level1')->name('home');
         Route::get('/{slug}', 'PageController@level2')->name('level2');
         Route::get('/', 'PageController@level1')->name('home');
 
