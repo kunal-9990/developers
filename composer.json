@@ -9,6 +9,7 @@
         "algolia/algoliasearch-client-php": "^2.7",
         "elic-dev/laravel-site-protection": "^1.0",
         "fideloper/proxy": "~4.0",
+        "firebase/php-jwt": "^5.2",
         "guzzlehttp/guzzle": "^6.5",
         "laravel/framework": "5.6.*",
         "laravel/socialite": "3.2.0",
