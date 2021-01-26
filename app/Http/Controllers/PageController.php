@@ -16,9 +16,9 @@ class PageController extends Controller
 {
 
     // home
-    function home($region, $lang){
+    function level1(){
 
-        $page = $this->cms->get_custom_post_by_name($lang, 'home', $region);
+        $page = $this->cms->get_custom_post_by_name('en', 'level1', 'home');
         
         
         if(empty($page['results'])){
