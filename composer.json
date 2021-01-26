@@ -9,9 +9,12 @@
         "algolia/algoliasearch-client-php": "^2.7",
         "elic-dev/laravel-site-protection": "^1.0",
         "fideloper/proxy": "~4.0",
+        "guzzlehttp/guzzle": "^6.5",
         "laravel/framework": "5.6.*",
+        "laravel/socialite": "3.2.0",
         "laravel/tinker": "~1.0",
         "mashape/unirest-php": "^3.0",
+        "socialiteproviders/microsoft-azure": "^4.2",
         "sunra/php-simple-html-dom-parser": "^1.5"
     },
     "require-dev": {

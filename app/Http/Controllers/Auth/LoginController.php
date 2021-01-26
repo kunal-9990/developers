@@ -3,7 +3,11 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cookie;
+
 
 class LoginController extends Controller
 {
@@ -35,5 +39,25 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
+    }
+
+    public function redirectToProvider()
+    {
+        return Socialite::driver('azure')->redirect();
+    }
+
+    /**
+     * Obtain the user information from GitHub.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function handleProviderCallback(Request $request)
+    {
+        $user = Socialite::driver('azure')->user();
+        $request->session()->put('authenticated', 'true');
+        // $targetUrl = Cookie::get('targetUrl');
+        return redirect('/');
+
+        // $user->token;
     }
 }

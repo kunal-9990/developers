@@ -11,7 +11,7 @@
                 <div class="dev-header">
                     <a href="cta">Sign up</a>
                     <div class="cta">
-                        <a href="">Log in</a>
+                        <a href="/login">Log in</a>
                     </div>
                 </div>
             </div>

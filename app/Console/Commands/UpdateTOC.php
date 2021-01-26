@@ -67,7 +67,8 @@ class UpdateTOC extends Command
                 continue;
             }
             if ($file->getExtension() == 'htm') {
-                $files[] = $file->getPathname(); 
+                array_push($files, $file->getPathname());
+                // $files[] = $file->getPathname(); 
             }
 
         }
@@ -132,23 +133,14 @@ class UpdateTOC extends Command
                     
                     if($previoussubcat !== "" ){
                         if($currentsubcat == ""){
-
                             $newcat = "\t".'</TocEntry>'."\n";
-                            echo "In Block 1";
-                            echo "\n";
                         }
                         else{
-
                             $newcat = "\t".'</TocEntry>'."\n"."\t".'<TocEntry Title="'.ucwords($currentsubcat).'">'."\n";
-                            echo "In Block 1";
-                            echo "\n";
                         }
                     }
                     elseif($previoussubcat == ""){
                         $newcat = "\n\t".'<TocEntry Title="'.ucwords($currentsubcat).'">'."\n";
-                        echo "In Block 2";
-                        echo "\n";
-
                     }
                     fwrite($toc, $newcat);
                 }
