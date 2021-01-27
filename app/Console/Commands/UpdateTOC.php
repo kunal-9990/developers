@@ -66,7 +66,7 @@ class UpdateTOC extends Command
             if ($file->isDir()){ 
                 continue;
             }
-            if ($file->getExtension() == 'htm') {
+            if ($file->getExtension() == 'htm' || $file->getExtension() == 'html') {
                 array_push($files, $file->getPathname());
                 // $files[] = $file->getPathname(); 
             }
