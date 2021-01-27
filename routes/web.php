@@ -23,12 +23,14 @@ Route::middleware('throttle:60|180,1')->group(function () {
         Route::get('login/azure', 'Auth\LoginController@redirectToProvider');
         Route::get('login/azure/callback', 'Auth\LoginController@handleProviderCallback');
         
+        //search routes so algolia usage is not abused
+        Route::get('/search', 'SearchController@searchform');
+        Route::get('/search/all', 'SearchController@all'); 
+        Route::get('/search/{query}', 'SearchController@search');
+        
 });
 
 
-Route::get('/search', 'SearchController@searchform');
-Route::get('/search/all', 'SearchController@all'); 
-Route::get('/search/{query}', 'SearchController@search');
 
 // home page - to come
 
