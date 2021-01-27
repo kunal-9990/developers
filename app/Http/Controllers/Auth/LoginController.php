@@ -7,6 +7,7 @@ use Laravel\Socialite\Facades\Socialite;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Cookie;
+use \Firebase\JWT\JWT;
 
 
 class LoginController extends Controller
@@ -54,10 +55,14 @@ class LoginController extends Controller
     public function handleProviderCallback(Request $request)
     {
         $user = Socialite::driver('azure')->user();
-        $request->session()->put('authenticated', 'true');
-        // $targetUrl = Cookie::get('targetUrl');
-        return redirect('/');
-
-        // $user->token;
+        $authToken = JWT::encode(true, env('AUTH_SECRET'));
+        $request->session()->put('authenticated', $authToken);
+        $targetUrl = Cookie::get('targetUrl');
+        if(gettype($targetUrl) == "string"){
+            return redirect($targetUrl);
+        }
+        else{
+            return redirect('/');
+        }
     }
 }
