@@ -28,9 +28,9 @@ Route::middleware('throttle:60|180,1')->group(function () {
 
 
 //search routes so algolia usage is not abused
-Route::get('/search', 'SearchController@searchform');
-Route::get('/search/all', 'SearchController@all'); 
-Route::get('/search/{query}', 'SearchController@search');
+Route::get('/new-search', 'SearchController@searchform');
+Route::get('/new-search/all', 'SearchController@all'); 
+Route::get('/new-search/{query}', 'SearchController@search');
 
 // home page - to come
 
