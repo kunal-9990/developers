@@ -63,10 +63,11 @@ Route::group(['middleware' => 'setregion'], function () {
 // topics
 Route::group(['middleware' => 'mycasewareauth'], function () {
 
-Route::get('/{product}/{version}/{category}/{topic}', 'PageController@showTopic')->name('topic');
+Route::get('/{product}/{version}/{category}/{param1?}/{param2?}/{param3?}/{param4?}/{param5?}/{param6?}/{param7?}', 'PageController@showTopic')->name('topic');
+// Route::get('/{product}/{version}/{category}/{path1}', 'PageController@showTopic')->name('topic');
 
 // // topics
-Route::get('/{product}/{version}/{category}/{subcategory}/{topic}', 'PageController@showsubTopic');
+// Route::get('/{product}/{version}/{category}/{subcategory}/{topic}', 'PageController@showsubTopic');
 });
 
 // // sub category

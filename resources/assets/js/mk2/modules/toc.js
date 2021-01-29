@@ -6,6 +6,16 @@ module.exports = () => {
         return http.status != 404;
     }
     // const filter = require('../filter');
+    var loc = window.location.href;
+    var pathname = window.location.pathname;
+    pathname = pathname.replace(/\/\/+/g, '/');
+    var routeComponents = pathname.split("/");
+
+    // they are the same for now but might change in the future to
+    // to have different TOCxml routes
+
+    var product = routeComponents[1];
+    var version = routeComponents[2];
 
     $(".toc__container").html("");
 
@@ -14,47 +24,8 @@ module.exports = () => {
     var pathname = window.location.pathname;
     pathname = pathname.replace(/\/\/+/g, '/');
     var routeComponents = pathname.split("/");
-    var TOCxml = "/documentation_files/OnlineOutput.xml";
+    var TOCxml = "/documentation_files/"+product+"/"+version+"/OnlineOutput.xml";
 
-    // they are the same for now but might change in the future to
-    // to have different TOCxml routes
-    // if (0) {
-    //     // used for staging
-
-    //     var year = routeComponents[1];
-    //     console.log(year);
-    //     var product = routeComponents[2].toLowerCase();
-    //     var version = routeComponents[3];
-    //     var lang = routeComponents[4];
-    //     var linkPrefix = "/" + year + "/" + product + "/" + version + "/" + lang;
-    // } else {
-    //     // used for live
-    //     var year = routeComponents[1];
-    //     var product = routeComponents[2].toLowerCase();
-    //     var version = routeComponents[3];
-    //     var lang = routeComponents[4];
-    //     var linkPrefix = "/" + year + "/" + product + "/" + version + "/" + lang;
-    //     //hardcoding which toc to return based on language. currently, NL is the only language to have a properly translated TOC
-    //     //this should be changed so that if a properly translated toc doesn't exist, it defaults to english
-    //     // if(lang == "nl"){
-    //     //     var TOCxml = "/documentation_files/" + year + "/" + product + "/" + version + "/Content/" + lang + "/OnlineOutput.xml";
-    //     // }
-    //     var properlyTranslated = ["en", "nl"];
-    //     if (window.location.href.indexOf("SE-Authoring") > -1) {
-    //         console.log("se authoring");
-    //         if (properlyTranslated.includes(lang)) {
-    //             var TOCxml = "/documentation_files/" + year + "/" + product + "/" + version + "/Content/" + lang + "/SE-Authoring-TOC.xml";
-    //         } else {
-    //             var TOCxml = "/documentation_files/" + year + "/" + product + "/" + version + "/Content/en/SE-Authoring-TOC.xml";
-    //         }
-    //     } else {
-    //         if (properlyTranslated.includes(lang)) {
-    //             var TOCxml = "/documentation_files/" + year + "/" + product + "/" + version + "/Content/" + lang + "/OnlineOutput.xml";
-    //         } else {
-    //             var TOCxml = "/documentation_files/" + year + "/" + product + "/" + version + "/Content/en/OnlineOutput.xml";
-    //         }
-    //     }
-    // }
 
     $.ajax({
         type: "GET",
@@ -75,8 +46,7 @@ module.exports = () => {
                                 } else {
                                     producttags = " ";
                                 };
-
-                                if ($(this).attr("Link") && loc.includes($(this).attr("Link").replace(".htm", ""))) {
+                                if ($(this).attr("Link") && loc.includes($(this).attr("Link").replace(".html", "").replace(".htm", ""))) {
                                     topicList.append('<li class="current-page ' + producttags + '"><a href="' + $(this).attr("Link") + '">' + $(this).attr("Title") + '</a></li>');
                                 } else {
                                     topicList.append('<li class="' + producttags + '"><a href="' + $(this).attr("Link") + '">' + $(this).attr("Title") + '</a></li>');
@@ -103,6 +73,10 @@ module.exports = () => {
                     var li = $('<li class="toc__category"><a class="chevron" href="#">' + $(this).attr("Title") + '</a>');
                     ul_main.append(li.append(subCatList));
                 }
+                // else{
+                //     ul_main.append('<li class="toc__category"><a class="chevron" href="#">' + $(this).attr("Title") + '</a>');
+                // }
+
             });
 
             $(".toc__container").append(ul_main);
