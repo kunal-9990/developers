@@ -36,7 +36,7 @@ class PageController extends Controller
     }
 
 
-    function level2($slug){
+    function level2(Request $request, $slug){
 
         $authenticated = isAuthenticated($request);
         $page = $this->cms->get_custom_post_by_name('en', 'level2', "{$slug}");

@@ -23,7 +23,7 @@ class MyCwAuth
         $authenticated = (is_null($decoded)) ? false : true;
 
         if(!$authenticated) {
-            Cookie::queue('targetUrl', url()->current(), 360);
+            Cookie::queue('targetUrl', url()->current(), 5);
             return redirect('/login');
         }
         else{
