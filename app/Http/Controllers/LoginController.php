@@ -59,8 +59,11 @@ class LoginController extends Controller
 
                     $authToken = JWT::encode(true, env('AUTH_SECRET'));
                     $request->session()->put('authenticated', $authToken);
-                    $targetUrl = Cookie::get('targetUrl');
+                    $targetUrl = $request->session()->pull('targetUrl', '/');
+
+
                     if(gettype($targetUrl) == "string"){
+                        
                         return redirect($targetUrl);
                     }
                     else{
@@ -86,8 +89,7 @@ class LoginController extends Controller
 
     function logout (Request $request) {
         $request->session()->forget('authenticated');
-        $request->session()->forget('targetUrl');
-        return redirect('/');
+        return redirect('/login');
 
     }
 }

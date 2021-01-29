@@ -57,7 +57,8 @@ class LoginController extends Controller
         $user = Socialite::driver('azure')->user();
         $authToken = JWT::encode(true, env('AUTH_SECRET'));
         $request->session()->put('authenticated', $authToken);
-        $targetUrl = Cookie::get('targetUrl');
+        $targetUrl = $request->session()->pull('targetUrl', '/');
+
         if(gettype($targetUrl) == "string"){
             return redirect($targetUrl);
         }
