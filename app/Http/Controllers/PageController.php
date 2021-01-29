@@ -2,22 +2,24 @@
 // comment
 namespace App\Http\Controllers;
 
+use App;
+use Exception;
+use App\Services\DocsCmsApi;
 use Illuminate\Http\Request;
 use Sunra\PhpSimple\HtmlDomParser;
-use Illuminate\Support\Facades\Cache;
-use Illuminate\Support\Facades\Redirect;
-use Exception;
-use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Illuminate\Support\Facades\View;
-use App\Services\DocsCmsApi;
-use App;
+use Illuminate\Support\Facades\Cache;
+use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class PageController extends Controller
 {
 
     // home
-    function level1(){
+    function level1(Request $request){
 
+        $authenticated = isAuthenticated($request);
         $page = $this->cms->get_custom_post_by_name('en', 'level1', 'home');
         
         
@@ -29,20 +31,23 @@ class PageController extends Controller
             // $page = $this->getDownloads($page);
             // $page = $this->getProductNavigation($page);
             $pageContent = $page['results'][0];
-            return view('pages.dev-level-1', compact('pageContent', 'recent', 'exclusiveTo','title' ));
+            return view('pages.dev-level-1', compact('pageContent', 'recent', 'exclusiveTo','title', 'authenticated'));
         }
     }
 
 
     function level2($slug){
 
+        $authenticated = isAuthenticated($request);
         $page = $this->cms->get_custom_post_by_name('en', 'level2', "{$slug}");
+
+
         if(empty($page['results'])){
             return response()->view('errors.languageunavailable');
         }
         else{        
             $pageContent = $page['results'][0];
-            return view('pages.dev-level-2', compact('pageContent', 'recent', 'exclusiveTo','title'));
+            return view('pages.dev-level-2', compact('pageContent', 'recent', 'exclusiveTo','title', 'authenticated'));
         }
     }
 

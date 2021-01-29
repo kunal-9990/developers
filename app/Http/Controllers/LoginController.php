@@ -86,7 +86,8 @@ class LoginController extends Controller
 
     function logout (Request $request) {
         $request->session()->forget('authenticated');
-        return redirect('/login');
+        $request->session()->forget('targetUrl');
+        return redirect('/');
 
     }
 }

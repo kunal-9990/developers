@@ -11,7 +11,11 @@
                 <div class="dev-header">
                     <a href="cta">Sign up</a>
                     <div class="cta">
-                        <a href="/login">Log in</a>
+                        @if($authenticated)
+                            <a href="/logout">Log out</a>
+                        @else
+                            <a href="/login">Log in</a>
+                        @endif
                     </div>
                 </div>
             </div>

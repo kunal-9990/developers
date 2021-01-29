@@ -1,5 +1,6 @@
 <?php
 use App\Product;
+use Firebase\JWT\JWT;
 use Illuminate\Support\Facades\Cache;
 
 function endsWith($haystack, $needle)
@@ -57,7 +58,7 @@ function getRecentlyViewed(){
     return $recent;
 }
 
-   function getVoteData($product, $version) {
+function getVoteData($product, $version) {
         $prodId = Product::getId($product);
         if($prodId->isEmpty()){
             return;
@@ -96,6 +97,21 @@ function getRecentlyViewed(){
 
         return $featureInfo;
     }
+
+function isAuthenticated($request){
+        $authToken = $request->session()->get('authenticated');
+        $decoded = (isset($authToken)) ? JWT::decode($authToken, env('AUTH_SECRET'), array('HS256')) : null;
+
+        $authenticated = (is_null($decoded)) ? false : true;
+
+        if(!$authenticated) {
+            return false;
+        }
+        else{
+            return true;
+        }
+
+}
 
 
 ?>
