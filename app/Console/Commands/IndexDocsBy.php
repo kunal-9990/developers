@@ -5,14 +5,14 @@ namespace App\Console\Commands;
 use App\Services\DocsSearchApi;
 use Illuminate\Console\Command;
 
-class IndexTopics extends Command
+class IndexDocsBy extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'Search:index {product?} {version?}';
+    protected $signature = 'Search:indexDocsBy {product?} {version?}';
 
     /**
      * The console command description.
@@ -42,11 +42,9 @@ class IndexTopics extends Command
         $product = $this->argument('product');
         $version = $this->argument('version');
 
-        $this->search->clearObjects($product, $version);
+        $this->search->indexDocsBy($product, $version);
 
-        $this->search->index();
-
-        echo "Index updated.";
+        echo "Indexing topics for ".$product.":".$version;
 
     }
 }

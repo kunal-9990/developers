@@ -5,21 +5,21 @@ namespace App\Console\Commands;
 use App\Services\DocsSearchApi;
 use Illuminate\Console\Command;
 
-class IndexFolder extends Command
+class DeleteDocsBy extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'Search:indexfolder {folder} {domain}';
+    protected $signature = 'Search:deleteDocsBy {product?} {version?}';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Creates a record for all topics in algoria';
+    protected $description = 'Creates a record for all topics /public/documentation_files in algoria';
 
     /**
      * Create a new command instance.
@@ -39,15 +39,12 @@ class IndexFolder extends Command
      */
     public function handle()
     {
-        $folder = $this->argument('folder');
-        $domain = $this->argument('domain');
+        $product = $this->argument('product');
+        $version = $this->argument('version');
 
+        $this->search->deleteDocsBy($product, $version);
 
-        // $this->search->clearObjects();
-
-        $this->search->indexfolder($year, $version, $product, $lang);
-
-        echo "Index updated.";
+        echo "Deleting topics for ".$product.":".$version."\n";
 
     }
 }

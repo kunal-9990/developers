@@ -53,14 +53,72 @@ class DocsSearchApi
          $this->$index->deleteObject('myID');
      }
 
+     public function deleteDocsBy($product, $version){
+        //  $this->index->clearObjects();
+        $filters = 'product:'.$product.' AND version:'.$version;
+        $this->index->deleteBy([
+        'filters' => $filters
+        /* add any filter parameters */
+        ]);        
+     }
+
      public function clearObjects(){
          $this->index->clearObjects();
+       
      }
      
     //  This function is written to perform the indexing on the linux based ec2 instance that is hosting the site, and not in my local windows dev environment
      public function index(){
         $records = array();
         $docspath = env("PATH_TO_PUBLIC")."documentation_files/";
+        $path = realpath($docspath);
+        
+        echo "Indexing: \n";
+        foreach (new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($path)) as $filename)
+        {
+                if(endsWith($filename,".htm")){
+                    $topicName;
+                    $topicBody;
+                    $topicUrl;
+                    
+                    try {
+                        $dom = HtmlDomParser::str_get_html(file_get_contents(str_replace('\\', '/', $filename)));
+                        if($dom){
+                            $title = strip_tags($dom->find('h1', 0));
+                            $body = strip_tags($dom->find('body', 0)->plaintext);
+                            // $url =  str_replace('\\', '/', "/".str_replace(env('PATH_TO_PUBLIC'), "", substr($filename, strpos($filename, "\\documentation_files\\") + 21)));
+                            $url =  str_replace("/Content/", "/" , str_replace(env('PATH_TO_PUBLIC')."documentation_files", "", $filename));
+                            $params = explode("/", $url);
+                            echo $url;
+                            echo "\n";
+
+                            if(!empty($body) && !empty($title)){
+
+                                array_push($records, ["title"=>$title, "body"=>$body, "url"=>$url, "product"=>$params[1], "version"=>$params[2]]);
+                            }
+
+                        }
+                    } catch (Exception $e) {
+                        Log::error($e);
+                    }
+                }
+                
+            }
+            
+            $res = $this->index->saveObjects(
+            $records,
+            [
+                'autoGenerateObjectIDIfNotExist' => true
+            ]
+            );
+
+
+
+
+     }
+     public function indexDocsBy($product, $version){
+        $records = array();
+        $docspath = env("PATH_TO_PUBLIC")."documentation_files/".$product."/".$version;
         $path = realpath($docspath);
         
         echo "Indexing: \n";
