@@ -1,10 +1,6 @@
 .toc-content {
     padding: 0;
 
-    & > div {
-        word-break: break-all;
-    }
-
     @include mq(sm) {
         padding: 0 25px;
     }
