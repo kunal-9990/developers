@@ -9,3 +9,62 @@ pre {
 .indent {
     padding-left: 4rem;
 }
+
+.login {
+
+}
+
+table {
+    border-collapse: collapse;
+    table-layout: fixed;
+
+    thead {
+        background-color: #d6d6d6;
+    }
+
+    th {
+        width: auto;
+        &.last {
+            width: 40%;
+        }
+    }
+
+    th, td {
+        padding: 0.8rem;
+    }
+
+    td {
+        code {
+            word-break: normal!important;
+        }
+
+        &.attributes {
+            font-family: $font-family-monospace;
+            word-break: normal!important;
+        }
+    }
+
+    tbody tr {
+        &:nth-child(even){
+            background-color: #f8f8f8;
+        }
+        &:nth-child(odd){
+            background-color: #eeeeee;
+        }
+    }
+}
+
+.section-method {
+    margin-bottom: 6rem;
+}
+
+.section-returns {
+    dl, dl.param-type {
+        width: 100%;
+        margin-bottom: 1rem;
+        & > dd, & > dt {
+            display: inline-block;
+            padding-right: 0.8rem;
+        }
+    }
+}
