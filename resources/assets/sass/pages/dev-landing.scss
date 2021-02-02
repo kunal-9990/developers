@@ -43,7 +43,7 @@
     }
 
     h2 {
-        font-weight: 700;
+        // font-weight: 700;
         font-size: 2.8rem;
         margin: 0;
     }
@@ -76,6 +76,7 @@
 
             p {
                 padding: 1.8rem 0;
+                font-weight: 100;
             }
 
             h3 {
@@ -201,7 +202,7 @@
 
     .dev-landing {
         &__container {
-            padding: 7.2rem 0 4.8rem;
+            padding: 7.2rem 0;
         }
         .second-nav {
             &__grid {
