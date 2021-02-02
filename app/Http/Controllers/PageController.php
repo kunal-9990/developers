@@ -15,7 +15,10 @@ use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
 class PageController extends Controller
 {
+    function api($slug){
+        return view('pages.api-iframe', compact('slug'));
 
+    }
     // home
     function level1(Request $request){
 

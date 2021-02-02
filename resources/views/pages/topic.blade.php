@@ -33,6 +33,5 @@
         </div>
     </div>
 </div>
-<script type="text/javascript" src="../scripts/clipboard.min.js"></script>
 @stop
 

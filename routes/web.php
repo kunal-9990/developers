@@ -14,15 +14,17 @@
 */
 $current_version = env("CURRENT_VERSION");
 
-Route::middleware('throttle:60|180,1')->group(function () { 
 
+
+Route::middleware('throttle:60|180,1')->group(function () { 
+        
         // auth routes
         Auth::routes();
         Route::post('/mycwauth', 'LoginController@login');
         Route::get('/logout', 'LoginController@logout');
         Route::get('login/azure', 'Auth\LoginController@redirectToProvider');
         Route::get('login/azure/callback', 'Auth\LoginController@handleProviderCallback');
-
+        
         
 });
 
@@ -37,9 +39,9 @@ Route::get('/new-search/{query}', 'SearchController@search');
 // TEMPORARY HARD CODE
 
 // Route::get('/{region}/{lang}/{product}/{version}/webapps', function() {
-//         return redirect('/ca/en/csh');
-// });
-
+        //         return redirect('/ca/en/csh');
+        // });
+        
 Route::group(['middleware' => 'setregion'], function () {
 
         Route::get('/{region}/{lang}/videos/{slug?}', 'PageController@videosOverview')->name('videos');
@@ -62,7 +64,7 @@ Route::group(['middleware' => 'setregion'], function () {
 //Flare Content routes
 // topics
 Route::group(['middleware' => 'mycasewareauth'], function () {
-
+Route::get('/sdk/cloud/api-reference/{slug}', 'PageController@api'); 
 Route::get('/{product}/{version}/{category}/{param1?}/{param2?}/{param3?}/{param4?}/{param5?}/{param6?}/{param7?}', 'PageController@showTopic')->name('topic');
 // Route::get('/{product}/{version}/{category}/{path1}', 'PageController@showTopic')->name('topic');
 
