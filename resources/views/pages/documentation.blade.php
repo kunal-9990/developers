@@ -25,7 +25,7 @@
                         <h2>Key Pages</h2>
                         {!!$nav!!}
                     </div>
-                @endif                
+                @endif               
                 @include('partials.toc')
             </div>
             <div class="col-sm-9">

@@ -45,6 +45,7 @@ const CategoryLinks = ({ content }) => {
 }
 
 const TOC = ({ toc }) => {
+  console.log(toc)
   let categories = toc.map((cat, i) => {
     return (
       <li className="toc__category toc__category--is-open" key={i}>
