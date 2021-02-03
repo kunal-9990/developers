@@ -162,7 +162,7 @@ class PageController extends Controller
         //desktop sdk
         if($dom->find('div[id=contentBody]', 0)){
             $maincontentarea = $dom->find('div[id=contentBody]', 0);
-            // $nav = $dom->find('section[class=tab-bar-section]', 0);
+            $nav = $dom->find('div[class=navigation-wrapper]', 0);
 
         }
         //sherlock
