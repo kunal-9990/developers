@@ -27,6 +27,7 @@ const SEARCH = require('./modules/search');
 const USER_FEEDBACK = require('./modules/user-feedback');
 const LAYOUT_GRID = require('./modules/grid');
 const TOC = require('./modules/toc');
+const MANUAL_TOC = require('./modules/manual-toc');
 const REDIRECTS = require('./modules/redirects');
 const COOKIE_CONSENT = require('./modules/cookie-consent');
 
@@ -65,10 +66,10 @@ $(document).ready(() => {
     // for switching between full width and contained width
     LAYOUT_GRID();
 
-    // // mimic toc
-    // if (document.querySelector('.toc-mimic__container')) {
-        
-    // }
+    // mimic toc
+    if (document.querySelector('.manual-toc__container')) {
+        MANUAL_TOC();
+    }
 
     // build the toc
     if (document.querySelector('.toc__container')) {

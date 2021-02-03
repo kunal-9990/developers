@@ -120,6 +120,60 @@ table {
     }
 }
 
+.manual-toc {
+    &__container {
+        display: block;
+        padding-left: 12px;
+
+        a {
+            color: $text-black;
+            text-decoration: none;
+
+            &.chevron {
+                &::before {
+                    position: absolute;
+                    left: -13px;
+                    margin-top: 12px;
+                    content: '';
+                    border-right: 2px solid rgb(80, 80, 80);
+                    border-bottom: 2px solid rgb(80, 80, 80);
+                    width: 7px; height: 7px;
+                    margin-right: 5px;
+                    transform: rotate(-45deg);
+                    transition: transform .4s;
+                }
+            }
+        }
+    }
+
+    ul {
+        list-style: none;
+        &.toc {
+            padding: 0;
+        }
+    }
+
+    &__sub-category-wrap {
+        padding-left: 16px;
+        display: none;
+
+        &--is-expanded {
+            display: block;
+        }
+    }
+
+    &__category {
+        position: relative;
+        padding: 5px 0;
+
+        &--is-open {
+            a.chevron::before {
+                transform: rotate(45deg);
+            }
+        }
+    }
+}
+
 
 
 // .toc2__container {
