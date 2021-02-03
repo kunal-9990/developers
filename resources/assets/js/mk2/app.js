@@ -65,6 +65,11 @@ $(document).ready(() => {
     // for switching between full width and contained width
     LAYOUT_GRID();
 
+    // // mimic toc
+    // if (document.querySelector('.toc-mimic__container')) {
+        
+    // }
+
     // build the toc
     if (document.querySelector('.toc__container')) {
         TOC();
