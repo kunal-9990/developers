@@ -19,11 +19,19 @@
 @section('content')
     <div class="container documentation">
         <div class="row">
-            <div class="col-sm-3 table-of-contents">
+            <div class="col-sm-3 table-of-contents manual-toc">
                 @if(isset($nav))
-                    <div class="keypages">
-                        <h2>Key Pages</h2>
-                        {!!$nav!!}
+                    <div class="manual-toc__container">
+                        <ul class="toc">
+                            <li class="manual-toc__category">
+                                <a class="chevron" href="#">
+                                    Key Pages
+                                </a>
+                            </li>
+                            <ul class="manual-toc__sub-category-wrap">
+                            {!!$nav!!}
+                            </ul>
+                        </ul>
                     </div>
                 @endif               
                 @include('partials.toc')
