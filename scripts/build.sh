@@ -2,15 +2,15 @@
 #
 # Place a folder named as the new version into the tmp directory as shown below.
 # ----------------------------
-# /docsm42/
+# /Developers/
 # │
 # └───/tmp/
 # │   │  
-# │   └───/30/
-# │       │   
-# │       └─── /Content/
-# │       │    Online Output.fltoc
-# │       │    csh_redirect.xml
+# │   └───/Sherlock/
+# │       │  
+# │       └─── /v1/
+# │            │  
+# │            └─── /Content/
 #
 # ----------------------------
 #
@@ -21,48 +21,26 @@
 # wait until the script says "done." 
 #dos2unix scripts/build.sh
 
-# sudo chmod -R 777 /usr/share/nginx/docs
 
-# echo "Backing up current content..."
-# sudo mv public/documentation_files/$1/$2/$3/Content/$4 tmp/Content_backups/en_$(date -d "today" +"%Y%m%d%H%M")
 
+
+# publish docs
 dos2unix /usr/share/nginx/developers/scripts/build.sh
 echo 'Copying new content into place...'
 mkdir -p public/documentation_files/$1/$2/
+mkdir -p public/images/$1/$2/
 cp -R tmp/$1/$2/* public/documentation_files/$1/$2/
+cp -R tmp/$1/$2/Content/Resources/Images/* public/images/$1/$2
 cd public/documentation_files/$1/$2/
 
 # sudo chmod -R 777 .
 
 echo 'Renaming some files...'
 
-cp Content/Resources/Images/* ../../../Resources/Images/
-
-prefix="\/documentation_files\/$1\/$2\/Content/Resources\/"
-prefix="$prefix"
-
-# echo $prefix
-
 echo 'Updating img src paths...'
-#cd public/documentation_files/$1/$2/$3/Content/$4
-
-find . -type f -print0 | xargs -0 sed -i 's/src="..\/Resources/src="\/Resources/g'
+find . -type f -print0 | xargs -0 sed -i 's/src="..\/Resources\/Images/src="\/Images\/'"$1\/$2"'/g'
 
 cd ../../../../../../..
-#pwd
 echo 'Copying Data folders into place...'
 
-#end-user search results
-# php artisan index
-
-
-echo 'Setting File permissions...'
-
-# find . ! -name '*.sh' -type f -exec chmod 644 {} \;    
-# find . ! -name 'scripts' -type d -exec chmod 755 {} \;
-# sudo find /usr/share/nginx/docs -type f -exec chmod 664 {} \;    
-# sudo find /usr/share/nginx/docs -type d -exec chmod 775 {} \;
-# pwd
-# sudo chmod -R 777 storage
-# sudo chmod -R 777 scripts
 echo 'Done.'

@@ -18,7 +18,8 @@ class MyCwAuth
     public function handle($request, Closure $next)
     {
         $authToken = $request->session()->get('authenticated');
-        $decoded = (isset($authToken)) ? JWT::decode($authToken, env('AUTH_SECRET'), array('HS256')) : null;
+        $key = env('AUTH_SECRET');
+        $decoded = (isset($authToken)) ? JWT::decode($authToken, $key, array('HS256')) : null;
 
         $authenticated = (is_null($decoded)) ? false : true;
 

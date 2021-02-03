@@ -56,8 +56,8 @@ class LoginController extends Controller
                 $sdkresBody = json_decode($contents, true);
                 $productSdkList =  $myArray = explode(';', $sdkresBody["Products"]);
                 if($sdkresBody["Success"] && in_array("SDK", $productSdkList)){
-
-                    $authToken = JWT::encode(true, env('AUTH_SECRET'));
+                    $key = env('AUTH_SECRET');
+                    $authToken = JWT::encode(true, $key);
                     $request->session()->put('authenticated', $authToken);
                     $targetUrl = $request->session()->pull('targetUrl', '/');
 

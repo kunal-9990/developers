@@ -55,7 +55,8 @@ class LoginController extends Controller
     public function handleProviderCallback(Request $request)
     {
         $user = Socialite::driver('azure')->user();
-        $authToken = JWT::encode(true, env('AUTH_SECRET'));
+        $key = env('AUTH_SECRET');
+        $authToken = JWT::encode(true, $key);
         $request->session()->put('authenticated', $authToken);
         $targetUrl = $request->session()->pull('targetUrl', '/');
 

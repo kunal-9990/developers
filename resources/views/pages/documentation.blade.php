@@ -20,6 +20,12 @@
     <div class="container documentation">
         <div class="row">
             <div class="col-sm-3 table-of-contents">
+                @if(isset($nav))
+                    <div class="keypages">
+                        <h2>Key Pages</h2>
+                        {!!$nav!!}
+                    </div>
+                @endif                
                 @include('partials.toc')
             </div>
             <div class="col-sm-9">
@@ -36,10 +42,6 @@
                         </div>
                     </div>
                     <div class="docs__sub-toc">
-                        <div class="docs__video-iframe-thumbnail-container">
-                            <img class="docs__video-iframe-thumbnail" src="" alt="">
-                            <img class="docs__video-iframe-thumbnail__yt-icon" src="/img/yt_icon_rgb.png" alt="">
-                        </div>
                         @include('partials.sub-toc')
                     </div>
                 </div>

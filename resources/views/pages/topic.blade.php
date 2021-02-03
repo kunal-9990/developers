@@ -15,16 +15,6 @@
             {!!$maincontentarea!!}
         </div>
         <div class="rightcol col-md-8 col-lg-3 col-md-pull-0 col-lg-pull-0 col-lg-push-0 col-sm-8 pull-right col-xs-12">
-
-
-            <div id="videocontainer" class="rightcolitem">
-            </div>
-            <p id="vidtitle" class="vidtitle">
-            </p>
-            <div id="workflows">
-            </div>
-            <ul id="recentpages" class="recentlyviewedlist">
-            </ul>
             <div class="rightcolitem" id="feedbackbox">
                 <p id="feedbackmessage" class="rightcoltitle">Was this topic helpful?<br /></p>
                 <button type="button" class="btn btn-default feedbackbutton" onclick="feedback('Yes')">Yes</button>

@@ -1,4 +1,26 @@
+.table-of-contents {
+    .keypages {
+        h2 {
+            margin-bottom: 1rem;
+        }
+
+        li,
+        ol,
+        ul {
+            list-style-type: none;
+        }
+
+        li.nav-heading {
+            margin-top: 20px;
+            font-size: 1.6rem;
+            line-height: 2rem;
+            font-weight: bold;
+        }
+    }
+}
+
 .docs__container {
+
 
     .downloadLink {
         cursor: pointer;
@@ -37,6 +59,7 @@
         }
     }
 
+
     .docs__sub-toc {
         flex: 0 0 250px;
         display: none;
@@ -44,6 +67,7 @@
         @include mq(lg) {
             display: block;
         }
+
     }
 
     .codeSnippetCopyButton {

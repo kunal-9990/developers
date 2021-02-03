@@ -124,7 +124,7 @@ class DocsSearchApi
         echo "Indexing: \n";
         foreach (new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($path)) as $filename)
         {
-                if(endsWith($filename,".htm")){
+                if(endsWith($filename,".htm") || endsWith($filename,".html")){
                     $topicName;
                     $topicBody;
                     $topicUrl;
@@ -137,11 +137,10 @@ class DocsSearchApi
                             // $url =  str_replace('\\', '/', "/".str_replace(env('PATH_TO_PUBLIC'), "", substr($filename, strpos($filename, "\\documentation_files\\") + 21)));
                             $url =  str_replace("/Content/", "/" , str_replace(env('PATH_TO_PUBLIC')."documentation_files", "", $filename));
                             $params = explode("/", $url);
-                            echo $url;
-                            echo "\n";
-
+                            
                             if(!empty($body) && !empty($title)){
-
+                                echo $url;
+                                echo "\n";
                                 array_push($records, ["title"=>$title, "body"=>$body, "url"=>$url, "product"=>$params[1], "version"=>$params[2]]);
                             }
 

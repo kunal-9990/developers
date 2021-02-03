@@ -100,7 +100,8 @@ function getVoteData($product, $version) {
 
 function isAuthenticated($request){
         $authToken = $request->session()->get('authenticated');
-        $decoded = (isset($authToken)) ? JWT::decode($authToken, env('AUTH_SECRET'), array('HS256')) : null;
+        $key = env('AUTH_SECRET');
+        $decoded = (isset($authToken)) ? JWT::decode($authToken, $key, array('HS256')) : null;
 
         $authenticated = (is_null($decoded)) ? false : true;
 
@@ -112,6 +113,14 @@ function isAuthenticated($request){
         }
 
 }
+
+    function cleanTitle($string){
+        $string = str_replace(".html", "", $string);
+        $string = str_replace("-", " ", $string);
+        $string = str_replace("_", " ", $string);
+        $string = str_replace(".htm", "", $string);
+        return $string;
+    }   
 
 
 ?>

@@ -6,7 +6,8 @@
 /public/js/mk2/app.js
 /public/js/mk4/app.js
 /public/img/*
-
+/public/images/*/*
+/public/images/*/*/*
 /vendor
 /.idea
 /.vagrant
