@@ -44,7 +44,6 @@ Route::get('/new-search/{query}', 'SearchController@search');
         // Route::get('/blog/{post}', 'PageController@blogDetail')->name('blogdetail');
         Route::get('/{region}/{lang}/{slug}/context-specific-help', 'PageController@csh')->name('csh');
         Route::get('/{region}/{lang}/{slug}/frequently-asked-questions', 'PageController@faq')->name('faq');
-        Route::get('/{region}/{lang}/{slug}', 'PageController@product')->name('product');
         // Route::get('/{{region}/{lang}/}', 'PageController@level1')->name('home');
         Route::get('/', 'PageController@level1')->name('home');
         

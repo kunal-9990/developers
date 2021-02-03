@@ -115,4 +115,7 @@ new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'd
 <script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit">
 </script>
 {{-- google translate end--}}
+
+{{-- codeblock styling --}}
+{{-- <script src="https://cdn.jsdelivr.net/gh/google/code-prettify@master/loader/run_prettify.js"></script> --}}
 @endif

@@ -19,7 +19,7 @@
 # npm run build 2018 webapps 30 en
 #
 # wait until the script says "done." 
-#dos2unix scripts/build.sh
+dos2unix scripts/build.sh
 
 
 
@@ -38,7 +38,11 @@ cd public/documentation_files/$1/$2/
 echo 'Renaming some files...'
 
 echo 'Updating img src paths...'
-find . -type f -print0 | xargs -0 sed -i 's/src="..\/Resources\/Images/src="\/Images\/'"$1\/$2"'/g'
+find . -type f -print0 | xargs -0 sed -i 's/src="..\/..\/Resources\/Images/src="\/images\/'"$1\/$2"'/g'
+find . -type f -print0 | xargs -0 sed -i 's/src="..\/Resources\/Images/src="\/images\/'"$1\/$2"'/g'
+find . -type f -print0 | xargs -0 sed -i 's/src="..\/Images/src="\/images\/'"$1\/$2"'/g'
+find . -type f -print0 | xargs -0 sed -i 's/src="\/Images/src="\/images\/'"$1\/$2"'/g'
+find . -type f -print0 | xargs -0 sed -i 's/src="..\/images/src="\/images\/'"$1\/$2"'/g'
 
 cd ../../../../../../..
 echo 'Copying Data folders into place...'

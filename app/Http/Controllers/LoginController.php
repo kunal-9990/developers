@@ -68,9 +68,6 @@ class LoginController extends Controller
                     else{
                         return redirect('/');
                     }
-                    
-
-
                 }
                 else {
                     return redirect()->back()->withErrors( 'Your MyCaseWare account does not have an SDK developer license.');  

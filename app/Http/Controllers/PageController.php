@@ -161,7 +161,9 @@ class PageController extends Controller
         // find the element containing topic information according
         //desktop sdk
         if($dom->find('div[id=contentBody]', 0)){
-            $maincontentarea = $dom->find('div[class=content]', 0);
+            $maincontentarea = $dom->find('div[id=contentBody]', 0);
+            // $nav = $dom->find('section[class=tab-bar-section]', 0);
+
         }
         //sherlock
         elseif($dom->find('div[id=mc-main-content]', 0)){
