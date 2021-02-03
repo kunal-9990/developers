@@ -25,7 +25,7 @@ class MyCwAuth
 
         if(!$authenticated) {
             if (!$request->session()->has('targetUrl')) {
-                $request->session()->put('targetUrl', url()->current());
+                $request->session()->put('targetUrl', url()->current());               
             }
             return redirect('/login');
         }

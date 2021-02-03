@@ -36,13 +36,8 @@ Route::get('/new-search/{query}', 'SearchController@search');
 
 // home page - to come
 
-// TEMPORARY HARD CODE
 
-// Route::get('/{region}/{lang}/{product}/{version}/webapps', function() {
-        //         return redirect('/ca/en/csh');
-        // });
         
-Route::group(['middleware' => 'setregion'], function () {
 
         Route::get('/{region}/{lang}/videos/{slug?}', 'PageController@videosOverview')->name('videos');
         // Route::get('/blog', 'PageController@blogOverview')->name('blogoverview');
@@ -51,32 +46,29 @@ Route::group(['middleware' => 'setregion'], function () {
         Route::get('/{region}/{lang}/{slug}/frequently-asked-questions', 'PageController@faq')->name('faq');
         Route::get('/{region}/{lang}/{slug}', 'PageController@product')->name('product');
         // Route::get('/{{region}/{lang}/}', 'PageController@level1')->name('home');
-        Route::get('/{slug}', 'PageController@level2')->name('level2');
         Route::get('/', 'PageController@level1')->name('home');
-
-
-});
-
-
-
-
-
+        
+        
+        
+        
+        
+        
+        
+        
 //Flare Content routes
 // topics
 Route::group(['middleware' => 'mycasewareauth'], function () {
-Route::get('/sdk/cloud/api-reference/{slug}', 'PageController@api'); 
-Route::get('/{product}/{version}/{category}/{param1?}/{param2?}/{param3?}/{param4?}/{param5?}/{param6?}/{param7?}', 'PageController@showTopic')->name('topic');
-// Route::get('/{product}/{version}/{category}/{path1}', 'PageController@showTopic')->name('topic');
 
-// // topics
-// Route::get('/{product}/{version}/{category}/{subcategory}/{topic}', 'PageController@showsubTopic');
+        Route::get('/sdk/cloud/api-reference/{slug}', 'PageController@api'); 
+
+        Route::get('/{product}/{version}/{category}/{param1?}/{param2?}/{param3?}/{param4?}/{param5?}/{param6?}/{param7?}', 'PageController@showTopic')->name('topic');
+        
+        Route::get('/{slug}', 'PageController@level2')->name('level2');
+
+
 });
 
-// // sub category
-// Route::get('/{product}/{version}/{category}/{subcategory}', 'PageController@showSubCategory');
 
-// // category
-// Route::get('/{product}/{version}/{category}', 'PageController@showCategory')->name('category');
 
 
 

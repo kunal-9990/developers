@@ -63,7 +63,6 @@ class LoginController extends Controller
 
 
                     if(gettype($targetUrl) == "string"){
-                        
                         return redirect($targetUrl);
                     }
                     else{
