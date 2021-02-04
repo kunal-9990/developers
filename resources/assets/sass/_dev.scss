@@ -10,10 +10,6 @@ pre {
     padding-left: 4rem;
 }
 
-.login {
-    padding: 1rem; // TODO -remove
-}
-
 table {
     border-collapse: collapse;
     table-layout: fixed;
@@ -197,5 +193,96 @@ table {
             color: $text-black;
             text-decoration: none;
         }
+    }
+}
+
+.login {
+    padding: 3.6rem 2.4rem;
+
+    .row {
+        & > div {
+            float: none;
+            margin: auto;
+        }
+    }
+
+    .intro {
+        display: flex;
+        flex-direction: column;
+        padding-bottom: 2.4rem;
+
+        h1 {
+            padding-right: 2.4rem;
+        }
+        p {
+            flex: 1;
+        }
+    }
+
+    .form-control {
+        height: 5.2rem;
+        padding: 2.4rem;
+    }
+
+    .form-group {
+        padding: 0 15px;
+    }
+
+    .btn-group {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .btn {
+        padding: 1.2rem 2.4rem;
+        border: 0;
+        box-shadow: 0 5px 6px 0 #eee;
+        transition: all 0.3s ease-in-out;
+        width: 100%;
+
+        &:hover {
+            opacity: 0.85;
+        }
+
+        &--primary {
+            background: linear-gradient(rgba(0, 133, 173, 0.7), #0085ad);
+            color: $white;
+        }
+        &--secondary {
+            background: linear-gradient(rgba(246, 246, 246, 0.2), #ddd);
+            color: $text-black;
+        }
+    }
+}
+
+@include mq(sm) {
+
+    .login {
+
+        .intro {
+            flex-direction: row;
+            align-items: flex-end;
+        }
+
+        .btn-group {
+            flex-direction: row;
+            align-items: center;
+
+            span {
+                padding: 0 2.4rem;
+            }
+
+            & > button,
+            & > a {
+                flex: 1;
+            }
+        }
+    }
+}
+
+@include mq(md) {
+
+    .login {
+        padding: 7.2rem 0;
     }
 }
