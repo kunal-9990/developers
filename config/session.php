@@ -29,7 +29,7 @@ return [
     |
     */
     // 1 year voting cookie lifetime 
-    'lifetime' => env('SESSION_LIFETIME', 60 * (60 * 24 * 365)),
+    'lifetime' => env('SESSION_LIFETIME', 60 * (60 * 24 * 7)),
 
     'expire_on_close' => false,
 
