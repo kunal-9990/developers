@@ -17,10 +17,8 @@ class MyCwAuth
      */
     public function handle($request, Closure $next)
     {
-        $authToken = $request->session()->get('authenticated');
 
-
-        $authenticated = (is_null($decoded)) ? false : true;
+        $authenticated = $request->session()->get('authenticated');
 
         if(!$authenticated) {
 
