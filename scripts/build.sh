@@ -24,11 +24,12 @@ dos2unix scripts/build.sh
 
 if [ -e "tmp/$1/$2/Project/TOCs/TOC.fltoc" ]; then
     sudo cp tmp/$1/$2/Project/TOCs/TOC.fltoc tmp/$1/$2/OnlineOutput.xml
-    find -name "OnlineOutput.xml" -print0 | xargs -0 sed -i "s/\/Content\//\/$1\/$2\//g"
+    find tmp/$1/$2 -name "OnlineOutput.xml" -print0 | xargs -0 sed -i "s/\/Content\//\/$1\/$2\//g"
     
 else 
     echo "Online Output.fltoc was not included in upload"
 fi 
+
 
 
 # publish docs
