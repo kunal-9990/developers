@@ -69,14 +69,16 @@
                     <button type="submit" class="btn btn--primary">
                         Login with MyCaseWare
                     </button>
-                    <div class="separator"><span class="grey-font">OR</span></div>
-                    <a href="login/azure">
-                        <button class="btn btn--secondary">
-                            CaseWare SSO
-                        </button>
-                    </a>
                 </div>
             </form>
+            <div class="button-group button-group--2">
+                <div class="separator"><span class="grey-font">OR</span></div>
+                <a href="login/azure">
+                    <button class="btn btn--secondary">
+                        CaseWare SSO
+                    </button>
+                </a>
+            </div>
         </div>
     </div>
 </div>

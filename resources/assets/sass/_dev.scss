@@ -216,6 +216,7 @@ table {
         }
 
         p {
+            padding: 0 1.5rem;
             color: #959595;
             font-weight: 100;
             font-size: 1.6rem;
@@ -251,6 +252,10 @@ table {
         flex-direction: column;
         margin-top: 2.8rem;
 
+        &--2 {
+            padding-top: 2.4rem;
+        }
+
         .separator {
             margin: 2rem auto;
             padding: 0;
@@ -265,6 +270,10 @@ table {
                 line-height: 0;
                 background: #fff;
             }
+        }
+
+        a {
+            width: 100%;
         }
     }
 
@@ -304,14 +313,8 @@ table {
         }
 
         .button-group {
-            flex-direction: row;
             align-items: center;
 
-            .separator {
-                padding: 0 1.2rem;
-                width: auto;
-                border: 0;
-            }
 
             & > button,
             & > a {
