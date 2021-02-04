@@ -120,8 +120,9 @@ class DocsSearchApi
         $records = array();
         $docspath = env("PATH_TO_PUBLIC")."documentation_files/".$product."/".$version;
         $path = realpath($docspath);
-        
+        $i = 0;
         echo "Indexing: \n";
+
         foreach (new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($path)) as $filename)
         {
                 if(endsWith($filename,".htm") || endsWith($filename,".html")){
@@ -132,25 +133,34 @@ class DocsSearchApi
                     try {
                         $dom = HtmlDomParser::str_get_html(file_get_contents(str_replace('\\', '/', $filename)));
                         if($dom){
-                            $title = strip_tags($dom->find('h1', 0));
-                            $body = strip_tags(getContentFromDom($dom)->plaintext);
+                            $url =  str_replace("/Content/", "/" , str_replace(env('PATH_TO_PUBLIC')."documentation_files", "", $filename));
+                            $params = explode("/", $url);
+
+                            $body = getContentFromDom($dom);
+                            $h1 = strip_tags($body->find('h1', 0));
+                            $title = (isset($h1) && $h1 !== " Contact Us") ? $h1 : cleanTitle(end($params));
+                            
+                            $body = strip_tags($body->plaintext);
 
                             //algolia sets char limit of records
                             $truncatedbody = (strlen($body) > 100000) ? substr($body, 0, 90000) . '...' : $body;
-                            $url =  str_replace("/Content/", "/" , str_replace(env('PATH_TO_PUBLIC')."documentation_files", "", $filename));
-                            $params = explode("/", $url);
                             
                             if(!empty($body) && !empty($title)){
                                 echo $url;
                                 echo "\n";
                                 echo strlen($body);
                                 echo "\n";
+                                echo $title;
+                                echo "\n";
+
+
                                 
                                 array_push($records, ["title"=>$title, "body"=>$truncatedbody, "url"=>$url, "product"=>$params[1], "version"=>$params[2]]);
                                 $this->index->saveObject(
                                     ["title"=>$title, "body"=>$truncatedbody, "url"=>$url, "product"=>$params[1], "version"=>$params[2]],
                                     ['autoGenerateObjectIDIfNotExist' => true]
                                 );         
+                                $i ++;
                             }
 
                         }
@@ -160,8 +170,9 @@ class DocsSearchApi
                 }
                 
             }
-
-            return "Indexing of ".$product.":".$version." is complete";
+            
+            echo "Indexing of ".$product.":".$version." is complete.\n".$i." topics indexed.";
+            return;
      }
 
 }

@@ -123,8 +123,6 @@ function isAuthenticated($request){
         $maincontentarea;
         if($dom->find('div[id=contentBody]', 0)){
             $maincontentarea = $dom->find('div[id=contentBody]', 0);
-            $nav = $dom->find('div[class=navigation-wrapper]', 0);
-
         }
         //sherlock
         elseif($dom->find('div[id=mc-main-content]', 0)){
@@ -134,7 +132,6 @@ function isAuthenticated($request){
         //Reference/SE
         elseif($dom->find('div[class=small-9]', 0)){
             $maincontentarea = $dom->find('div[class=small-9]', 0);
-            $nav = $dom->find('nav', 1);
             // dd($nav);
         }
 

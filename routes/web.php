@@ -40,5 +40,5 @@ Route::get('/', 'PageController@level1')->name('home');
 Route::group(['middleware' => 'mycasewareauth'], function () {
 
         Route::get('/{product}/{version}/{category}/{param1?}/{param2?}/{param3?}/{param4?}/{param5?}/{param6?}/{param7?}', 'PageController@showTopic')->name('topic');
-        Route::get('/{slug}', 'PageController@level2')->name('level2');
 });
+Route::get('/{slug}', 'PageController@level2')->name('level2');

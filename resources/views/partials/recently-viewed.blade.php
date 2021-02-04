@@ -8,6 +8,7 @@
             $title = str_replace('_', ' ', $title);
             $title = str_replace('.html', '', $title);
             $title = str_replace('.htm', '', $title);
+            $title = str_replace('%20', ' ', $title);
             if($title == 'webapps'){
                 $title = 'Cloud Index';
             }
