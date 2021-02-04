@@ -155,7 +155,12 @@ function isAuthenticated($request){
             $nav = $dom->find('nav', 1);
         }
    
-        return $nav;
+        if(isset($nav)){
+            return $nav;
+        }
+        else{
+            return null;
+        }
     }
 
 ?>
