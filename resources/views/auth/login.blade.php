@@ -69,6 +69,7 @@
                     <button type="submit" class="btn btn--primary">
                         Login with MyCaseWare
                     </button>
+                    <h4>Don't have an account? <a href="https://my.caseware.com/account/login?ReturnUrl=%2F">Sign up</a></h4>
                 </div>
             </form>
             <div class="button-group button-group--2">
