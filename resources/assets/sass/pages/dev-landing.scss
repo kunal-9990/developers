@@ -57,7 +57,8 @@
     // SECOND LEVEL NAV
 
     .second-nav {
-        background-color: #00245b;
+        // background-color: #00245b;
+        background: linear-gradient(rgba(0, 36, 91, 0.95), #00245b);
         color: $white;
 
         &__grid {
@@ -95,8 +96,10 @@
                 height: 4px;
                 left: 0;
                 right: 0;
-                background-color: $caseware-blue;
-                transition: all 0.3s ease;
+                // background-color: $caseware-blue;
+                background: linear-gradient(#0085ad, rgba(0, 133, 173, 0.7));
+                border-radius: 5px;
+                transition: all 0.3s ease-in-out;
 
             }
 
@@ -109,7 +112,6 @@
                 }
 
                 a {
-                    font-weight: bold;
                     transition: all 0.3s ease;
 
                     &:after {
