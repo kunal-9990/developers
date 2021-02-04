@@ -22,10 +22,17 @@
 dos2unix scripts/build.sh
 
 
+if [ -e "tmp/$1/$2/Project/TOCs/TOC.fltoc" ]; then
+    sudo cp tmp/$1/$2/Project/TOCs/TOC.fltoc tmp/$1/$2/OnlineOutput.xml
+    find -name "OnlineOutput.xml" -print0 | xargs -0 sed -i "s/\/Content\//\/$1\/$2\//g"
+    
+else 
+    echo "Online Output.fltoc was not included in upload"
+fi 
 
 
 # publish docs
-dos2unix /usr/share/nginx/developers/scripts/build.sh
+# dos2unix /usr/share/nginx/developers/scripts/build.sh
 echo 'Copying new content into place...'
 mkdir -p public/documentation_files/$1/$2/
 mkdir -p public/images/$1/$2/
@@ -33,7 +40,6 @@ cp -R tmp/$1/$2/* public/documentation_files/$1/$2/
 cp -R tmp/$1/$2/Content/Resources/Images/* public/images/$1/$2
 cd public/documentation_files/$1/$2/
 
-# sudo chmod -R 777 .
 
 echo 'Renaming some files...'
 
@@ -44,7 +50,5 @@ find . -type f -print0 | xargs -0 sed -i 's/src="..\/Images/src="\/images\/'"$1\
 find . -type f -print0 | xargs -0 sed -i 's/src="\/Images/src="\/images\/'"$1\/$2"'/g'
 find . -type f -print0 | xargs -0 sed -i 's/src="..\/images/src="\/images\/'"$1\/$2"'/g'
 
-cd ../../../../../../..
-echo 'Copying Data folders into place...'
 
-echo 'Done.'
+# echo 'Done.'
