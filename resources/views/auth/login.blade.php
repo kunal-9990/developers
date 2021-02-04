@@ -72,7 +72,7 @@
                     <div class="separator"><span class="grey-font">OR</span></div>
                     <a href="login/azure">
                         <button type="submit" class="btn btn--secondary">
-                            Employee Login
+                            CaseWare SSO
                         </button>
                     </a>
                 </div>

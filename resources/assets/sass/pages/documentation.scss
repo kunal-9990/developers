@@ -17,7 +17,14 @@
             font-weight: bold;
         }
     }
+
+    .navigation, .sub-menu, ul {
+        padding-inline-start: 0px !important;
+    }
+
 }
+
+
 
 .docs__container {
 

@@ -156,33 +156,10 @@ class PageController extends Controller
             return response()->view('errors.404');
         }
 
-        $maincontentarea;
-        $nav;
+        $nav = getNavFromDom($dom);
+        $maincontentarea = getContentFromDom($dom);
         // find the element containing topic information according
-        //desktop sdk
-        if($dom->find('div[id=contentBody]', 0)){
-            $maincontentarea = $dom->find('div[class=content]', 0);
-        }
-        //sherlock
-        elseif($dom->find('div[id=mc-main-content]', 0)){
-            $maincontentarea = $dom->find('div[id=mc-main-content]', 0);
-        }
 
-        //Reference/SE
-        elseif($dom->find('div[class=small-9]', 0)){
-            $maincontentarea = $dom->find('div[class=small-9]', 0);
-            $nav = $dom->find('nav', 1);
-            // dd($nav);
-        }
-
-        //developers_content and anything else
-        else{
-            $maincontentarea = $dom->find('body', 0);
-        }
-
-        
-        
-        
         $htmlElement = $dom->find('html', 0);
         (isset($htmlElement->attr['data-mc-conditions'])) ? $exclusiveTo = $htmlElement->attr['data-mc-conditions'] : $exclusiveTo = '' ;
         $recent = getRecentlyViewed();

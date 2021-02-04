@@ -56,22 +56,17 @@ class LoginController extends Controller
                 $sdkresBody = json_decode($contents, true);
                 $productSdkList =  $myArray = explode(';', $sdkresBody["Products"]);
                 if($sdkresBody["Success"] && in_array("SDK", $productSdkList)){
-                    $key = env('AUTH_SECRET');
-                    $authToken = JWT::encode(true, $key);
-                    $request->session()->put('authenticated', $authToken);
-                    $targetUrl = $request->session()->pull('targetUrl', '/');
+                    
+                    $request->session()->put('authenticated', true);
+                    $targetUrl = $request->session()->get('targetUrl', '/');
 
-
+                    // dd($targetUrl);
                     if(gettype($targetUrl) == "string"){
-                        
                         return redirect($targetUrl);
                     }
                     else{
                         return redirect('/');
                     }
-                    
-
-
                 }
                 else {
                     return redirect()->back()->withErrors( 'Your MyCaseWare account does not have an SDK developer license.');  
@@ -89,6 +84,7 @@ class LoginController extends Controller
 
     function logout (Request $request) {
         $request->session()->forget('authenticated');
+        $request->session()->flush();
         return redirect('/login');
 
     }

@@ -133,15 +133,24 @@ class DocsSearchApi
                         $dom = HtmlDomParser::str_get_html(file_get_contents(str_replace('\\', '/', $filename)));
                         if($dom){
                             $title = strip_tags($dom->find('h1', 0));
-                            $body = strip_tags($dom->find('body', 0)->plaintext);
-                            // $url =  str_replace('\\', '/', "/".str_replace(env('PATH_TO_PUBLIC'), "", substr($filename, strpos($filename, "\\documentation_files\\") + 21)));
+                            $body = strip_tags(getContentFromDom($dom)->plaintext);
+
+                            //algolia sets char limit of records
+                            $truncatedbody = (strlen($body) > 100000) ? substr($body, 0, 90000) . '...' : $body;
                             $url =  str_replace("/Content/", "/" , str_replace(env('PATH_TO_PUBLIC')."documentation_files", "", $filename));
                             $params = explode("/", $url);
                             
                             if(!empty($body) && !empty($title)){
                                 echo $url;
                                 echo "\n";
-                                array_push($records, ["title"=>$title, "body"=>$body, "url"=>$url, "product"=>$params[1], "version"=>$params[2]]);
+                                echo strlen($body);
+                                echo "\n";
+                                
+                                array_push($records, ["title"=>$title, "body"=>$truncatedbody, "url"=>$url, "product"=>$params[1], "version"=>$params[2]]);
+                                $this->index->saveObject(
+                                    ["title"=>$title, "body"=>$truncatedbody, "url"=>$url, "product"=>$params[1], "version"=>$params[2]],
+                                    ['autoGenerateObjectIDIfNotExist' => true]
+                                );         
                             }
 
                         }
@@ -151,63 +160,8 @@ class DocsSearchApi
                 }
                 
             }
-            
-            $res = $this->index->saveObjects(
-            $records,
-            [
-                'autoGenerateObjectIDIfNotExist' => true
-            ]
-            );
 
-
-
-
+            return "Indexing of ".$product.":".$version." is complete";
      }
-
-    //  public function indexfolder($folder, $domain){
-    //     $records = array();
-    //     $docspath = "C:/code/casewareDocs/docs.caseware.com-mk4/tmp/".$folder;
-    //     $path = realpath($docspath);
-        
-    //     // foreach (new \RecursiveIteratorIterator(new \RecursiveDirectoryIterator($path)) as $filename)
-    //     // {
-    //     //         if(endsWith($filename,".htm")){
-    //     //             $topicName;
-    //     //             $topicBody;
-    //     //             $topicUrl;
-
-                    
-    //     //             try {
-    //     //                 $dom = HtmlDomParser::str_get_html(file_get_contents(str_replace('\\', '/', $filename)));
-    //     //                 if($dom){
-    //     //                     $title = strip_tags($dom->find('h1', 0));
-    //     //                     $body = strip_tags($dom->find('body', 0)->plaintext);
-    //     //                     $url =  str_replace('\\', '/', substr($filename, strpos($filename, "\\tmp\\") + 4));
-    //     //                     $params = explode("/", $url);
-
-    //     //                     if(gettype($body)=="string"){
-
-    //     //                         array_push($records, ["title"=>$title, "body"=>$body, "url"=>$url, "year"=>$params[1], "product"=>$params[2], "version"=>$params[3], "language"=>$params[4]]);
-    //     //                     }
-
-    //     //                 }
-    //     //             } catch (Exception $e) {
-    //     //                 Log::error($e);
-    //     //             }
-    //     //         }
-                
-    //     //     }
-    //     //     dd($records);
-    //         // $res = $this->index->saveObjects(
-    //         // $records,
-    //         // [
-    //         //     'autoGenerateObjectIDIfNotExist' => true
-    //         // ]
-    //         // );
-
-
-
-
-    //  }
 
 }

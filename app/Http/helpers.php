@@ -99,11 +99,7 @@ function getVoteData($product, $version) {
     }
 
 function isAuthenticated($request){
-        $authToken = $request->session()->get('authenticated');
-        $key = env('AUTH_SECRET');
-        $decoded = (isset($authToken)) ? JWT::decode($authToken, $key, array('HS256')) : null;
-
-        $authenticated = (is_null($decoded)) ? false : true;
+        $authenticated = $request->session()->get('authenticated');
 
         if(!$authenticated) {
             return false;
@@ -122,5 +118,49 @@ function isAuthenticated($request){
         return $string;
     }   
 
+
+    function getContentFromDom($dom) {
+        $maincontentarea;
+        if($dom->find('div[id=contentBody]', 0)){
+            $maincontentarea = $dom->find('div[id=contentBody]', 0);
+            $nav = $dom->find('div[class=navigation-wrapper]', 0);
+
+        }
+        //sherlock
+        elseif($dom->find('div[id=mc-main-content]', 0)){
+            $maincontentarea = $dom->find('div[id=mc-main-content]', 0);
+        }
+
+        //Reference/SE
+        elseif($dom->find('div[class=small-9]', 0)){
+            $maincontentarea = $dom->find('div[class=small-9]', 0);
+            $nav = $dom->find('nav', 1);
+            // dd($nav);
+        }
+
+        //developers_content and anything else
+        else{
+            $maincontentarea = $dom->find('body', 0);
+        }     
+        return $maincontentarea;    
+    }
+
+    function getNavFromDom($dom) {
+        $nav;
+        if($dom->find('div[id=contentBody]', 0)){
+            $nav = $dom->find('div[class=navigation-wrapper]', 0);
+        }
+        //Reference/SE
+        elseif($dom->find('div[class=small-9]', 0)){
+            $nav = $dom->find('nav', 1);
+        }
+   
+        if(isset($nav)){
+            return $nav;
+        }
+        else{
+            return null;
+        }
+    }
 
 ?>
