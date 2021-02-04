@@ -23,7 +23,7 @@
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
             <h3 class="login-header">
-                Enter your MyCaseWare account or Azure credentials. An SDK developer license is required. 
+                Enter your MyCaseWare account or CaseWare SSO. An SDK developer license is required. 
             </h3>
             <form class="form-horizontal" method="POST" action="/mycwauth">
                 {{ csrf_field() }}
@@ -69,7 +69,7 @@
             <div class="col-md-8 col-md-offset-4">
                 <a href="login/azure">
                     <button type="submit" class="btn btn-primary">
-                        Employee Login
+                        CaseWare SSO
                     </button>
                 </a>
             </div>
