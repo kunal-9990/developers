@@ -3,6 +3,7 @@
 namespace App\Http\Middleware;
 
 use Closure;
+use Firebase\JWT\JWT;
 use Illuminate\Support\Facades\Auth;
 
 class RedirectIfAuthenticated
@@ -17,10 +18,13 @@ class RedirectIfAuthenticated
      */
     public function handle($request, Closure $next, $guard = null)
     {
-        if (Auth::guard($guard)->check()) {
-            return redirect('/home');
-        }
+        $authenticated = $request->session()->get('authenticated');
 
-        return $next($request);
+        if($authenticated) {
+            return response()->view('errors.404');
+        }
+        else{
+            return $next($request);
+        }
     }
 }

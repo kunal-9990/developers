@@ -1,4 +1,4 @@
-<title>{{ $title or 'CaseWare Cloud' }}</title>
+<title>{{ $title or 'CaseWare Developers' }}</title>
 
 <meta property="og:url" content="{{ $url or '' }}">
 <meta property="og:title" content="{{ $og_title or '' }}">

@@ -99,11 +99,7 @@ function getVoteData($product, $version) {
     }
 
 function isAuthenticated($request){
-        $authToken = $request->session()->get('authenticated');
-        $key = env('AUTH_SECRET');
-        $decoded = (isset($authToken)) ? JWT::decode($authToken, $key, array('HS256')) : null;
-
-        $authenticated = (is_null($decoded)) ? false : true;
+        $authenticated = $request->session()->get('authenticated');
 
         if(!$authenticated) {
             return false;
