@@ -23,12 +23,12 @@
                 @if(isset($nav))
                     <div class="manual-toc__container">
                         <ul class="toc">
-                            <li class="manual-toc__category">
+                            <li class="manual-toc__category manual-toc__category--is-open">
                                 <a class="chevron" href="#">
                                     Key Pages
                                 </a>
                             </li>
-                            <ul class="manual-toc__sub-category-wrap">
+                            <ul class="manual-toc__sub-category-wrap manual-toc__sub-category-wrap--is-expanded">
                             {!!$nav!!}
                             </ul>
                         </ul>
