@@ -24,7 +24,8 @@
         <div class="col-xs-12 col-sm-8">
             <div class="intro">
                 <h1>Log in</h1>
-                <p>Enter your MyCaseWare account or Azure credentials. An SDK developer license is required.</p>
+                <hr/>
+                <p class="grey-font">Enter your MyCaseWare account or Azure credentials.<br class="hide-br"/>&nbsp;An SDK developer license is required.</p>
             </div>
             <form class="form-horizontal" method="POST" action="/mycwauth">
                 {{ csrf_field() }}
@@ -64,11 +65,11 @@
                     @endif
                 </div>
 
-                <div class="btn-group">
+                <div class="button-group">
                     <button type="submit" class="btn btn--primary">
                         Login with MyCaseWare
                     </button>
-                    <span>or</span>
+                    <div class="separator"><span class="grey-font">OR</span></div>
                     <a href="login/azure">
                         <button type="submit" class="btn btn--secondary">
                             Employee Login
