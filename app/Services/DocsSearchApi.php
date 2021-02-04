@@ -134,12 +134,9 @@ class DocsSearchApi
                         if($dom){
                             $title = strip_tags($dom->find('h1', 0));
                             $body = strip_tags(getContentFromDom($dom)->plaintext);
-                            
+
                             //algolia sets char limit of records
                             $truncatedbody = (strlen($body) > 100000) ? substr($body, 0, 90000) . '...' : $body;
-                            // $body = $dom->find('div[id=contentBody]', 0);
-
-                            // $url =  str_replace('\\', '/', "/".str_replace(env('PATH_TO_PUBLIC'), "", substr($filename, strpos($filename, "\\documentation_files\\") + 21)));
                             $url =  str_replace("/Content/", "/" , str_replace(env('PATH_TO_PUBLIC')."documentation_files", "", $filename));
                             $params = explode("/", $url);
                             
