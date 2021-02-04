@@ -271,6 +271,7 @@ table {
     .btn {
         padding: 1.2rem 2.4rem;
         border: 0;
+        border-radius: 5px;
         box-shadow: 0 5px 6px 0 #eee;
         transition: all 0.3s ease-in-out;
         width: 100%;
@@ -323,6 +324,6 @@ table {
 @include mq(md) {
 
     .login {
-        padding: 7.2rem 0;
+        padding: 7.2rem 0 9.8rem;
     }
 }
