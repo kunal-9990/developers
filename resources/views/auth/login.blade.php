@@ -21,58 +21,62 @@
 @section('content')
 <div class="container login">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <h3 class="login-header">
-                Enter your MyCaseWare account or CaseWare SSO. An SDK developer license is required. 
-            </h3>
+        <div class="col-xs-12 col-sm-8">
+            <div class="intro">
+                <h1>Log in</h1>
+                <hr/>
+                <p class="grey-font">Enter your MyCaseWare account or Azure credentials.<br class="hide-br"/>&nbsp;An SDK developer license is required.</p>
+            </div>
             <form class="form-horizontal" method="POST" action="/mycwauth">
                 {{ csrf_field() }}
                 <div class="form-group{{ !$errors->isEmpty() ? ' has-error' : '' }}">
-                    <label for="email" class="col-md-4 control-label">
-                        E-Mail Address
-                    </label>
-                    <div class="col-md-6">
-                        <input id="email" type="email" class="form-control" name="email" value="{{ old('email') }}" required autofocus>
-                        @if ($errors->has('email'))
-                            <span class="help-block">
-                                <strong>{{ $errors->first('email') }}</strong>
-                            </span>
-                        @endif
-                    </div>
+                    <input 
+                        id="email"
+                        type="email" 
+                        class="form-control" 
+                        name="email" 
+                        value="{{ old('email') }}" 
+                        placeholder="Email"
+                        required 
+                        autofocus
+                    >
+                    @if ($errors->has('email'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('email') }}</strong>
+                        </span>
+                    @endif
                 </div>
 
                 <div class="form-group{{ !$errors->isEmpty() ? ' has-error' : '' }}">
-                    <label for="password" class="col-md-4 control-label">
-                        Password
-                    </label>
-                    <div class="col-md-6">
-                        <input id="password" type="password" class="form-control" name="password" required>
-                        @if ($errors)
-                            @foreach ($errors->all() as $error)
-                                <span class="help-block">
-                                    <strong>{{ $error }}</strong>
-                                </span>                                
-                            @endforeach
-                        @endif
-                    </div>
+                    <input 
+                        id="password" 
+                        type="password" 
+                        class="form-control" 
+                        name="password" 
+                        placeholder="Password"
+                        required
+                    >
+                    @if ($errors)
+                        @foreach ($errors->all() as $error)
+                            <span class="help-block">
+                                <strong>{{ $error }}</strong>
+                            </span>                                
+                        @endforeach
+                    @endif
                 </div>
 
-                <div class="form-group">
-                    <div class="col-md-8 col-md-offset-4">
-                        <button type="submit" class="btn btn-primary">
-                            Login with MyCaseWare
+                <div class="button-group">
+                    <button type="submit" class="btn btn--primary">
+                        Login with MyCaseWare
+                    </button>
+                    <div class="separator"><span class="grey-font">OR</span></div>
+                    <a href="login/azure">
+                        <button type="submit" class="btn btn--secondary">
+                            CaseWare SSO
                         </button>
-                    </div>
+                    </a>
                 </div>
             </form>
-            
-            <div class="col-md-8 col-md-offset-4">
-                <a href="login/azure">
-                    <button type="submit" class="btn btn-primary">
-                        CaseWare SSO
-                    </button>
-                </a>
-            </div>
         </div>
     </div>
 </div>
