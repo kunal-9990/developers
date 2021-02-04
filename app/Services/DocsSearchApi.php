@@ -133,7 +133,7 @@ class DocsSearchApi
                         $dom = HtmlDomParser::str_get_html(file_get_contents(str_replace('\\', '/', $filename)));
                         if($dom){
                             $title = strip_tags($dom->find('h1', 0));
-                            $body = getContentFromDom($dom);
+                            $body = strip_tags(getContentFromDom($dom)->plaintext);
                             
                             //algolia sets char limit of records
                             $truncatedbody = (strlen($body) > 100000) ? substr($body, 0, 90000) . '...' : $body;
