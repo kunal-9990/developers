@@ -27,4 +27,8 @@
         </div>
     </div>
     @endif
+    <div class="header__links">
+        <a href="">Use Cases</a>
+        <a href="">Docs & Support</a>
+    </div>
 </div>

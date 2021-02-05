@@ -3,45 +3,78 @@ import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faExchangeAlt, faLongArrowAltRight } from '@fortawesome/free-solid-svg-icons'
+
 const DevTabs = ({ heading, description, tabs }) => {
 
+  // const settings = {
+  //   arrows: true,
+  //   // prevArrow: <ArrowPrev />,
+  //   // nextArrow: <ArrowNext />,
+  //   customPaging: function(i) {
+  //     return(<h3>{tabs[i]['title']}</h3>)
+  //   },
+  //   adaptiveHeight: true,
+  //   dots: true,
+  //   dotsClass: "tabs",
+  //   infinite: true,
+  //   speed: 500,
+  //   slidesToShow: 1,
+  //   slidesToScroll: 1,
+  //   // responsive: [{
+  //   //   breakpoint: 768,
+  //   //   settings: "unslick",
+  //   //   slidesToShow: 1
+  //   // }]
+  // }
+
   const settings = {
-    arrows: true,
-    // prevArrow: <ArrowPrev />,
-    // nextArrow: <ArrowNext />,
     customPaging: function(i) {
       return(<h3>{tabs[i]['title']}</h3>)
     },
+    appendDots: dots => <div className="dots-wrapper">{dots}</div>,
+    arrows: false,
     dots: true,
-    dotsClass: "tabs",
+    dotsClass: "tabs-nav",
     infinite: true,
-    speed: 500,
     slidesToShow: 1,
     slidesToScroll: 1,
-    // responsive: [{
-    //   breakpoint: 768,
-    //   settings: "unslick",
-    //   slidesToShow: 1
-    // }]
-  }
+    adaptiveHeight: true
+  };
 
   let tabSlider = tabs.map((tab, i) => {
+    console.log(tab)
     return (
-      <div className="tab-slide" key={i}>
-        <div class="tab-slide__two-col">
-          <p dangerouslySetInnerHTML={{ __html:tab.content}} />
-          <div>
-            <div className="cta">
-              <a href={tab.link.url}>{tab.link.title || 'Learn more'}</a>
+      <div key={i} className="tabs-slide">
+        <div className="tabs-slide__container">
+          <div className="tabs-slide__diagram">
+            <div>
+              {tab.columns.left_column.type === "headline" ? (
+                <h3>{tab.columns.left_column.headline}</h3>
+              ) : (
+                <img src={tab.columns.left_column.image.url} />
+              )}
+            </div>
+            {tab.arrows !== "none" && (
+              <div className="arrow">
+                  <FontAwesomeIcon icon={ tab.arrows === "two" ? faExchangeAlt : faLongArrowAltRight } />
+              </div>
+            )}
+
+            <div>
+              {tab.columns.right_column.type === "headline" ? (
+                <h3>{tab.columns.right_column.headline}</h3>
+              ) : (
+                <img src={tab.columns.right_column.image.url} />
+              )}
             </div>
           </div>
-        </div>
-        {/* <p>{block.description}</p>
-        <div>
-          <div className="second-nav__cta">
-            <a href={block.link.url}>{block.link.title || 'Learn more'}</a>
+          <div className="tabs-slide__content">
+            <div dangerouslySetInnerHTML={{ __html:tab.content}} />
+            <a className="btn btn--primary" href={tab.link.url}>{tab.link.title || 'Learn more'}</a>
           </div>
-        </div> */}
+        </div>
       </div>
     )
   })

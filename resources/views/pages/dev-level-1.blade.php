@@ -38,12 +38,32 @@
                     <div class="container container--mk4">
                         <div class="row">
                             <div class="col-sm-12">  
-                                <div 
+                                <div class="dev-tabs">
+                                    <div class="dev-landing__container">
+                                        <h2>{{$section->heading}}</h2>
+                                        <p>{{$section->description}}</p>
+
+                                        <div class="tab-block-container">
+                                            @foreach($section->tab as $tab)
+                                                <div class="tab-block">
+                                                    <h3>{{$tab->title}}</h3>
+                                                    <div class="content">{!! $tab->content !!}</div>
+                                                    <a class="btn btn--primary" href="{{$tab->link->url}}">
+                                                        <div class="">
+                                                            {{ $tab->link->title }}
+                                                        </div>
+                                                    </a>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- <div 
                                     data-component="tabs" 
                                     data-prop-heading="{{$section->heading}}"
                                     data-prop-description="{{$section->description}}"
                                     data-prop-tabs="{{json_encode($section->tab)}}"
-                                ></div>
+                                ></div> -->
                             </div>
                         </div>
                     </div>                                
