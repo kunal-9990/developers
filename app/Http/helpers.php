@@ -121,8 +121,14 @@ function isAuthenticated($request){
 
     function getContentFromDom($dom) {
         $maincontentarea;
+        //desktop sdk
         if($dom->find('div[id=contentBody]', 0)){
-            $maincontentarea = $dom->find('div[id=contentBody]', 0);
+            if($dom->find('div[id=contentSection]', 0)){
+                $maincontentarea = $dom->find('div[id=contentBody]', 0);
+            }
+            else{
+                $maincontentarea = $dom->find('div[id=contentBody]', 0);
+            }
         }
         //sherlock
         elseif($dom->find('div[id=mc-main-content]', 0)){
