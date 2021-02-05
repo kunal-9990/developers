@@ -123,9 +123,11 @@ function isAuthenticated($request){
         $maincontentarea;
         //desktop sdk
         if($dom->find('div[id=contentBody]', 0)){
-            if($dom->find('div[id=contentSection]', 0)){
-                $maincontentarea = $dom->find('div[id=contentBody]', 0);
+            //homepage
+            if($dom->find('div[id=content-section]', 0)){
+                $maincontentarea = $dom->find('div[id=content-section]', 0);
             }
+            //everything else
             else{
                 $maincontentarea = $dom->find('div[id=contentBody]', 0);
             }
