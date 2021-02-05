@@ -39,12 +39,16 @@ class DocsSearchApi
         return $res;
      }
 
-     public function addRecord(){
+     public function addRecord($title, $body, $url){
         $this->index->saveObject(
         [
-            'objectID' => 'myID',
-            'firstname' => 'Jimmie',
-            'lastname'  => 'Barninger'
+            'title' => $title,
+            'body'  => $body,
+            'url'   => $url
+            
+        ],
+        [
+                'autoGenerateObjectIDIfNotExist' => true
         ]
         );         
      }
