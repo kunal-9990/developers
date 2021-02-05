@@ -62,7 +62,14 @@ class LoginController extends Controller
 
                     // dd($targetUrl);
                     if(gettype($targetUrl) == "string"){
-                        return redirect($targetUrl);
+                        if($targetUrl == "/documentation_files/login/undefined/OnlineOutput.xml"){
+                            return redirect("/");
+
+                        }
+                        else{
+
+                            return redirect($targetUrl);
+                        }
                     }
                     else{
                         return redirect('/');
@@ -83,6 +90,7 @@ class LoginController extends Controller
     }
 
     function logout (Request $request) {
+        $request->session()->forget('targetUrl');
         $request->session()->forget('authenticated');
         $request->session()->flush();
         return redirect('/login');
