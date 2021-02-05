@@ -38,6 +38,7 @@ header.header {
     .header__nav-wrap {
         display: flex;
         align-items: center;
+        flex: 1;
 
         &.right-align-dropdowns {
             display: contents;
@@ -46,7 +47,18 @@ header.header {
 
         .nav-container {
             display: flex;
-            margin-right: 4rem;
+            // margin-right: 4rem;
+            padding-left: 1.2rem;
+            // Temporary
+            .header__links {
+                display: flex;
+                & > a {
+                    padding: 0 1.2rem;
+                    white-space: nowrap;
+                    font-weight: bold;
+                    color: $text-black;
+                }
+            }
         }
     }
 
@@ -80,7 +92,7 @@ header.header {
         min-width: 210px;
 
         @media (min-width: 850px) {
-            width: 50%;
+            width: 40%;
         }
 
         .desktop-search--is-open & {
