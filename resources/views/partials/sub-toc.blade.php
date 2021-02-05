@@ -1,6 +1,6 @@
 <section class="toc-subtopics">
     <div class="toc-subtopics__in-this-article">
-        <h5>{{ __('strings.in_this_article') }}</h5>
+        <h5>{{ __('strings.in_this_topic') }}</h5>
         <ul class="nav">
             {{-- contents are built in sub-topic-scrollspy.js --}}
         </ul>

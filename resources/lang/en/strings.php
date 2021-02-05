@@ -5,6 +5,7 @@ return [
 
   //MyCaseWare
   'in_this_article' => 'In this article',
+  'in_this_topic' => 'In this topic',
   'recently_viewed' => 'Recently viewed',
   'was_this_helpful' => 'Was this helpful?',
   'products' => 'PRODUCTS',
