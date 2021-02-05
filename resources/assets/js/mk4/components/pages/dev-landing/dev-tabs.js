@@ -3,6 +3,9 @@ import Slider from 'react-slick'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faExchangeAlt, faLongArrowAltRight } from '@fortawesome/free-solid-svg-icons'
+
 const DevTabs = ({ heading, description, tabs }) => {
 
   // const settings = {
@@ -55,11 +58,7 @@ const DevTabs = ({ heading, description, tabs }) => {
             </div>
             {tab.arrows !== "none" && (
               <div className="arrow">
-                {tab.arrows === "two" ? (
-                  <p>two arrows</p>
-                ) : (
-                  <p>one arrow</p>
-                )}
+                  <FontAwesomeIcon icon={ tab.arrows === "two" ? faExchangeAlt : faLongArrowAltRight } />
               </div>
             )}
 
@@ -72,8 +71,8 @@ const DevTabs = ({ heading, description, tabs }) => {
             </div>
           </div>
           <div className="tabs-slide__content">
-            <p dangerouslySetInnerHTML={{ __html:tab.content}} />
-            <a className="btn" href={tab.link.url}>{tab.link.title || 'Learn more'}</a>
+            <div dangerouslySetInnerHTML={{ __html:tab.content}} />
+            <a className="btn btn--primary" href={tab.link.url}>{tab.link.title || 'Learn more'}</a>
           </div>
         </div>
       </div>
