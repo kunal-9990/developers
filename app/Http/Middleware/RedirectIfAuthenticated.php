@@ -21,7 +21,7 @@ class RedirectIfAuthenticated
         $authenticated = $request->session()->get('authenticated');
 
         if($authenticated) {
-            return response()->view('errors.404');
+            return response()->view('errors.loggedin');
         }
         else{
             return $next($request);

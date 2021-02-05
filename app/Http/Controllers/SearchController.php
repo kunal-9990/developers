@@ -57,13 +57,6 @@ class SearchController extends Controller
         // }
 
 
-        
-
-       
-
-
-
-
         $results = $this->search->search($query, $filters);
         return view('pages.new-search', compact('results','query'));
     }
