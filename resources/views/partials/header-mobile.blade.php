@@ -5,9 +5,10 @@
     </div>
     <div class="header-mobile__input-search-wrapper">
 
-        <form method="GET" action="">
+        <form method="GET" action="/new-search">
             <input type="text" name="search" placeholder="Search" autocomplete="off">
         </form>
+
         <span class="glyphicon glyphicon-remove header-mobile__close-search header-mobile__search--js" aria-hidden="true"></span>
     </div>
     <span class="glyphicon glyphicon-search header-mobile__open-search header-mobile__search--js" aria-hidden="true"></span>
