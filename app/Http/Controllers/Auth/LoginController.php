@@ -60,7 +60,14 @@ class LoginController extends Controller
         $targetUrl = $request->session()->get('targetUrl', '/');
 
         if(gettype($targetUrl) == "string"){
-            return redirect($targetUrl);
+            if($targetUrl == "/documentation_files/login/undefined/OnlineOutput.xml"){
+                            return redirect("/");
+
+                        }
+                        else{
+
+                            return redirect($targetUrl);
+            }
         }
         else{
             return redirect('/');
