@@ -118,4 +118,41 @@ header.header {
             width: 100%;
         }
     }
+
+
+
+
+    /* NEW DROPDOWN */
+
+    .header__dropdown {
+        ul {
+            list-style: none;
+            padding: 0;
+
+            li {
+                display: inline-block;
+                padding: 0 0.5rem;
+            }
+
+            .subnav {
+                &--opened {
+                    border: 1px dashed red;
+                }
+
+                .children {
+                    display: none;
+                    position: absolute;
+                    width: 100%;
+                    background:yellow;
+                    bottom: 0;
+                    left: 0;
+                    height: 30px;
+
+                    &--opened {
+                        display: block
+                    }
+                }
+            }
+        }
+    }
 }

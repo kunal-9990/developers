@@ -27,8 +27,27 @@
         </div>
     </div>
     @endif
-    <div class="header__links">
-        <a href="">Use Cases</a>
-        <a href="">Docs & Support</a>
-    </div>
+
+    @if (isset($header))
+        <div class="header__links header__dropdown">
+            <ul>
+                @foreach($header as $item)
+                    @if(isset($item->child_items))
+                        <li class="subnav">
+                            <span class="parent">{{ $item->title }}</span>
+                            <ul class="children">
+                                @foreach($item->child_items as $child)
+                                    <li>
+                                        <a href="{{ $child->url }}" target="{{ $child->target }}">{{ $child->title }}</a>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        </li>
+                    @else 
+                        <li><a href="{{ $item->url }}" target="{{ $item->target }}">{{ $item->title }}</a></li>
+                    @endif
+                @endforeach
+            </ul>
+        </div>
+    @endif
 </div>
