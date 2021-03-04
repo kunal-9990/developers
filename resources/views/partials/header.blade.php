@@ -14,7 +14,7 @@
                     </form>
                 </div>
             @endif
-            <div class="header__nav-wrap">
+            <div class="header__links">
                 @if(strpos(Request::url(), '/SE-Authoring/') == false)
                     @include('partials.nav')
                 @endif

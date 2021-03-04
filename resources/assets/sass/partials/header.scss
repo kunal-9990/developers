@@ -38,7 +38,8 @@ header.header {
     .header__nav-wrap {
         display: flex;
         align-items: center;
-        flex: 1;
+        // flex: 1;
+        width: 25%;
 
         &.right-align-dropdowns {
             display: contents;
@@ -86,12 +87,14 @@ header.header {
         line-height: 1.625;
         font-weight: 400;
         transition: flex 0.2s;
-        margin-left: 10px;
+        // margin-left: 10px;
         border: 1px solid rgb(230, 236, 241); 
         min-width: 210px;
 
+        flex: 1;
+
         @media (min-width: 850px) {
-            width: 40%;
+            // width: 35%;
         }
 
         .desktop-search--is-open & {
@@ -116,6 +119,64 @@ header.header {
             height: 38px;
             padding: 0px 8px;
             width: 100%;
+        }
+    }
+
+
+
+    /* NEW DROPDOWN */
+    
+    .header__links {
+        margin-left: 1.2rem;
+    }
+
+    .header__dropdown {
+        ul {
+            list-style: none;
+            padding: 0;
+
+            li {
+                display: inline-block;
+                padding: 0 0.5rem;
+                cursor: pointer;
+
+                .parent {
+                    color: #323232;
+                }
+            }
+
+            .subnav {
+                .children {
+                    position: absolute;
+                    left: 0;
+                    width: 100%;
+                    background: #fff;
+                    box-shadow: 0 5px 6px 0 rgba(0,0,0,0.2);
+                    border-bottom: 1px solid #d4dadf;
+                    text-align: center;
+
+                    opacity: 0;
+                    height: 0;
+
+                    transition: all 0.2s ease-in-out;
+
+                    li {
+                        padding: 0 1.2rem;
+                    }
+                }
+
+                &--opened {
+                    .children {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+
+                        opacity: 1;
+                        height: 45px;
+
+                    }
+                }
+            }
         }
     }
 }
