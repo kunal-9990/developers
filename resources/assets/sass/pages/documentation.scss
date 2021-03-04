@@ -42,10 +42,14 @@
     .docs__content {
         flex: 1;
 
-        table.table > * {
-            word-break: break-word;
-            th {
-                min-width:120px;
+        table.table {
+            width: auto;
+
+            & > * {
+                word-break: break-word;
+                th {
+                    min-width:120px;
+                }
             }
         }
 

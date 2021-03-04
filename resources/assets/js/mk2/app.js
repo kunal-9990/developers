@@ -31,6 +31,7 @@ const MANUAL_TOC = require('./modules/manual-toc');
 const REDIRECTS = require('./modules/redirects');
 const COOKIE_CONSENT = require('./modules/cookie-consent');
 const SUBNAV_MENU = require('./modules/subnav-menu');
+const SUBNAV_MENU_MOBILE = require('./modules/subnav-menu-mobile');
 
 $(document).ready(() => {
     
@@ -93,6 +94,10 @@ $(document).ready(() => {
     
     if (document.querySelector('.header__dropdown')) {
         SUBNAV_MENU();
+    }
+
+    if (document.querySelector('.header__dropdown--mobile')) {
+        SUBNAV_MENU_MOBILE();
     }
 
 });

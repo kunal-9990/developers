@@ -39,7 +39,8 @@ header.header {
         display: flex;
         align-items: center;
         // flex: 1;
-        width: 25%;
+        width: 24%;
+        padding-right: 1.2rem;
 
         &.right-align-dropdowns {
             display: contents;
@@ -138,10 +139,15 @@ header.header {
             li {
                 display: inline-block;
                 padding: 0 0.5rem;
-                cursor: pointer;
 
                 .parent {
                     color: #323232;
+                    font-weight: 100;
+                    cursor: pointer;
+
+                    &--opened {
+                        font-weight: 400;
+                    }
                 }
             }
 
@@ -154,9 +160,11 @@ header.header {
                     box-shadow: 0 5px 6px 0 rgba(0,0,0,0.2);
                     border-bottom: 1px solid #d4dadf;
                     text-align: center;
+                    cursor: pointer;
 
                     opacity: 0;
                     height: 0;
+                    z-index: 0;
 
                     transition: all 0.2s ease-in-out;
 
@@ -172,8 +180,8 @@ header.header {
                         align-items: center;
 
                         opacity: 1;
-                        height: 45px;
-
+                        height: 7.2rem;
+                        z-index: 2;
                     }
                 }
             }
