@@ -38,10 +38,16 @@ $(document).ready(() => {
     if(document.querySelector('.cookie')) {
         COOKIE_CONSENT();
     }
+    
 
     // nav init
     if (document.querySelector('header.header')) {
         HEADER();
+    }
+
+    
+    if (document.querySelector('.header__dropdown')) {
+        SUBNAV_MENU();
     }
 
     // documentation page
@@ -54,6 +60,8 @@ $(document).ready(() => {
         BACK_TO_TOP();
     }
 
+    
+
     // back to top button
     if (document.querySelector('.search-page')) {
         SEARCH();
@@ -64,6 +72,7 @@ $(document).ready(() => {
         USER_FEEDBACK();
     }
 
+    
     // for switching between full width and contained width
     LAYOUT_GRID();
 
@@ -81,8 +90,9 @@ $(document).ready(() => {
         REDIRECTS();
     }
 
+    
     if (document.querySelector('.header__dropdown')) {
-        console.log("heloooo");
         SUBNAV_MENU();
     }
+
 });
