@@ -85,4 +85,64 @@
             margin: 0 0 5px 0;
         }
     }
+
+    &__links {
+        padding-top: 2.4rem;
+    }
+
+    .header__dropdown--mobile {
+
+        .accordion-tab {
+            position: relative;
+            margin: 0.6rem 0;
+            padding: 1.2rem 2.4rem;
+            width: 100%;
+            background-color: #f2f2f2;
+            font-weight: bold;
+            border: none;
+            text-align: left;
+            outline: none;
+            transition: 0.2s all ease-in-out;
+            cursor: pointer;
+
+            &:hover {
+                background-color: #f0f0f0;
+            }
+
+            &:after {
+                content: '+';
+                position: absolute;
+                right: 2.4rem;
+                font-weight: 100;
+                font-size: 1.8rem;
+            }
+
+            &.active:after {
+                content: '-';
+            }
+
+            &--link {
+                color: #323232;
+
+                &:after {
+                    content: '\0203A';
+                }
+            }
+        }
+    
+        .accordion-panel {
+            display: none;
+            padding: 1.2rem 2.4rem;
+            overflow: hidden;
+
+            a {
+                display: block;
+                padding: 0.6rem 0;
+            }
+        }
+
+        & > div > a:hover {
+            text-decoration: none;
+        }
+    }
 }
