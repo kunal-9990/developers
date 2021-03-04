@@ -82,6 +82,7 @@ $(document).ready(() => {
     }
 
     if (document.querySelector('.header__dropdown')) {
+        console.log("heloooo");
         SUBNAV_MENU();
     }
 });

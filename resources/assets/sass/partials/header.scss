@@ -121,7 +121,6 @@ header.header {
 
 
 
-
     /* NEW DROPDOWN */
 
     .header__dropdown {
@@ -132,24 +131,32 @@ header.header {
             li {
                 display: inline-block;
                 padding: 0 0.5rem;
+                cursor: pointer;
             }
 
             .subnav {
-                &--opened {
-                    border: 1px dashed red;
-                }
 
                 .children {
-                    display: none;
                     position: absolute;
-                    width: 100%;
-                    background:yellow;
-                    bottom: 0;
                     left: 0;
-                    height: 30px;
+                    bottom: -10px;
+                    width: 100%;
+                    height: 45px;
+                    background: #fff;
+                    box-shadow: 0 5px 6px 0 rgba(0,0,0,0.2);
+                    border-bottom: 1px solid #d4dadf;
+                    text-align: center;
 
-                    &--opened {
-                        display: block
+                    li {
+                        padding: 0 1.2rem;
+                    }
+                }
+
+                &--opened {
+                    .children {
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
                     }
                 }
             }
