@@ -29,7 +29,7 @@
     @endif
 
     @if (isset($header))
-        <div class="header__links header__dropdown">
+        <div class="header__dropdown">
             <ul>
                 @foreach($header as $item)
                     @if(isset($item->child_items))
@@ -44,7 +44,7 @@
                             </ul>
                         </li>
                     @else 
-                        <li><a href="{{ $item->url }}" target="{{ $item->target }}">{{ $item->title }}</a></li>
+                        <li><a href="{{ $item->url }}" target="{{ $item->target }}" class="parent">{{ $item->title }}</a></li>
                     @endif
                 @endforeach
             </ul>
