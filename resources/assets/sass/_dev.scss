@@ -302,6 +302,10 @@ table {
     }
 }
 
+pre {
+    border: 3px solid red;
+}
+
 @include mq(sm) {
 
     .login {

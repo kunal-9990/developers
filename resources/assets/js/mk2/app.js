@@ -32,6 +32,7 @@ const REDIRECTS = require('./modules/redirects');
 const COOKIE_CONSENT = require('./modules/cookie-consent');
 const SUBNAV_MENU = require('./modules/subnav-menu');
 const SUBNAV_MENU_MOBILE = require('./modules/subnav-menu-mobile');
+const COPY_TO_CLIPBOARD = require('./modules/copy-to-clipboard');
 
 $(document).ready(() => {
     
@@ -98,6 +99,10 @@ $(document).ready(() => {
 
     if (document.querySelector('.header__dropdown--mobile')) {
         SUBNAV_MENU_MOBILE();
+    }
+
+    if (document.querySelector('pre')) {
+        COPY_TO_CLIPBOARD();
     }
 
 });
