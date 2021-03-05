@@ -4,6 +4,8 @@
 
 pre {
     white-space: normal;
+
+    
 }
 
 .indent {
@@ -30,7 +32,8 @@ table {
     }
 
     td {
-        code {
+        code,
+        .param-type {
             word-break: normal!important;
         }
 
