@@ -1,20 +1,39 @@
 module.exports = function() {
-  
 
-  // var x = document.createElement("BUTTON");
-  // var t = document.createTextNode("Click me");
-  // x.appendChild(t);
-  // pre.parentElement().appendChild(x);
+  const pre = document.getElementsByClassName('clipboard');
+  const clipboardBtn = document.createElement('div');
+  clipboardBtn.className = "clipboard__btn";
+  pre.appendChild(clipboardBtn);
 
-  const pre = document.querySelector('pre');
+  pre.addEventListener('mouseover', () => {
+    console.log("show button");
+    clipboardBtn.classList.toggle('clipboard__btn--hover');
+  });
 
-  pre.addEventListener('click', () => {
-    console.log("click pre!");
-      var x = pre.createElement("BUTTON");
-    var t = pre.createTextNode("Click me");
-    x.appendChild(t);
-    pre.parentElement().appendChild(x);
-    // parentLink.parentElement.classList.toggle('manual-toc__category--is-open');
-    // parentLink.parentElement.nextElementSibling.classList.toggle('manual-toc__sub-category-wrap--is-expanded');
+  // for (let i = 0; i < pre.length; i++) {
+  //   accordion[i].addEventListener("click", function() {
+
+  clipboardBtn.addEventListener('click', () => {
+
+    var range, selection;
+
+    if (document.body.createTextRange) {
+      range = document.body.createTextRange();
+      range.moveToElementText(pre);
+      range.select();
+    } else if (window.getSelection) {
+      selection = window.getSelection();        
+    range = document.createRange();
+      range.selectNodeContents(pre);
+      selection.removeAllRanges();
+      selection.addRange(range);
+    }
+    
+    try {
+      document.execCommand('copy');
+    }
+    catch (err) {
+      console.log('unable to copy text');
+    }
   });
 }
