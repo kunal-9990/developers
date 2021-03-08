@@ -43,7 +43,7 @@
         flex: 1;
 
         table.table {
-            width: auto;
+            // width: auto;
 
             & > * {
                 word-break: break-word;
@@ -54,7 +54,7 @@
         }
 
         code {
-            word-break: break-all;
+            word-break: break-all !important;
         }
 
         .container {

@@ -305,22 +305,37 @@ table {
 
 .clipboard {
     position: relative;
+    overflow: visible;
+
     &__btn {
         position: absolute;
-        bottom: 0;
-        right: 0;
-        width: 50px;
-        height: 50px;
-
+        top: 50%;
+        transform: translateY(-50%);
+        right: -3.5rem;
+        width: 4.2rem;
+        height: 4.2rem;
         background-color: $light-grey;
+        background-image: url('../images/clipboard-icon.png');
+        background-repeat: no-repeat;
+        background-size: 3rem 3rem;
+        background-position: center center;
         border-radius: 5px;
-        border: 1px solid $light-grey-2;
+        border: 2px solid $light-grey-2;
+        cursor: pointer;
 
         opacity: 0;
+        visibility: hidden;
+        transition: all 0.1s ease-in-out;
 
-        &--hover {
+        &:hover {
+            background-color: #e7e7e7;
+        }
+    }
+
+    &:hover {
+        .clipboard__btn {
             opacity: 1;
-            border: 2px solid blue;
+            visibility: visible;
         }
     }
 }
