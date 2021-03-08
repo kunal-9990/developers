@@ -34,7 +34,7 @@
     <div class="mobile-nav">
         <div class="mobile-nav__close-bar-wrap">
             <span class="glyphicon glyphicon-chevron-left header-mobile__nav-toggle" aria-hidden="true"></span>
-            <!-- @include('partials.nav') -->
+            {{-- @include('partials.nav') --}}
         </div>
         <div class="mobile-nav__filters-wrap">
             @include('partials.filters', ['mobile' => true])

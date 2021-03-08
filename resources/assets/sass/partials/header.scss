@@ -144,10 +144,6 @@ header.header {
                     color: #323232;
                     font-weight: 100;
                     cursor: pointer;
-
-                    &--opened {
-                        font-weight: 400;
-                    }
                 }
             }
 
@@ -182,6 +178,10 @@ header.header {
                         opacity: 1;
                         height: 7.2rem;
                         z-index: 2;
+                    }
+                    
+                    .parent {
+                        font-weight: 400;
                     }
                 }
             }
