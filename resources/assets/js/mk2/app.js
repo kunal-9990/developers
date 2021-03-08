@@ -101,7 +101,7 @@ $(document).ready(() => {
         SUBNAV_MENU_MOBILE();
     }
 
-    if (document.querySelector('pre')) {
+    if (document.querySelector('.clipboard')) {
         COPY_TO_CLIPBOARD();
     }
 
