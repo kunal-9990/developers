@@ -105,4 +105,18 @@ $(document).ready(() => {
         COPY_TO_CLIPBOARD();
     }
 
+    if (document.querySelectorAll('code')){
+        console.log("code");
+
+        $(document).ready(function () {
+            // var range = document.createRange();
+            // var sel = window.getSelection();
+            // range.selectNodeContents($(this)[0]);
+            // sel.removeAllRanges();
+            // sel.addRange(range);
+
+            // console.log("hii", sel);
+        
+        })
+    }
 });
