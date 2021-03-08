@@ -105,18 +105,16 @@ $(document).ready(() => {
         COPY_TO_CLIPBOARD();
     }
 
-    if (document.querySelectorAll('code')){
-        console.log("code");
+    if (document.querySelector('pre code')){
 
-        $(document).ready(function () {
-            // var range = document.createRange();
-            // var sel = window.getSelection();
-            // range.selectNodeContents($(this)[0]);
-            // sel.removeAllRanges();
-            // sel.addRange(range);
+        var codeBlocks = document.querySelectorAll('pre code');
 
-            // console.log("hii", sel);
-        
-        })
+        // for (i = 0; i < codeBlocks.length; i++) {
+        //     console.log(codeBlocks[i].textContent);
+        //     // codeBlocks[i].textContent.split(':').join("<br/>");
+        //     console.log("innerhtml: ", codeBlocks[i].innerHTML)
+        //     // console.log(codeBlocks[i].textContent.replace(',', '$$'));
+        //     // codeBlocks[i].innerHTML.replace(',', '$$');
+        // }
     }
 });
