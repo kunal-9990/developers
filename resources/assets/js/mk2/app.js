@@ -114,10 +114,20 @@ $(document).ready(() => {
             // codeBlocks[i].textContent.split(':').join("<br/>");
             // console.log("innerhtml: ", codeBlocks[i].innerHTML)
 
+            // IMPORTANT - working. This takes double space and adds line break. 
             var newNode = document.createElement('code');
+            // update this line
+            newNode.innerHTML = codeBlocks[i].textContent.split("  ").join("<br/>");
+            console.log(newNode)
+            codeBlocks[i] = codeBlocks[i].replaceWith(newNode);
+
+
+
+
+            // Mostly junk below - not working 
+            
             // console.log("SOACE", (codeBlocks[i].textContent.split(/\s+/gi).length));
 
-            newNode = codeBlocks[i].textContent;
             
             // .split(' ').map(s => {
             //     if (s.split(/\s+/gi).length > 2){
@@ -131,9 +141,9 @@ $(document).ready(() => {
             //     newNode.innerHTML = newNode.split(':').join("<br/>");
             // }
 
-            newNode = newNode.split(' ').join("<br/>");
+            // newNode.innerHTML = newNode.split(":").join("\n");
 
-            codeBlocks[i].replaceWith(newNode);
+            // codeBlocks[i] = codeBlocks[i].replaceChild(newNode, codeBlocks[i]);
         }
     }
 });
