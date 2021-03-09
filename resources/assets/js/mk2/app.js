@@ -109,41 +109,25 @@ $(document).ready(() => {
 
         var codeBlocks = document.querySelectorAll('pre code');
 
+        function charParse(arr) {
+            for(var i=0; i < arr.length; i++) {
+                if (arr[i].length > 1 && arr[i].includes(' ')) {
+                    arr[i] = '\n' + arr[i];
+                }
+            }
+            return arr.join('');
+        }
+        
+        function charSplit(str) {
+            for (var i=0, arr=[], l, j=-1; i<str.length; i++)
+                l==(c = str.charAt(i)) ? arr[j] += (l=c) : arr[++j] = (l=c);
+            return charParse(arr);
+        }
+
         for (i = 0; i < codeBlocks.length; i++) {
-            console.log(codeBlocks[i].textContent);
-            // codeBlocks[i].textContent.split(':').join("<br/>");
-            // console.log("innerhtml: ", codeBlocks[i].innerHTML)
-
-            // IMPORTANT - working. This takes double space and adds line break. 
             var newNode = document.createElement('code');
-            // update this line
-            newNode.innerHTML = codeBlocks[i].textContent.split("  ").join("<br/>");
-            console.log(newNode)
+            newNode.innerHTML = charSplit(codeBlocks[i].textContent);
             codeBlocks[i] = codeBlocks[i].replaceWith(newNode);
-
-
-
-
-            // Mostly junk below - not working 
-            
-            // console.log("SOACE", (codeBlocks[i].textContent.split(/\s+/gi).length));
-
-            
-            // .split(' ').map(s => {
-            //     if (s.split(/\s+/gi).length > 2){
-            //         return s.replace(' ', '-=-=-=-=-=')
-            //     }
-            // });
-
-            // console.log(newNode.split(/\s+/gi).length - 1)
-
-            // if(newNode.split(/\s+/gi).length > 2) {
-            //     newNode.innerHTML = newNode.split(':').join("<br/>");
-            // }
-
-            // newNode.innerHTML = newNode.split(":").join("\n");
-
-            // codeBlocks[i] = codeBlocks[i].replaceChild(newNode, codeBlocks[i]);
         }
     }
 });
