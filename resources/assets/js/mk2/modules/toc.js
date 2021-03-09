@@ -26,6 +26,51 @@ module.exports = () => {
     var routeComponents = pathname.split("/");
     var TOCxml = "/documentation_files/"+product+"/"+version+"/OnlineOutput.xml";
 
+<<<<<<< HEAD:resources/assets/js/mk2/modules/toc.js
+=======
+    // they are the same for now but might change in the future to
+    // to have different TOCxml routes
+    if (0) {
+        // used for staging
+
+        var year = routeComponents[1];
+        console.log(year);
+        var product = routeComponents[2].toLowerCase();
+        var version = routeComponents[3];
+        var lang = routeComponents[4];
+        var linkPrefix = "/" + year + "/" + product + "/" + version + "/" + lang;
+        var TOCxml = "/documentation_files/" + year + "/" + product + "/" + version + "/Content/" + lang + "/OnlineOutput.xml";
+    } else {
+        // used for live
+        var year = routeComponents[1];
+        var product = routeComponents[2].toLowerCase();
+        var version = routeComponents[3];
+        var lang = routeComponents[4];
+        var linkPrefix = "/" + year + "/" + product + "/" + version + "/" + lang;
+        //hardcoding which toc to return based on language. currently, NL is the only language to have a properly translated TOC
+        //this should be changed so that if a properly translated toc doesn't exist, it defaults to english
+        // if(lang == "nl"){
+        //     var TOCxml = "/documentation_files/" + year + "/" + product + "/" + version + "/Content/" + lang + "/OnlineOutput.xml";
+        // }
+        var properlyTranslated = ["en", "nl"];
+        if(window.location.href.indexOf("SE-Authoring") > -1){
+            if (properlyTranslated.includes(lang)){
+                var TOCxml = "/documentation_files/" + year + "/" + product + "/" + version + "/Content/" + lang + "/SE-Authoring-TOC.xml";
+            }
+            else {
+                var TOCxml = "/documentation_files/" + year + "/" + product + "/" + version + "/Content/en/SE-Authoring-TOC.xml";
+            }
+        }
+        else{
+            if (properlyTranslated.includes(lang)) {
+                var TOCxml = "/documentation_files/" + year + "/" + product + "/" + version + "/Content/" + lang + "/OnlineOutput.xml";
+            }
+            else {
+                var TOCxml = "/documentation_files/" + year + "/" + product + "/" + version + "/Content/en/OnlineOutput.xml";
+            }
+        }
+    }
+>>>>>>> a3cea90447d3bfff8634f705f47976825b735548:resources/assets/js/modules/toc.js
 
     $.ajax({
         type: "GET",
