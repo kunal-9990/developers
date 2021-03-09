@@ -109,12 +109,31 @@ $(document).ready(() => {
 
         var codeBlocks = document.querySelectorAll('pre code');
 
-        // for (i = 0; i < codeBlocks.length; i++) {
-        //     console.log(codeBlocks[i].textContent);
-        //     // codeBlocks[i].textContent.split(':').join("<br/>");
-        //     console.log("innerhtml: ", codeBlocks[i].innerHTML)
-        //     // console.log(codeBlocks[i].textContent.replace(',', '$$'));
-        //     // codeBlocks[i].innerHTML.replace(',', '$$');
-        // }
+        for (i = 0; i < codeBlocks.length; i++) {
+            console.log(codeBlocks[i].textContent);
+            // codeBlocks[i].textContent.split(':').join("<br/>");
+            // console.log("innerhtml: ", codeBlocks[i].innerHTML)
+
+            var newNode = document.createElement('code');
+            // console.log("SOACE", (codeBlocks[i].textContent.split(/\s+/gi).length));
+
+            newNode = codeBlocks[i].textContent;
+            
+            // .split(' ').map(s => {
+            //     if (s.split(/\s+/gi).length > 2){
+            //         return s.replace(' ', '-=-=-=-=-=')
+            //     }
+            // });
+
+            // console.log(newNode.split(/\s+/gi).length - 1)
+
+            // if(newNode.split(/\s+/gi).length > 2) {
+            //     newNode.innerHTML = newNode.split(':').join("<br/>");
+            // }
+
+            newNode = newNode.split(' ').join("<br/>");
+
+            codeBlocks[i].replaceWith(newNode);
+        }
     }
 });
