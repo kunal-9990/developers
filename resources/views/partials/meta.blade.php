@@ -46,13 +46,13 @@
 	@endphp
 	@if($product == 'workingpaper' || $product  == 'audit')
 		<!-- Global site tag (gtag.js) - Google Analytics -->
-		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-79260220-1"></script>
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-79260220-11"></script>
 		<script>
 			window.dataLayer = window.dataLayer || [];
-		function gtag(){dataLayer.push(arguments);}
-		gtag('js', new Date());
-
-		gtag('config', 'UA-79260220-1');
+		  function gtag(){dataLayer.push(arguments);}
+		  gtag('js', new Date());
+		
+		  gtag('config', 'UA-79260220-11');
 		</script>
 	@else
 		<script>/* <![CDATA[ */
