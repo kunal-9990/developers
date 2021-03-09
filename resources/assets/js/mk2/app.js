@@ -105,18 +105,29 @@ $(document).ready(() => {
         COPY_TO_CLIPBOARD();
     }
 
-    if (document.querySelectorAll('code')){
-        console.log("code");
+    if (document.querySelector('pre code')){
 
-        $(document).ready(function () {
-            // var range = document.createRange();
-            // var sel = window.getSelection();
-            // range.selectNodeContents($(this)[0]);
-            // sel.removeAllRanges();
-            // sel.addRange(range);
+        var codeBlocks = document.querySelectorAll('pre code');
 
-            // console.log("hii", sel);
+        function charParse(arr) {
+            for(var i=0; i < arr.length; i++) {
+                if (arr[i].length > 1 && arr[i].includes(' ')) {
+                    arr[i] = '\n' + arr[i];
+                }
+            }
+            return arr.join('');
+        }
         
-        })
+        function charSplit(str) {
+            for (var i=0, arr=[], l, j=-1; i<str.length; i++)
+                l==(c = str.charAt(i)) ? arr[j] += (l=c) : arr[++j] = (l=c);
+            return charParse(arr);
+        }
+
+        for (i = 0; i < codeBlocks.length; i++) {
+            var newNode = document.createElement('code');
+            newNode.innerHTML = charSplit(codeBlocks[i].textContent);
+            codeBlocks[i] = codeBlocks[i].replaceWith(newNode);
+        }
     }
 });
