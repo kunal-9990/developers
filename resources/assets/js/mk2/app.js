@@ -30,6 +30,9 @@ const TOC = require('./modules/toc');
 const MANUAL_TOC = require('./modules/manual-toc');
 const REDIRECTS = require('./modules/redirects');
 const COOKIE_CONSENT = require('./modules/cookie-consent');
+const SUBNAV_MENU = require('./modules/subnav-menu');
+const SUBNAV_MENU_MOBILE = require('./modules/subnav-menu-mobile');
+const COPY_TO_CLIPBOARD = require('./modules/copy-to-clipboard');
 
 $(document).ready(() => {
     
@@ -37,10 +40,16 @@ $(document).ready(() => {
     if(document.querySelector('.cookie')) {
         COOKIE_CONSENT();
     }
+    
 
     // nav init
     if (document.querySelector('header.header')) {
         HEADER();
+    }
+
+    
+    if (document.querySelector('.header__dropdown')) {
+        SUBNAV_MENU();
     }
 
     // documentation page
@@ -53,6 +62,8 @@ $(document).ready(() => {
         BACK_TO_TOP();
     }
 
+    
+
     // back to top button
     if (document.querySelector('.search-page')) {
         SEARCH();
@@ -63,6 +74,7 @@ $(document).ready(() => {
         USER_FEEDBACK();
     }
 
+    
     // for switching between full width and contained width
     LAYOUT_GRID();
 
@@ -78,5 +90,44 @@ $(document).ready(() => {
 
     if (document.querySelector('.helpaccordiancol')) {
         REDIRECTS();
+    }
+
+    
+    if (document.querySelector('.header__dropdown')) {
+        SUBNAV_MENU();
+    }
+
+    if (document.querySelector('.header__dropdown--mobile')) {
+        SUBNAV_MENU_MOBILE();
+    }
+
+    if (document.querySelector('.clipboard')) {
+        COPY_TO_CLIPBOARD();
+    }
+
+    if (document.querySelector('pre code')){
+
+        var codeBlocks = document.querySelectorAll('pre code');
+
+        function charParse(arr) {
+            for(var i=0; i < arr.length; i++) {
+                if (arr[i].length > 1 && arr[i].includes(' ')) {
+                    arr[i] = '\n' + arr[i];
+                }
+            }
+            return arr.join('');
+        }
+        
+        function charSplit(str) {
+            for (var i=0, arr=[], l, j=-1; i<str.length; i++)
+                l==(c = str.charAt(i)) ? arr[j] += (l=c) : arr[++j] = (l=c);
+            return charParse(arr);
+        }
+
+        for (i = 0; i < codeBlocks.length; i++) {
+            var newNode = document.createElement('code');
+            newNode.innerHTML = charSplit(codeBlocks[i].textContent);
+            codeBlocks[i] = codeBlocks[i].replaceWith(newNode);
+        }
     }
 });
