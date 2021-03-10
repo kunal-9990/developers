@@ -57,6 +57,10 @@
             word-break: break-word !important;
         }
 
+        table code {
+            word-break: keep-all !important;
+        }
+
         .container {
             max-width: 100%;
         }
