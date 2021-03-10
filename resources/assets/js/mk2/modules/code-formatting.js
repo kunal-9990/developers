@@ -18,8 +18,6 @@ module.exports = () => {
   }
 
   for (i = 0; i < codeBlocks.length; i++) {
-    console.log("hello am i here?");
-
       var newNode = document.createElement('code');
       newNode.innerHTML = charSplit(codeBlocks[i].textContent);
       codeBlocks[i] = codeBlocks[i].replaceWith(newNode);
