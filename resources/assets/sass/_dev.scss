@@ -13,6 +13,7 @@ pre {
 table {
     border-collapse: collapse;
     table-layout: fixed;
+    word-break: initial;
 
     thead {
         background-color: #d6d6d6;
