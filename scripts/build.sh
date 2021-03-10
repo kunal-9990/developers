@@ -19,7 +19,7 @@
 # npm run build 2018 webapps 30 en
 #
 # wait until the script says "done." 
-#dos2unix scripts/build.sh
+dos2unix scripts/build.sh
 
 
 if [ -e "tmp/$1/$2/Project/TOCs/TOC.fltoc" ]; then
