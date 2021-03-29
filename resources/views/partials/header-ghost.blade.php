@@ -9,14 +9,16 @@
                     @include('partials.nav')
                 @endif -->
                 <div class="dev-header">
-                    <a href="https://my.caseware.com/account/login?ReturnUrl=%2F">Sign up</a>
-                    <div class="cta">
-                        @if($authenticated)
+                    @if($authenticated)
+                        <div class="cta">
                             <a href="/logout">Log out</a>
-                        @else
+                        </div>
+                    @else
+                        <a href="https://my.caseware.com/account/login?ReturnUrl=%2F">Sign up</a>
+                        <div class="cta">
                             <a href="/login">Log in</a>
-                        @endif
-                    </div>
+                        </div>
+                    @endif
                 </div>
             </div>
         </div>
