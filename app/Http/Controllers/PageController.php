@@ -156,7 +156,9 @@ class PageController extends Controller
             return response()->view('errors.404');
         }
 
-        $nav = getNavFromDom($dom);
+        // taking out old navs
+        // $nav = getNavFromDom($dom);
+
         $maincontentarea = getContentFromDom($dom);
         // find the element containing topic information according
 

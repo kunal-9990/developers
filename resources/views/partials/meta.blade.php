@@ -43,18 +43,18 @@
 {{-- Tell Google about localized versions of our pages --}}
 
 @if(env('APP_ENV') == "production")
-{{-- google analytics --}}
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=UA-79260220-11"></script>
-<script>
-	window.dataLayer = window.dataLayer || [];
+	{{-- google analytics --}}
+		<!-- Global site tag (gtag.js) - Google Analytics -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=UA-79260220-11"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
 		  function gtag(){dataLayer.push(arguments);}
 		  gtag('js', new Date());
 		
 		  gtag('config', 'UA-79260220-11');
-</script>
+		</script>
 
-{{-- google analytics end--}}
+	{{-- google analytics end--}}
 @endif
 
 

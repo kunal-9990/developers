@@ -19,18 +19,7 @@
 # npm run build 2018 webapps 30 en
 #
 # wait until the script says "done." 
-#dos2unix scripts/build.sh
-
-
-if [ -e "tmp/$1/$2/Project/TOCs/TOC.fltoc" ]; then
-    sudo cp tmp/$1/$2/Project/TOCs/TOC.fltoc tmp/$1/$2/OnlineOutput.xml
-    find tmp/$1/$2 -name "OnlineOutput.xml" -print0 | xargs -0 sed -i "s/\/Content\//\/$1\/$2\//g"
-    
-else 
-    echo "Online Output.fltoc was not included in upload"
-fi 
-
-
+dos2unix scripts/build.sh
 
 # publish docs
 # dos2unix /usr/share/nginx/developers/scripts/build.sh
@@ -41,6 +30,12 @@ cp -R tmp/$1/$2/* public/documentation_files/$1/$2/
 cp -R tmp/$1/$2/Content/Resources/Images/* public/images/$1/$2
 cd public/documentation_files/$1/$2/
 
+find -name "*.fltoc" -print0 | xargs -0 sed -i "s/\/Content\//\/$1\/$2\//g"
+echo "Copying over TOC and redirect xml files..."
+
+for f in *.fltoc; do 
+    mv -- "$f" "${f%.fltoc}.xml"
+done
 
 echo 'Renaming some files...'
 

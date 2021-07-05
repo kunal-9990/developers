@@ -54,7 +54,11 @@
         }
 
         code {
-            word-break: break-all !important;
+            word-break: break-word !important;
+        }
+
+        table code {
+            // word-break: keep-all !important;
         }
 
         .container {
