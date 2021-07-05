@@ -26,6 +26,8 @@ module.exports = () => {
     var routeComponents = pathname.split("/");
     var TOCxml = "/documentation_files/"+product+"/"+version+"/OnlineOutput.xml";
 
+    console.log(TOCxml);
+
 
     $.ajax({
         type: "GET",
