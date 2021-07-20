@@ -45,6 +45,7 @@ find . -type f -print0 | xargs -0 sed -i 's/src="..\/Resources\/Images/src="\/im
 find . -type f -print0 | xargs -0 sed -i 's/src="..\/Images/src="\/images\/'"$1\/$2"'/g'
 find . -type f -print0 | xargs -0 sed -i 's/src="\/Images/src="\/images\/'"$1\/$2"'/g'
 find . -type f -print0 | xargs -0 sed -i 's/src="..\/images/src="\/images\/'"$1\/$2"'/g'
+find . -type f -print0 | xargs -0 sed -i 's/src="images/src="\/images\/'"$1\/$2"'/g'
 
 
 # echo 'Done.'

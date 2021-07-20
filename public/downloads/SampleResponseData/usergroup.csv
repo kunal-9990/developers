@@ -1,0 +1,7 @@
+yearend,entityid,entityname,bundleguid,filename,lastmodified,name,description,std_rate,surcharge,global,auto_assigned,overwrite
+2020,19291,Mustafa's_Supplements name,2cb4d2a1-d5b8-45e0-abd6-6901b8138590,Test Security.ac,7/10/2020,BTC,bitcoin,400,400,Y,Y,Y
+2020,19291,Mustafa's_Supplements name,2cb4d2a1-d5b8-45e0-abd6-6901b8138590,Test Security.ac,7/10/2020,E4,345,45,45,Y,Y,N
+2019,8,vincent,8087e7d5-b1bc-4dff-8f5b-9176d47d1efe,test ray.ac,5/21/2021,BTC,bitcoin,400,400,Y,Y,Y
+2019,8,vincent,8087e7d5-b1bc-4dff-8f5b-9176d47d1efe,test ray.ac,5/21/2021,E4,345,45,45,Y,Y,N
+2020,8,vincent,2b48a2ce-6fc2-4611-b831-b3e38ca9ae0f,Audit SH HI Security.ac,5/21/2021,BTC,bitcoin,400,400,Y,Y,Y
+2020,8,vincent,2b48a2ce-6fc2-4611-b831-b3e38ca9ae0f,Audit SH HI Security.ac,5/21/2021,E4,345,45,45,Y,Y,N
