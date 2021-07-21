@@ -155,9 +155,9 @@ class PageController extends Controller
 
         if(endsWith($topicpath, ".zip")){
             $urlparams = explode("/", $topicpath);
-            return response()->download(env('PATH_TO_PUBLIC').'\downloads\/'.end($urlparams));
+            return response()->download(env('PATH_TO_PUBLIC').'/downloads/'.end($urlparams));
         }
-        
+
         try {
             $dom = HtmlDomParser::str_get_html(substr(file_get_contents($topicpath),0,600000));
         } catch (Exception $e) {
