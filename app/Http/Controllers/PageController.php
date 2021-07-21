@@ -10,6 +10,7 @@ use Sunra\PhpSimple\HtmlDomParser;
 use Illuminate\Support\Facades\View;
 use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Cookie;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 
@@ -150,8 +151,15 @@ class PageController extends Controller
         $topicpath .= (isset($param5)) ? "/".$param5 : "";
         $topicpath .= (isset($param6)) ? "/".$param6 : "";
         $topicpath .= (isset($param7)) ? "/".$param7 : "";
+
+
+        if(endsWith($topicpath, ".zip")){
+            $urlparams = explode("/", $topicpath);
+            return response()->download(env('PATH_TO_PUBLIC').'\downloads\/'.end($urlparams));
+        }
+        
         try {
-            $dom = HtmlDomParser::str_get_html(file_get_contents($topicpath));
+            $dom = HtmlDomParser::str_get_html(substr(file_get_contents($topicpath),0,600000));
         } catch (Exception $e) {
             return response()->view('errors.404');
         }
@@ -159,14 +167,14 @@ class PageController extends Controller
         // taking out old navs
         // $nav = getNavFromDom($dom);
 
-        $maincontentarea = getContentFromDom($dom);
+        $dom = getContentFromDom($dom);
         // find the element containing topic information according
 
         $htmlElement = $dom->find('html', 0);
         (isset($htmlElement->attr['data-mc-conditions'])) ? $exclusiveTo = $htmlElement->attr['data-mc-conditions'] : $exclusiveTo = '' ;
         $recent = getRecentlyViewed();
         $title = strip_tags($dom->find('h1', 0));
-        return view('pages.documentation', compact('maincontentarea', 'recent', 'exclusiveTo','title','nav'));
+        return view('pages.documentation', compact('dom', 'recent', 'exclusiveTo','title','nav'));
     }
      
  

@@ -42,8 +42,8 @@
                 </div>
                 <div class="docs__container">
                     <div class="docs__content"> 
-                        @if(isset($maincontentarea))
-                            @include('partials.toc-content', ['content' => $maincontentarea])
+                        @if(isset($dom))
+                            @include('partials.toc-content', ['content' => $dom])
                         @endif
                         <div class="docs__user-feedback">
                             @include('partials.user-feedback')

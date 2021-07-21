@@ -28,6 +28,25 @@
 
 .docs__container {
 
+    #class_toc {
+        
+        ul {
+            li{
+                list-style-type: none;
+                font-size: 2.2rem;
+                margin-top:30px;
+                margin-bottom:18px;
+                ul {
+                    li{
+                        list-style-type: circle!important;
+                        font-size: 1.5rem;
+                        margin-top:0px;
+                        margin-bottom:0px;
+                    }
+                }
+            }
+        }
+    }
 
     .downloadLink {
         cursor: pointer;
