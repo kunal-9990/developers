@@ -28,6 +28,7 @@ mkdir -p public/documentation_files/$1/$2/
 mkdir -p public/images/$1/$2/
 cp -R tmp/$1/$2/* public/documentation_files/$1/$2/
 cp -R tmp/$1/$2/Content/Resources/Images/* public/images/$1/$2
+cp -R tmp/$1/$2/Content/Resources/Icons/* public/images/$1/$2
 cd public/documentation_files/$1/$2/
 
 find -name "*.fltoc" -print0 | xargs -0 sed -i "s/\/Content\//\/$1\/$2\//g"
@@ -46,6 +47,7 @@ find . -type f -print0 | xargs -0 sed -i 's/src="..\/Images/src="\/images\/'"$1\
 find . -type f -print0 | xargs -0 sed -i 's/src="\/Images/src="\/images\/'"$1\/$2"'/g'
 find . -type f -print0 | xargs -0 sed -i 's/src="..\/images/src="\/images\/'"$1\/$2"'/g' 
 find . -type f -print0 | xargs -0 sed -i 's/src="images/src="\/images\/'"$1\/$2"'/g'
+find . -type f -print0 | xargs -0 sed -i 's/src=..\/Resources\/Icons/src="\/images\/'"$1\/$2"'/g'
 
 
 # echo 'Done.'
