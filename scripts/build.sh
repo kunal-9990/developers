@@ -26,7 +26,7 @@ dos2unix scripts/build.sh
 echo 'Copying new content into place...'
 mkdir -p public/documentation_files/$1/$2/
 mkdir -p public/images/$1/$2/
-mv public/documentation_files/$1/$2/ /tmp
+mv public/documentation_files/$1/$2/* /tmp/old
 cp -R tmp/$1/$2/* public/documentation_files/$1/$2/
 cp -R tmp/$1/$2/Content/Resources/Images/* public/images/$1/$2
 cp -R tmp/$1/$2/Content/Resources/I/* public/images/$1/$2
