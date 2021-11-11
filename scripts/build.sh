@@ -26,6 +26,7 @@ dos2unix scripts/build.sh
 echo 'Copying new content into place...'
 mkdir -p public/documentation_files/$1/$2/
 mkdir -p public/images/$1/$2/
+sudo rm -R /tmp/old/*
 mv public/documentation_files/$1/$2/* /tmp/old
 cp -R tmp/$1/$2/* public/documentation_files/$1/$2/
 cp -R tmp/$1/$2/Content/Resources/Images/* public/images/$1/$2
@@ -53,7 +54,7 @@ find . -type f -print0 | xargs -0 sed -i 's/src="..\/Resources\/Icons/src="\/ima
 sudo chmod -R 777 storage
 sudo chmod -R 777 scripts
 
-sudo rm -R tmp/$1/$2/*
+sudo rm -R /tmp/$1/$2/*
 sudo rm -R /usr/share/nginx/developers/tmp/$1/$2/*
 
 # sudo find /usr/share/nginx/developers/public/documentation_files/$1/$2/ -mindepth 1 -type f -mmin +15 -delete
