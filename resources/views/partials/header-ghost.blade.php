@@ -3,7 +3,7 @@
         <div class="header__search-wrap">
             <div class="header__nav-wrap right-align-dropdowns">
                 <a href="/">
-                    <img class="header__logo" src="/img/CaseWare_logo_RGB_horz_White.png" alt="CaseWare logo">
+                    <img class="header__logo" src="/img/CaseWare-Logo-RGB-Primary_Light-TM.png" alt="CaseWare logo">
                 </a>
                 <!-- @if(strpos(Request::url(), '/SE-Authoring/') == false)
                     @include('partials.nav')
