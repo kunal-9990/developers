@@ -10,7 +10,7 @@
         <div class="row">
             <div class="col col-sm-6 col--sm-full">        
                 <a href="https://www.caseware.com">
-                    <img class="footer__logo" src="/img/CaseWare_logo_RGB_horz_White.png" class="footerlogo" alt="CaseWare logo" />
+                    <img class="footer__logo" src="/img/CaseWare-Logo-RGB-Primary_Light-TM.png" class="footerlogo" alt="CaseWare logo" />
                 </a>
             </div>
             <div class="col col-sm-6 col--sm-full footer__social-media">
