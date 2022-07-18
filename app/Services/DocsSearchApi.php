@@ -50,7 +50,7 @@ class DocsSearchApi
         [
                 'autoGenerateObjectIDIfNotExist' => true
         ]
-        );         
+        )->wait();         
      }
 
      public function deleteRecord(){
@@ -63,11 +63,11 @@ class DocsSearchApi
         $this->index->deleteBy([
         'filters' => $filters
         /* add any filter parameters */
-        ]);        
+        ])->wait();        
      }
 
      public function clearObjects(){
-         $this->index->clearObjects();
+         $this->index->clearObjects()->wait();
        
      }
      
@@ -114,7 +114,7 @@ class DocsSearchApi
             [
                 'autoGenerateObjectIDIfNotExist' => true
             ]
-            );
+            )->wait();
 
 
 
@@ -163,7 +163,7 @@ class DocsSearchApi
                                 $this->index->saveObject(
                                     ["title"=>$title, "body"=>$truncatedbody, "url"=>$url, "product"=>$params[1], "version"=>$params[2]],
                                     ['autoGenerateObjectIDIfNotExist' => true]
-                                );         
+                                )->wait();         
                                 $i ++;
                             }
 
