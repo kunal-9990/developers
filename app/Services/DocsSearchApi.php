@@ -114,7 +114,7 @@ class DocsSearchApi
             [
                 'autoGenerateObjectIDIfNotExist' => true
             ]
-            )->wait();
+            );
 
 
 
@@ -163,7 +163,7 @@ class DocsSearchApi
                                 $this->index->saveObject(
                                     ["title"=>$title, "body"=>$truncatedbody, "url"=>$url, "product"=>$params[1], "version"=>$params[2]],
                                     ['autoGenerateObjectIDIfNotExist' => true]
-                                )->wait();         
+                                );         
                                 $i ++;
                             }
 
