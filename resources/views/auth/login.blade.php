@@ -25,7 +25,7 @@
             <div class="intro">
                 <h1>Log in</h1>
                 <hr/>
-                <p class="grey-font">Enter your MyCaseWare account or Azure credentials.<br class="hide-br"/>&nbsp;An SDK developer license is required.</p>
+                <p class="grey-font">Enter your MyCaseware account or Azure credentials.<br class="hide-br"/>&nbsp;An SDK developer license is required.</p>
             </div>
             <form class="form-horizontal" method="POST" action="/mycwauth">
                 {{ csrf_field() }}
@@ -67,7 +67,7 @@
 
                 <div class="button-group">
                     <button type="submit" class="btn btn--primary">
-                        Login with MyCaseWare
+                        Login with MyCaseware
                     </button>
                     <h4 class="grey-font">Don't have an account? <a href="https://my.caseware.com/account/login?ReturnUrl=%2F">Sign up</a></h4>
                 </div>
@@ -76,7 +76,7 @@
                 <div class="separator"><span class="grey-font">OR</span></div>
                 <a href="login/azure">
                     <button type="submit" class="btn btn--secondary">
-                        CaseWare SSO
+                        Caseware SSO
                     </button>
                 </a>
             </div>
