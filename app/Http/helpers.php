@@ -98,17 +98,31 @@ function getVoteData($product, $version) {
         return $featureInfo;
     }
 
-function isAuthenticated($request){
-        $authenticated = $request->session()->get('authenticated');
+    function isAuthenticated($request){
+            $authenticated = $request->session()->get('authenticated');
 
-        if(!$authenticated) {
-            return false;
-        }
-        else{
+            if(!$authenticated) {
+                return false;
+            }
+            else{
+                return true;
+            }
+
+    }
+
+    
+
+    function isSherlockApiLicenseHolder($request){
+        $license = $request->session()->get('license');
+
+        if($license == 'SherlockApi') {
             return true;
         }
+        else{
+            return false;
+        }
 
-}
+    }
 
     function cleanTitle($string){
         $string = str_replace(".html", "", $string);

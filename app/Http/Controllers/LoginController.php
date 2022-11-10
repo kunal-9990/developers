@@ -55,23 +55,33 @@ class LoginController extends Controller
                 $contents = (string) $sdkres->getBody();
                 $sdkresBody = json_decode($contents, true);
                 $productSdkList =  $myArray = explode(';', $sdkresBody["Products"]);
-                if($sdkresBody["Success"] && in_array("SDK", $productSdkList)){
+                if($sdkresBody["Success"] && (in_array("SDK", $productSdkList) || in_array("SherlockApi", $productSdkList))){
                     
                     $request->session()->put('authenticated', true);
-                    $targetUrl = $request->session()->get('targetUrl', '/');
 
-                    // dd($targetUrl);
-                    if(gettype($targetUrl) == "string"){
-                        if($targetUrl == "/documentation_files/login/undefined/OnlineOutput.xml"){
-                            return redirect("/");
+                    if(in_array("SDK", $productSdkList)){
+                        $request->session()->put('license', 'SDK');
+                        
+                        $targetUrl = $request->session()->get('targetUrl', '/');
 
+                        // dd($targetUrl);
+                        if(gettype($targetUrl) == "string"){
+                            if($targetUrl == "/documentation_files/login/undefined/OnlineOutput.xml"){
+                                return redirect("/");
+
+                            }
+                            else{
+
+                                return redirect($targetUrl);
+                            }
                         }
                         else{
-
-                            return redirect($targetUrl);
+                            return redirect('/');
                         }
                     }
-                    else{
+                    elseif(in_array("SherlockApi", $productSdkList)) {
+
+                        $request->session()->put('license', 'SherlockApi');
                         return redirect('/');
                     }
                 }
@@ -92,6 +102,7 @@ class LoginController extends Controller
     function logout (Request $request) {
         $request->session()->forget('targetUrl');
         $request->session()->forget('authenticated');
+        $request->session()->forget('license');
         $request->session()->flush();
         return redirect('/login');
 
