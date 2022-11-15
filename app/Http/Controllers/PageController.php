@@ -24,9 +24,14 @@ class PageController extends Controller
     function level1(Request $request){
 
         $authenticated = isAuthenticated($request);
-        $page = $this->cms->get_custom_post_by_name('en', 'level1', 'home');
-        
-        
+        if(isSherlockApiLicenseHolder($request)){
+            $page = $this->cms->get_custom_post_by_name('en', 'level1', 'sherlockapi_home');
+        }
+        else {
+            $page = $this->cms->get_custom_post_by_name('en', 'level1', 'home');            
+        }
+            
+            
         if(empty($page['results'])){
             return response()->view('errors.languageunavailable');
         }
