@@ -58,20 +58,19 @@ class LoginController extends Controller
 
         $request->session()->put('authenticated', true);
         $targetUrl = $request->session()->get('targetUrl', '/');
-        return redirect('/');
+        // return redirect('/');
 
-        // to be fixed
-        // if(gettype($targetUrl) == "string"){
-        //     if($targetUrl == "/documentation_files/login/undefined/OnlineOutput.xml"){
-        //                     return redirect("/");
+        if(gettype($targetUrl) == "string"){
+            if($targetUrl == "/documentation_files/login/undefined/OnlineOutput.xml"){
+                            return redirect("/");
 
-        //                 }
-        //                 else{
-        //                     return redirect($targetUrl);
-        //     }
-        // }
-        // else{
-        //     return redirect('/');
-        // }
+                        }
+                        else{
+                            return redirect($targetUrl);
+            }
+        }
+        else{
+            return redirect('/');
+        }
     }
 }
