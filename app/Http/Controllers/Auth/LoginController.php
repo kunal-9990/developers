@@ -58,7 +58,7 @@ class LoginController extends Controller
 
         $request->session()->put('authenticated', true);
         $targetUrl = $request->session()->get('targetUrl', '/');
-        dd($targetUrl);
+        // dd($targetUrl);
 
         if(gettype($targetUrl) == "string"){
             // if($targetUrl == "/documentation_files/login/undefined/OnlineOutput.xml"){
