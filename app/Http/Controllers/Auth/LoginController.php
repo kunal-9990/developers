@@ -44,7 +44,7 @@ class LoginController extends Controller
 
     public function redirectToProvider()
     {
-        return Socialite::driver('azure')->redirect();
+        return Socialite::driver('azure')->redirect()->getTargetUrl();
     }
 
     /**
@@ -58,19 +58,18 @@ class LoginController extends Controller
 
         $request->session()->put('authenticated', true);
         $targetUrl = $request->session()->get('targetUrl', '/');
-        // return redirect('/');
+        dd($targetUrl);
 
         if(gettype($targetUrl) == "string"){
-            if($targetUrl == "/documentation_files/login/undefined/OnlineOutput.xml"){
-                            return redirect("/");
-
-                        }
-                        else{
-                            return redirect($targetUrl);
-            }
-        }
-        else{
-            return redirect('/');
+            // if($targetUrl == "/documentation_files/login/undefined/OnlineOutput.xml"){
+            //     $this->$redirectTo = '/';
+            // }
+            // else{
+                
+            return redirect($targetUrl);
+            // }
+        } else {
+            return redirect($this->$redirectTo);
         }
     }
 }
