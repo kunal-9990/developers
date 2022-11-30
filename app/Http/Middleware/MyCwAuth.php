@@ -22,7 +22,7 @@ class MyCwAuth
 
         if(!$authenticated) {
 
-            if (!$request->session()->exists('targetUrl')) {
+            if (!$request->session()->exists('targetUrl') && request()->path() !== 'documentation_files/login/undefined/OnlineOutput.xml') {
                 $request->session()->put('targetUrl', "/".request()->path()); 
             }
             return redirect('/login');
