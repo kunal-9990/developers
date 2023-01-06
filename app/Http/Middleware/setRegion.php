@@ -37,6 +37,10 @@ class setRegion
             }
             $method = 'http://api.ipstack.com/'.$ip.'?access_key='.env("IP_STACK_KEY");
             $response = Unirest::get($method);
+
+            //adding log
+            Log::info('Ipstack called from setRegion middleware and IP is: '. $ip);
+          
             $requestRegion = isset($response->body->country_code) ? strtolower($response->body->country_code) : 'int';
             if ($requestRegion !== 'ca' && $requestRegion !== 'us') {
                 $requestRegion = 'int';
