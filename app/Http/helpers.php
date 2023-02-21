@@ -110,8 +110,6 @@ function getVoteData($product, $version) {
 
     }
 
-    
-
     function isSherlockApiLicenseHolder($request){
         $license = $request->session()->get('license');
 
@@ -121,7 +119,17 @@ function getVoteData($product, $version) {
         else{
             return false;
         }
+    }
 
+    function isSherlockLicenseHolder($request){
+        $license = $request->session()->get('license');
+
+        if($license == 'Sherlock') {
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     function cleanTitle($string){
