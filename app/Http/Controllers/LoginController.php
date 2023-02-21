@@ -80,6 +80,11 @@ class LoginController extends Controller
                         }
                     }
                   
+                    elseif(in_array("SherlockApi", $productSdkList) && in_array("Sherlock", $productSdkList)) {
+                        $request->session()->put('license', 'SherlockApiAndSherlock');
+                        return redirect('/');
+                    }
+                  
                     elseif(in_array("SherlockApi", $productSdkList)) {
                         $request->session()->put('license', 'SherlockApi');
                         return redirect('/');
