@@ -27,6 +27,9 @@ class PageController extends Controller
         if(isSherlockApiLicenseHolder($request)){
             $page = $this->cms->get_custom_post_by_name('en', 'level1', 'sherlockapi_home');
         }
+      	elseif(isSherlockLicenseHolder($request)){
+            $page = $this->cms->get_custom_post_by_name('en', 'level1', 'sherlockbuilder_home');
+        }
         else {
             $page = $this->cms->get_custom_post_by_name('en', 'level1', 'home');            
         }
