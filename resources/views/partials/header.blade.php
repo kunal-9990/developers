@@ -15,7 +15,7 @@
                 </div>
             @endif
             <div class="header__links">
-                @if(strpos(Request::url(), '/SE-Authoring/') == false && request()->session()->get('license') != 'SherlockApi')
+                @if(strpos(Request::url(), '/SE-Authoring/') == false && request()->session()->get('license') != 'SherlockApi' && request()->session()->get('license') != 'Sherlock' && request()->session()->get('license') != 'SherlockApiAndSherlock')
                     @include('partials.nav')
                 @endif
             </div>            

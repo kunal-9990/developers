@@ -55,7 +55,7 @@ class LoginController extends Controller
                 $contents = (string) $sdkres->getBody();
                 $sdkresBody = json_decode($contents, true);
                 $productSdkList =  $myArray = explode(';', $sdkresBody["Products"]);
-                if($sdkresBody["Success"] && (in_array("SDK", $productSdkList) || in_array("SherlockApi", $productSdkList))){
+                if($sdkresBody["Success"] && (in_array("SDK", $productSdkList) || in_array("SherlockApi", $productSdkList) || in_array("Sherlock", $productSdkList))){
                     
                     $request->session()->put('authenticated', true);
 
@@ -79,10 +79,20 @@ class LoginController extends Controller
                             return redirect('/');
                         }
                     }
+                  
+                    elseif(in_array("SherlockApi", $productSdkList) && in_array("Sherlock", $productSdkList)) {
+                        $request->session()->put('license', 'SherlockApiAndSherlock');
+                        return redirect('/');
+                    }
+                  
                     elseif(in_array("SherlockApi", $productSdkList)) {
-
                         $request->session()->put('license', 'SherlockApi');
                         return redirect('/');
+                    }
+                  
+                    elseif(in_array("Sherlock", $productSdkList)) {
+                          $request->session()->put('license', 'Sherlock');
+                          return redirect('/');
                     }
                 }
                 else {
