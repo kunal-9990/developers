@@ -89,8 +89,22 @@
         new google.translate.TranslateElement({pageLanguage: 'en', includedLanguages: 'de,es,fr,nl,zh-CN,zh-TW', layout: google.translate.TranslateElement.InlineLayout.HORIZONTAL, gaTrack: true, gaId: 'UA-37974433-25'}, 'google_translate_element');
       }
       /* ]]> */</script>
+        
+        <!-- Google Tag Manager -->
+		<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+		new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+		j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+		'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+		})(window,document,'script','dataLayer','GTM-KX6JHHN');</script>
+		<!-- End Google Tag Manager -->
     </head>
     <body>
+        <!-- Google Tag Manager (noscript) -->
+        <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-KX6JHHN"
+        height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+        <!-- End Google Tag Manager (noscript) -->
+        
+        
         <nav class="navbar navbar-default topnav fullnav" role="navigation">
             <div class="container-fluid navcontainer">
                 <div class="wrapper">
