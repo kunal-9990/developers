@@ -27,15 +27,6 @@
            
 
                 <div class="col">
-                    <span>Products</span>
-                    <a href="https://docs.caseware.com/ca/en/cloud" target="_blank" rel="noopener">Caseware Cloud</a>
-                    <a href="https://docs.caseware.com/ca/en/hybrid" target="_blank" rel="noopener">Hybrid Cloud</a>
-                    <a href="https://docs.caseware.com/ca/en/rct" target="_blank" rel="noopener">Caseware RCT</a>
-                    <a href="https://docs.caseware.com/ca/en/audit" target="_blank" rel="noopener">Caseware Audit</a>
-                    <a href="https://docs.caseware.com/ca/en/pbc" target="_blank" rel="noopener">PBC Requests</a>
-                    <a href="https://docs.caseware.com/ca/en/aai" target="_blank" rel="noopener">AnalyticsAI</a>
-                </div>
-                <div class="col">
                     <span>About</span>
                     <a href="https://www.caseware.com/ca/about" target="_blank" rel="noopener">Who we are</a>
                     <a href="https://www.caseware.com/ca/careers" target="_blank" rel="noopener">Where you fit</a>
@@ -50,11 +41,12 @@
                     <a href="https://www.caseware.com/support/cloud/service-level-agreement" target="_blank" rel="noopener">Cloud Service Level Agreement</a>
                 </div>
                 <div class="col">
-                    <a href="https://www.caseware.com/ca/support" target="_blank" rel="noopener"><span>Support</span></a>
-                    <a href="https://www.caseware.com/ca/training" target="_blank" rel="noopener"><span>Training</span></a>
-                    <a href="https://www.caseware.com/ca/distributors" target="_blank" rel="noopener"><span>Distributors</span></a>
-                    <a href="https://www.caseware.com/ca/resources/events" target="_blank" rel="noopener"><span>Events</span></a>
-                    <a href="https://my.caseware.com/account/login?ReturnUrl=%2F" target="_blank" rel="noopener"><span>MyCaseWare</span></a>
+  					<span>Resources</span>
+                    <a href="https://www.caseware.com/ca/support" target="_blank" rel="noopener">Support</a>
+                    <a href="https://www.caseware.com/ca/training" target="_blank" rel="noopener">Training</a>
+                    <a href="https://www.caseware.com/ca/distributors" target="_blank" rel="noopener">Distributors</a>
+                    <a href="https://www.caseware.com/ca/resources/events" target="_blank" rel="noopener">Events</a>
+                    <a href="https://my.caseware.com/account/login?ReturnUrl=%2F" target="_blank" rel="noopener">MyCaseware</a>
                 </div>
                 <div class="col stretch contact">
                     <span>Contact</span>
