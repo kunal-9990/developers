@@ -159,6 +159,14 @@ class PageController extends Controller
     // display the topics in /public/documentation_files
     function showTopic($product, $version, $category, $param1 = null, $param2 = null, $param3 = null, $param4 = null){
         $product =  strtolower($product);
+      
+      	//check for redirects
+      	if($product == "se-authoring" && $version == "31"){
+          if($category == "Whats-new-data-analytics.htm") {
+            return redirect('/developers_content/v1/Data-Analytics/Whats-new-data-analytics.htm', 301);
+          }
+        }
+      
         //build topic path using supplied parameters
         $topicpath = env('PATH_TO_PUBLIC').'documentation_files/'.$product."/".$version."/"."Content/".$category;
         // dd($topicpath);
