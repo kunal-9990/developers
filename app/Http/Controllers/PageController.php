@@ -178,7 +178,7 @@ class PageController extends Controller
             return redirect('/developers_content/v1/Data-Analytics/Release-history-Data-Analytics-8.htm', 301);
           }
           if($category == "Release-history-Data-Analytics-7.htm"){
-            return redirect('/developers_content/v1/Data- /Release-history-Data-Analytics-7.htm', 301);
+            return redirect('/developers_content/v1/Data-Analytics/Release-history-Data-Analytics-7.htm', 301);
           }
           if($category == "Release-history-Data-Analytics-6.htm"){
             return redirect('/developers_content/v1/Data-Analytics/Release-history-Data-Analytics-6.htm', 301);
