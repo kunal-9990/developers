@@ -165,6 +165,42 @@ class PageController extends Controller
           if($category == "Whats-new-data-analytics.htm") {
             return redirect('/developers_content/v1/Data-Analytics/Whats-new-data-analytics.htm', 301);
           }
+          if($category == "Release-history-Data-Analytics-11.htm"){
+            return redirect('/developers_content/v1/Data-Analytics/Release-history-Data-Analytics-11.htm', 301);
+          }
+          if($category == "Release-history-Data-Analytics-10.htm"){
+            return redirect('/developers_content/v1/Data-Analytics/Release-history-Data-Analytics-10.htm', 301);
+          }
+          if($category == "Release-history-Data-Analytics-9.htm"){
+            return redirect('/developers_content/v1/Data-Analytics/Release-history-Data-Analytics-9.htm', 301);
+          }
+          if($category == "Release-history-Data-Analytics-8.htm"){
+            return redirect('/developers_content/v1/Data-Analytics/Release-history-Data-Analytics-8.htm', 301);
+          }
+          if($category == "Release-history-Data-Analytics-7.htm"){
+            return redirect('/developers_content/v1/Data- /Release-history-Data-Analytics-7.htm', 301);
+          }
+          if($category == "Release-history-Data-Analytics-6.htm"){
+            return redirect('/developers_content/v1/Data-Analytics/Release-history-Data-Analytics-6.htm', 301);
+          }
+          if($category == "Release-history-Data-Analytics-2020-4.htm"){
+            return redirect('/developers_content/v1/Data-Analytics/Release-history-Data-Analytics-2020-4.htm', 301);
+          }
+          if($category == "Release-history-Data-Analytics-2020-1.htm"){
+            return redirect('/developers_content/v1/Data-Analytics/Release-history-Data-Analytics-2020-1.htm', 301);
+          }
+          if($category == "Release-history-Data-Analytics-2019-8.htm"){
+            return redirect('/developers_content/v1/Data-Analytics/Release-history-Data-Analytics-2019-8.htm', 301);
+          }
+          if($category == "Release-history-Data-Analytics-2019-7.htm"){
+            return redirect('/developers_content/v1/Data-Analytics/Release-history-Data-Analytics-2019-7.htm', 301);
+          }
+          if($category == "Release-history-Data-Analytics-2019-6.htm"){
+            return redirect('/developers_content/v1/Data-Analytics/Release-history-Data-Analytics-2019-6.htm', 301);
+          }
+          if($category == "Release-history-Data-Analytics-2019-5.htm"){
+            return redirect('/developers_content/v1/Data-Analytics/Release-history-Data-Analytics-2019-5.htm', 301);
+          }
         }
       
         //build topic path using supplied parameters
