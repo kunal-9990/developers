@@ -18,5 +18,8 @@
     RewriteCond %{REQUEST_FILENAME} !-d
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteRule ^ index.php [L]
+    
+    #handle specific redirects
+    RewriteRule ^se-authoring/31/Whats-new-data-analytics.htm /developers_content/v1/Data-Analytics/Whats-new-data-analytics.htm [R=301,NC,L]
 
 </IfModule>
