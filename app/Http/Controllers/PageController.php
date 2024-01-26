@@ -201,6 +201,42 @@ class PageController extends Controller
           if($category == "Release-history-Data-Analytics-2019-5.htm"){
             return redirect('/developers_content/v1/Data-Analytics/Release-history-Data-Analytics-2019-5.htm', 301);
           }
+          if($category == "Add-a-query-template.htm"){
+            return redirect('/se-authoring/31/Add-a-query-template-(new-design).htm', 301);
+          }
+          if($category == "Workflow-(how-to-author-a-query).htm"){
+            return redirect('/se-authoring/31/How-to-author-a-query-(new-design).htm', 301);
+          }
+          if($category == "Add-guidance-information-in-a-query.htm"){
+            return redirect('/se-authoring/31/Add-contact-instructions.htm', 301);
+          }
+          if($category == "Add-a-query-group.htm"){
+            return redirect('/se-authoring/31/Add-a-question-set.htm', 301);
+          }
+          if($category == "Add-a-query.htm"){
+            return redirect('/se-authoring/31/Add-a-query-question.htm', 301);
+          }
+          if($category == "Review-and-customize-query-settings.htm"){
+            return redirect('/se-authoring/31/Review-and-customize-question-settings.htm', 301);
+          }
+          if($category == "Add-a-response-to-a-query.htm"){
+            return redirect('/se-authoring/31/Add-a-response-to-a-question.htm', 301);
+          }
+          if($category == "Link-a-query-to-a-checklist-procedure.htm"){
+            return redirect('/se-authoring/31/Link-a-query-question-to-a-checklist-procedure.htm', 301);
+          }
+          if($category == "Rearrange-queries.htm"){
+            return redirect('/se-authoring/31/Rearrange-query-questions-and-question-sets.htm', 301);
+          }
+          if($category == "Add-visibility-logic-in-a-query.htm"){
+            return redirect('/se-authoring/31/Add-visibility-logic-in-a-query-(new-design).htm', 301);
+          }
+          if($category == "Add-Author-IDs.htm"){
+            return redirect('/se-authoring/31/Add-Author-IDs-(new-design).htm', 301);
+          }
+          if($category == "View-a-sample-query-template.htm"){
+            return redirect('/se-authoring/31/View-a-sample-query-template-(new-design).htm', 301);
+          }
         }
       
         //build topic path using supplied parameters
