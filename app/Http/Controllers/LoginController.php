@@ -24,7 +24,7 @@ class LoginController extends Controller
 
 
         try {
-            $loginres = $client->post('https://my.caseware.com/api/account/login', [
+            $loginres = $client->post('https://wsrecord.caseware.com/docs/api/account/login', [
                     'headers' => [
                         'Accept' => 'application/json',
                         'X-Requested-With'=>'XMLHttpRequest',
@@ -44,7 +44,7 @@ class LoginController extends Controller
 
         if($loginres->getStatusCode() == "200") {
             try {
-                $sdkres = $client->post('https://my.caseware.com/api/account/sdk', [
+                $sdkres = $client->post('https://wsrecord.caseware.com/docs/api/account/sdk', [
                         'headers' => [
                             'Accept' => 'application/json',
                             'X-Requested-With'=>'XMLHttpRequest',
