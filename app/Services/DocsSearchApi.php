@@ -115,11 +115,8 @@ class DocsSearchApi
                 'autoGenerateObjectIDIfNotExist' => true
             ]
             );
-
-
-
-
      }
+  
      public function indexDocsBy($product, $version){
         $records = array();
         $docspath = env("PATH_TO_PUBLIC")."documentation_files/".$product."/".$version;
@@ -133,6 +130,7 @@ class DocsSearchApi
                     $topicName;
                     $topicBody;
                     $topicUrl;
+                  	$archived = "false";
                     
                     try {
                         $dom = HtmlDomParser::str_get_html(file_get_contents(str_replace('\\', '/', $filename)));
@@ -140,14 +138,23 @@ class DocsSearchApi
                             $url =  str_replace("/Content/", "/" , str_replace(env('PATH_TO_PUBLIC')."documentation_files", "", $filename));
                             $params = explode("/", $url);
 
-                            $body = getContentFromDom($dom);
-                            $h1 = strip_tags($body->find('h1', 0));
+                            $bodyDom = getContentFromDom($dom);
+                            $h1 = strip_tags($bodyDom->find('h1', 0));
                             $title = (isset($h1) && $h1 !== " Contact Us") ? $h1 : cleanTitle(end($params));
                             
-                            $body = strip_tags($body->plaintext);
+                        	// Replace HTML tags with spaces. This greatly helps in Agolia indexing.
+                            $body = trim(preg_replace("/\s+/", " ", preg_replace("/<[^>]*>/", " ", $bodyDom)));
+                          
+                          	// Append "(Archive)" to the end of all sdk-archive files for better search results.
+                          	// In addition, a new "archived" flag has been introduced in Agolia index to allow ranking of results.
+                          	// When $archived is "true", the results will rank lower than those with "false".
+                          	if (str_contains($url, "/sdk-archive/")){
+                                $title = $title." (Archive)";
+                                $archived = "true";
+                            }
 
                             //algolia sets char limit of records
-                            $truncatedbody = (strlen($body) > 100000) ? substr($body, 0, 90000) . '...' : $body;
+                            $truncatedbody = (strlen($body) > 100000) ? substr($body, 0, 99900) . '...' : $body;
                             
                             if(!empty($body) && !empty($title)){
                                 echo $url;
@@ -156,14 +163,8 @@ class DocsSearchApi
                                 echo "\n";
                                 echo $title;
                                 echo "\n";
-
-
                                 
-                                array_push($records, ["title"=>$title, "body"=>$truncatedbody, "url"=>$url, "product"=>$params[1], "version"=>$params[2]]);
-                                $this->index->saveObject(
-                                    ["title"=>$title, "body"=>$truncatedbody, "url"=>$url, "product"=>$params[1], "version"=>$params[2]],
-                                    ['autoGenerateObjectIDIfNotExist' => true]
-                                );         
+                                array_push($records, ["title"=>$title, "body"=>$truncatedbody, "url"=>$url, "archived"=>$archived,  "product"=>$params[1], "version"=>$params[2]]);
                                 $i ++;
                             }
 
@@ -172,11 +173,17 @@ class DocsSearchApi
                         Log::error($e);
                     }
                 }
-                
             }
+       		
+       		// Send records to Agolia index at the end rather than within the loop for better efficiency.
+       		$this->index->saveObjects(
+                $records,
+                [
+                    'autoGenerateObjectIDIfNotExist' => true
+                ]
+            );
             
             echo "Indexing of ".$product.":".$version." is complete.\n".$i." topics indexed.";
             return;
      }
-
 }
