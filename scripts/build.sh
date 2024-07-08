@@ -29,8 +29,9 @@ mkdir -p public/images/$1/$2/
 sudo rm -R /tmp/old/*
 mv public/documentation_files/$1/$2/* /tmp/old
 cp -R tmp/$1/$2/* public/documentation_files/$1/$2/
-cp -R tmp/$1/$2/Content/Resources/Images/* public/images/$1/$2
-cp -R tmp/$1/$2/Content/Resources/I/* public/images/$1/$2
+\cp -R tmp/$1/$2/Content/Resources/Images/* public/images/$1/$2
+\cp -R tmp/$1/$2/Content/Reference/examples/* public/downloads
+\cp -R tmp/$1/$2/Content/Reference/images/* public/images/$1/$2
 cd public/documentation_files/$1/$2/
 
 find -name "*.fltoc" -print0 | xargs -0 sed -i "s/\/Content\//\/$1\/$2\//g"
@@ -59,4 +60,4 @@ sudo rm -R /usr/share/nginx/developers/tmp/$1/$2/*
 
 # sudo find /usr/share/nginx/developers/public/documentation_files/$1/$2/ -mindepth 1 -type f -mmin +15 -delete
 
-# echo 'Done.'
+echo 'Done.'
