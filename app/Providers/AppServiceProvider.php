@@ -16,6 +16,12 @@ class AppServiceProvider extends ServiceProvider
     {
         //
         Schema::defaultStringLength(191);
+      
+      	// Increase maximum file size for Algolia index
+      	// This is to ensure all files are indexed
+      	if (!defined('MAX_FILE_SIZE')) {
+          define('MAX_FILE_SIZE', 999999);
+        }
     }
 
     /**
