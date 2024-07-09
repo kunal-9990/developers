@@ -52,6 +52,7 @@ find . -type f -print0 | xargs -0 sed -i 's/src="..\/images/src="\/images\/'"$1\
 find . -type f -print0 | xargs -0 sed -i 's/src="images/src="\/images\/'"$1\/$2"'/g'
 find . -type f -print0 | xargs -0 sed -i 's/src="..\/Resources\/Icons/src="\/images\/'"$1\/$2"'/g'
 
+cd /usr/share/nginx/developers
 sudo chmod -R 777 storage
 sudo chmod -R 777 scripts
 
